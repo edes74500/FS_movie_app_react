@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import { createGlobalStyle } from "styled-components";
-import Home from "./pages/home";
 import styled from "styled-components";
-import Favorite from "./pages/favorite";
+import Navbar from "./components/Navbar";
+import Favorite from "./pages/Favorite";
+import Home from "./pages/Home";
 
 const GlobalStyle = createGlobalStyle`
 

@@ -9,7 +9,7 @@ const StyledNavbar = styled.nav`
   color: white;
   max-width: 1000px;
   margin: auto;
-  padding: 20px 0;
+  /* padding: 20px 0; */
   width: 100vw;
   display: flex;
   align-items: center;
@@ -17,16 +17,19 @@ const StyledNavbar = styled.nav`
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 50px;
+    width: 100%;
+    font-weight: 100;
+    /* justify-content: space-between; */
   }
-  // autres styles...
 `;
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: white;
   position: relative;
   font-weight: bold;
-  &::before {
+  text-transform: uppercase;
+  /* &::before {
     content: "";
     display: block;
     width: 0%;
@@ -36,12 +39,13 @@ const StyledLink = styled(NavLink)`
     background: white;
     margin: 10px 0;
     position: absolute;
-    transition: 1s;
-  }
+    transition: 1s; */
+  /* } */
   &.active {
-    color: #4caf50;
-    transition: 1s ease-in-out;
-    &::before {
+    color: #ff5200; /* Couleur du lien actif */
+    font-weight: bold; /* Rendre le texte du lien actif plus gras */
+    transition: 0.3s ease-in-out;
+    /* &::before {
       content: "";
       display: block;
       width: 100%;
@@ -51,12 +55,13 @@ const StyledLink = styled(NavLink)`
       background: #4caf50;
       margin: 10px 0;
       position: absolute;
-    }
+    } */
   }
 `;
 const StyledIcon = styled(NavLink)`
   /* transition: 1s; */
   /* transform: scale(1); */
+  right: 0;
   svg {
     transition: 1s;
     text-decoration: none;
@@ -85,6 +90,26 @@ const StyledIcon = styled(NavLink)`
   }
 `;
 
+const StyledLogoContainer = styled.div`
+  img {
+    margin: 10px;
+    width: 60px;
+    /* height: 100px; */
+  }
+`;
+
+const StyledLeftDiv = styled.div`
+  display: flex;
+`;
+
+function Logo() {
+  return (
+    <StyledLogoContainer>
+      <img src="./img/logo4.png" alt="" />
+    </StyledLogoContainer>
+  );
+}
+
 function Navbar() {
   // Logique de votre composant Navbar...\
 
@@ -93,17 +118,37 @@ function Navbar() {
       <ul>
         <li>
           <StyledLink to="/" className={(nav) => (nav.isActive ? "active" : "")}>
-            Accueil
+            {/* Accueil */}
+            <Logo />
           </StyledLink>
         </li>
-
         <li>
+          <StyledLink to="/series" className={(nav) => (nav.isActive ? "active" : "")}>
+            Series
+          </StyledLink>
+        </li>{" "}
+        <li>
+          <StyledLink to="/film" className={(nav) => (nav.isActive ? "active" : "")}>
+            Film
+          </StyledLink>
+        </li>
+        {/* <li>
           <StyledIcon to="/favorite" className={(nav) => (nav.isActive ? "active" : "")}>
             <FaHeart />
           </StyledIcon>
-        </li>
+        </li> */}
         {/* autres liens */}
       </ul>
+      <StyledLeftDiv>
+        <ul>
+          <li>
+            <StyledIcon to="/favorite" className={(nav) => (nav.isActive ? "active" : "")}>
+              <FaHeart />
+            </StyledIcon>
+          </li>
+          {/* autres liens */}
+        </ul>
+      </StyledLeftDiv>
     </StyledNavbar>
   );
 }

@@ -1,4 +1,5 @@
 // import React from "react";
+import { IoSearch } from "react-icons/io5";
 import styled from "styled-components";
 
 const StyledBannerContainer = styled.div`
@@ -42,6 +43,51 @@ const StyledHeaderContainer = styled.div`
   }
 `;
 
+const StyledSearchDiv = styled.div`
+  display: flex;
+  height: 40px;
+  outline: none;
+  border-radius: 5px;
+  width: fit-content;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  &:focus-within {
+    /* border: 1px solid #000; */
+  }
+  input {
+    border: none;
+    outline: none;
+    width: 400px;
+    padding-left: 10px;
+  }
+  button {
+    border: none;
+    width: 50px;
+    cursor: pointer;
+    background: rgb(var(--secondary-color));
+    svg {
+      font-size: 20px;
+    }
+  }
+`;
+
+const SearchInput = () => {
+  return (
+    <StyledSearchDiv>
+      <input type="text" placeholder="Rechercher..." />
+      <button>
+        <span role="img" aria-label="Loupe">
+          <IoSearch />
+        </span>
+      </button>
+    </StyledSearchDiv>
+  );
+};
+
 const Header = () => {
   return (
     <StyledBannerContainer>
@@ -49,6 +95,7 @@ const Header = () => {
         <h2>CINE ADDICT</h2>
         <h3>Trouve ton prochain film !</h3>
       </StyledHeaderContainer>
+      <SearchInput />
       {/* test */}
       {/* <img src="./img/banner.png" alt="" /> */}
     </StyledBannerContainer>

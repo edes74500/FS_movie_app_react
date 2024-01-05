@@ -6,6 +6,7 @@ import Favorite from "./pages/Favorite";
 import Home from "./pages/Home";
 import { globalStyles } from "./styles/globalStyles";
 import "typeface-lato";
+import "typeface-roboto";
 import "@fontsource-variable/cinzel";
 import Navbar from "./components/Navbar";
 

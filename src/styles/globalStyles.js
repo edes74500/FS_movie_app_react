@@ -7,7 +7,9 @@ export const globalStyles = css`
   }
 
   :root {
-    --main-color: #02101b; // Exemple de couleur principale
+    --main-color-2: #b3cdc7; // Exemple de couleur principale
+    --main-color: #02101b;
+    --secondary-color: 255, 172, 7; // Exemple de couleur secondaire
     --font-size: 16px; // Exemple de taille de police globale
   }
 

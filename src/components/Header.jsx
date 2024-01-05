@@ -9,6 +9,7 @@ const StyledBannerContainer = styled.div`
   background-image: url(./img/banner2.png);
   position: relative;
   background-size: cover;
+  margin-bottom: 50px;
   &::before {
     content: "";
     /* display: block; */

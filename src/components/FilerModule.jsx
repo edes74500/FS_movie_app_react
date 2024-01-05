@@ -16,7 +16,7 @@ const SearchInput = () => {
     input {
       border: none;
       outline: none;
-      width: 200px;
+      width: 400px;
       padding-left: 10px;
     }
     button {
@@ -41,13 +41,20 @@ const SearchInput = () => {
   );
 };
 
+const StyledFilterModule = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+`;
 const FilerModule = () => {
   return (
-    <div>
+    <StyledFilterModule>
       <SearchInput />
       <input type="text" />
       <input type="text" />
-    </div>
+    </StyledFilterModule>
   );
 };
 

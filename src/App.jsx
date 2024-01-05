@@ -17,7 +17,7 @@ const PageContainer = styled.div`
   /* max-width: 1000px; */
   /* display: flex; */
   /* margin: 0 auto; */
-  background-color: green;
+  /* background-color: green; */
 `;
 function App() {
   return (

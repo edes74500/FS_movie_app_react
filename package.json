@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/cinzel": "^5.0.8",
     "axios": "^1.6.5",
+    "framer-motion": "^10.17.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
@@ -18,7 +20,6 @@
     "react-router-dom": "^6.21.1",
     "styled-components": "^6.1.6",
     "swiper": "^11.0.5",
-    "@fontsource-variable/cinzel": "^5.0.8",
     "typeface-lato": "^1.1.13",
     "typeface-roboto": "^1.1.13"
   },

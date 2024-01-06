@@ -9,6 +9,7 @@ import "typeface-lato";
 import "typeface-roboto";
 import "@fontsource-variable/cinzel";
 import Navbar from "./components/Navbar";
+import { motion, AnimatePresence } from "framer-motion";
 
 const GlobalStyle = createGlobalStyle`
 ${globalStyles}
@@ -23,14 +24,16 @@ const PageContainer = styled.div`
 function App() {
   return (
     <Router>
-      <GlobalStyle />
-      <Navbar />
-      <PageContainer>
-        <Routes>
-          <Route path="/favorite" element={<Favorite />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </PageContainer>
+      <AnimatePresence>
+        <GlobalStyle />
+        <Navbar />
+        <PageContainer>
+          <Routes>
+            <Route path="/favorite" element={<Favorite />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </PageContainer>
+      </AnimatePresence>
     </Router>
   );
 }

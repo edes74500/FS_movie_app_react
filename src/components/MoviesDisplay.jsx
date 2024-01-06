@@ -1,36 +1,68 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MovieCard from "./MovieCard";
+import { TbH4 } from "react-icons/tb";
 
 const StyledMoviesContainer = styled.div`
-  overflow: hidden;
   gap: 10px;
   display: flex;
   flex-direction: column;
 `;
-const MoviesDisplay = () => {
-  const [moviesSearch, setMoviesSearch] = React.useState([]);
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzMyNTI5YWQ2N2ZlODc0OGVmN2I5NGUwODgyZWJlZCIsInN1YiI6IjY1OTY4YWY1NjBjNTFkN2IyZjk3ODc4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JrL3wCMu69gYTBXgOdhijJ3syoBCDbnYCQt6xopPSlQ",
-    },
+const MoviesDisplay = ({ moviesGenres, moviesSearch, popularMovies }) => {
+  // const [moviesSearch, setMoviesSearch] = React.useState([]);
+  const [moviesSort, setMoviesSort] = React.useState({ id: "vote", ascendant: false });
+  const [moviesToDisplay, setMoviesToDisplay] = useState([]);
+
+  const handleOnClickButton = (e) => {
+    setMoviesSort((oldArray) => {
+      const id = e.target.id;
+      const ascendant = oldArray.id == id ? !oldArray.ascendant : false;
+      return { id: id, ascendant: ascendant };
+    });
   };
 
   useEffect(() => {
-    axios.get("https://api.themoviedb.org/3/search/movie?query=fast and fu& include_adult=false & language=en - US & page=1", options).then((res) => {
-      console.log(res.data.results);
-      setMoviesSearch(res.data.results);
-    });
-  }, []);
+    setMoviesSort((oldArray) => ({ id: oldArray.id, ascendant: false }));
+  }, [moviesToDisplay]);
+
+  useEffect(() => {
+    moviesSearch.length > 0 ? setMoviesToDisplay(moviesSearch) : setMoviesToDisplay(popularMovies);
+  }, [moviesSearch, popularMovies]);
 
   return (
-    <StyledMoviesContainer>
-      <MovieCard moviesSearch={moviesSearch} />
-    </StyledMoviesContainer>
+    <>
+      <StyledMoviesContainer>
+        <button id="vote" onClick={handleOnClickButton}>
+          trier par note
+        </button>{" "}
+        <button id="popularity" onClick={handleOnClickButton}>
+          trier par poularite
+        </button>
+        {moviesSearch.length < 1 && (
+          <>
+            <h2 style={{ fontSize: "2rem", textAlign: "center" }}>Desole aucun film ne correspond a votre recherche </h2>
+            <span style={{ fontSize: "4rem", textAlign: "center" }}>😥</span>
+            <h3 style={{ marginTop: "50px" }}>Voici les films populaires du moment en attendant...</h3>
+          </>
+        )}
+        <MovieCard
+          moviesToDisplay={moviesToDisplay
+            .slice()
+
+            .sort((a, b) => {
+              // console.log(moviesSort);
+              if (moviesSort.id == "vote") {
+                return moviesSort.ascendant ? a.vote_average - b.vote_average : b.vote_average - a.vote_average;
+              } else if (moviesSort.id == "popularity") {
+                return moviesSort.ascendant ? a.popularity - b.popularity : b.popularity - a.popularity;
+              }
+              return 0;
+            })}
+          moviesGenres={moviesGenres}
+        />
+      </StyledMoviesContainer>
+    </>
   );
 };
 

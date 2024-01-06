@@ -1,18 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import ReactRating from "react-rating";
+import { FaHeart } from "react-icons/fa6";
 import { TiStarFullOutline } from "react-icons/ti";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiOutlineBookmark } from "react-icons/hi";
 
 const StyledMovieWrapper = styled.div`
   display: flex;
-  border: 1px solid rgb(var(--secondary-color));
+  box-shadow: 50px 30px 25px rgba(var(--secondary-color), 0.7);
+  background-color: rgb(var(--main-color));
+
+  /* border-top: 1px solid rgb(var(--secondary-color)); */
+  /* border-left: 1px solid rgb(var(--secondary-color)); */
 `;
 
 const StyledImageContainer = styled.div`
-  max-width: 200px;
+  min-height: 250px;
   position: relative;
+  /* width: auto; */
+  /* min-width: 150px; */
+  /* height: auto; */
+  aspect-ratio: 2/2.7;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
   img {
-    width: 100%;
   }
   &::before {
     content: "";
@@ -38,12 +52,99 @@ const StyledImageContainer = styled.div`
     left: 0;
     z-index: 1;
   }
+  .rank {
+    position: absolute;
+    z-index: 4;
+  }
+  .is-absolute {
+    position: absolute;
+    z-index: 4;
+    color: rgb(var(--secondary-color));
+    &.icone {
+      font-size: 3rem;
+      left: -20px;
+      top: -12px;
+    }
+  }
 `;
 
 const StyledInfoContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 75% 25%;
   flex-direction: column;
   justify-content: center;
+  margin: 10px 20px;
+  width: 100%;
+  position: relative;
+  gap: 20px;
+
+  .info-container-text {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      /* margin: 10px 0; */
+    }
+    p {
+      font-size: 0.8rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* Nombre de lignes à afficher */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .genre {
+      padding: 5px 10px;
+      margin: 3px 3px 0;
+      border-radius: 5px;
+      display: inline-block;
+      font-size: 0.8rem;
+    }
+    .date-container {
+      margin-left: 2px;
+      font-size: 0.8rem;
+      font-style: italic;
+      text-transform: capitalize;
+    }
+    button {
+      width: 200px;
+      font-size: 0.7;
+      font-weight: bold;
+      padding: 5px;
+      cursor: pointer;
+      background: rgb(var(--secondary-color));
+      border: none;
+      border-radius: 5px;
+    }
+  }
+  .right-side-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    .favori-icone {
+      svg {
+        font-size: 3rem;
+        color: #d3d3d35e;
+        cursor: pointer;
+        &:hover {
+          color: white;
+        }
+      }
+    }
+    .note-display {
+      text-align: center;
+      span {
+        font-size: 1rem;
+      }
+      .nbr-votes {
+        font-size: 0.5rem;
+      }
+    }
+  }
 `;
 
 const FullStar = styled(TiStarFullOutline)`
@@ -54,35 +155,75 @@ const EmptyStar = styled(TiStarFullOutline)`
   color: grey; // ou toute autre couleur pour l'étoile vide
 `;
 const NoteDisplay = ({ note, votes }) => {
-  console.log(note);
   return (
-    <div>
-      <ReactRating initialRating={note} emptySymbol={<EmptyStar />} fullSymbol={<FullStar />} readonly stop={5} /> {parseFloat(note.toFixed(1))} (
-      {votes.toLocaleString("fr-FR")} votes)
-    </div>
+    <>
+      <ReactRating initialRating={note} emptySymbol={<EmptyStar />} fullSymbol={<FullStar />} readonly stop={5} /> {parseFloat(note.toFixed(1))}{" "}
+      <br />
+      <span className="nbr-votes">({votes.toLocaleString("fr-FR")} votes)</span>
+    </>
   );
 };
 
-const MovieCard = ({ moviesSearch }) => {
+const MovieCard = ({ moviesToDisplay, moviesGenres }) => {
   return (
     <>
-      {moviesSearch.map((movie) => {
-        return (
-          <StyledMovieWrapper key={movie.id}>
-            <StyledImageContainer>
-              <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
-            </StyledImageContainer>
-            <StyledInfoContainer>
-              <h2>{movie.title}</h2>
-              <p>{movie.overview}</p>
-
-              <div>
-                <NoteDisplay note={movie.vote_average / 2} votes={movie.vote_count} />
-              </div>
-            </StyledInfoContainer>
-          </StyledMovieWrapper>
-        );
-      })}
+      <AnimatePresence>
+        {moviesToDisplay.map((movie, index) => {
+          return (
+            <motion.div
+              key={movie.id}
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0.3, scale: 0.6 }}
+              transition={{ duration: 0.2 }}
+              className="movie-card"
+            >
+              <StyledMovieWrapper key={movie.id}>
+                <StyledImageContainer
+                  style={{
+                    backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/original${movie.poster_path})` : `url(./img/affiche.jpg)`,
+                  }}
+                >
+                  <div className="rank is-absolute">{index < 5 ? index + 1 : ""}</div>
+                  <div className="icone  is-absolute">{index < 5 ? <HiOutlineBookmark /> : ""}</div>
+                </StyledImageContainer>
+                <StyledInfoContainer>
+                  <div className="info-container-text">
+                    <div className="title">
+                      <h2>{movie.title}</h2>
+                      <p className="date-container">
+                        {/* {movie.release_date} */}
+                        {new Intl.DateTimeFormat("fr-FR", { year: "numeric", month: "long" }).format(new Date(movie.release_date))}
+                      </p>
+                    </div>
+                    <div className="movie-genres">
+                      {movie.genre_ids.map((id, index) => {
+                        const genre = moviesGenres.find((genre) => genre.id === id);
+                        return genre ? (
+                          <span key={id} className="genre" style={{ background: "red" }}>
+                            {genre.name}
+                            {"   "}
+                          </span>
+                        ) : null;
+                      })}
+                    </div>
+                    <p>{movie.overview}</p>
+                    <button>Decouvrir ce film</button>
+                  </div>
+                  <div className="right-side-container">
+                    <div className="favori-icone">
+                      <FaHeart />
+                    </div>
+                    <div className="note-display">
+                      <NoteDisplay note={movie.vote_average / 2} votes={movie.vote_count} />
+                    </div>
+                  </div>
+                </StyledInfoContainer>
+              </StyledMovieWrapper>
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
     </>
   );
 };

@@ -102,7 +102,7 @@ const CategoriesIcones = () => {
 
   const handleOnClick = (e) => {
     document.querySelector(".container-collapse").classList.toggle("is-hidden");
-    console.log(e);
+    // console.log(e);
   };
 
   return (

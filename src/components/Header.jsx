@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import { IoSearch } from "react-icons/io5";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const StyledHeaderWrapper = styled.div`
   position: relative;
@@ -39,6 +39,7 @@ const StyledBannerImg = styled.div`
   background-size: cover;
   /* z-index: 15; */
   animation: scale 30s linear alternate-reverse infinite;
+  cursor: grab;
   &::after {
     content: "";
     width: 100%;
@@ -112,11 +113,24 @@ const StyledSearchDiv = styled.div`
     }
   }
 `;
+// let searchResults = "";
+const SearchInput = ({ setInputSearchValue }) => {
+  const timeoutRef = useRef(null);
 
-const SearchInput = () => {
+  const handleOnChange = (e) => {
+    const searchValue = e.target.value;
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setInputSearchValue(searchValue);
+    }, 800);
+  };
+
   return (
     <StyledSearchDiv>
-      <input type="text" placeholder="Rechercher..." />
+      <input type="text" placeholder="Rechercher..." onChange={handleOnChange} />
       <button>
         <span role="img" aria-label="Loupe">
           <IoSearch />
@@ -126,7 +140,7 @@ const SearchInput = () => {
   );
 };
 
-const Header = () => {
+const Header = ({ setInputSearchValue }) => {
   const carrousselImages = Array(9)
     .fill()
     .map((_, index) => index);
@@ -138,7 +152,7 @@ const Header = () => {
           <h2>CINE ADDICT</h2>
           <h3>Trouve ton prochain film !</h3>
         </StyledTextContainer>
-        <SearchInput />
+        <SearchInput setInputSearchValue={setInputSearchValue} />
         <Swiper
           modules={[Navigation, Autoplay, EffectFade]}
           navigation={true}

@@ -105,7 +105,7 @@ const StyledLeftDiv = styled.div`
 function Logo() {
   return (
     <StyledLogoContainer>
-      <img src="./img/logo4.png" alt="" />
+      <img src="./img/logos/logo4.png" alt="" />
     </StyledLogoContainer>
   );
 }

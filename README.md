@@ -1,8 +1,15 @@
-# React + Vite
+# TO DO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[ ] arranger les boutons
+[ ] tri par category
+[ ] creer des cartes individually
+[ ] logique coup de coeur
+[ ] top flop
+[ ] transition sur le sort
+[ ] differentes couleurs sur les genres
+[ ] ajouter lien image et bouton decouvrir
+[ ] ajouter infinit scroll ?
+[ ] mettre un store ?
+[x]mettre le top et flop en numero avec une props reverse
+creer des dliders pour les bonus ?
+creer plein de liste pour les bonus avec leur sort pas avec les memes boutons

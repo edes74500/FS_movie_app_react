@@ -60,6 +60,7 @@ const MoviesDisplay = ({ moviesGenres, moviesSearch, popularMovies }) => {
               return 0;
             })}
           moviesGenres={moviesGenres}
+          isReverse={moviesSort.ascendant}
         />
       </StyledMoviesContainer>
     </>

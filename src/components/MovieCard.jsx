@@ -59,11 +59,16 @@ const StyledImageContainer = styled.div`
   .is-absolute {
     position: absolute;
     z-index: 4;
-    color: rgb(var(--secondary-color));
+    color: rgba(var(--secondary-color), 0.9);
     &.icone {
       font-size: 3rem;
       left: -20px;
       top: -12px;
+    }
+    &.rank {
+      left: 4px;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
     }
   }
 `;
@@ -80,11 +85,12 @@ const StyledInfoContainer = styled.div`
 
   .info-container-text {
     display: flex;
+    margin-top: 8px;
     width: 100%;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     h2 {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: bold;
       /* margin: 10px 0; */
     }
@@ -96,11 +102,11 @@ const StyledInfoContainer = styled.div`
       overflow: hidden;
     }
     .genre {
-      padding: 5px 10px;
+      padding: 3px 10px;
       margin: 3px 3px 0;
       border-radius: 5px;
       display: inline-block;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
     .date-container {
       margin-left: 2px;
@@ -109,6 +115,7 @@ const StyledInfoContainer = styled.div`
       text-transform: capitalize;
     }
     button {
+      position: absolute;
       width: 200px;
       font-size: 0.7;
       font-weight: bold;
@@ -117,6 +124,7 @@ const StyledInfoContainer = styled.div`
       background: rgb(var(--secondary-color));
       border: none;
       border-radius: 5px;
+      bottom: 7px;
     }
   }
   .right-side-container {
@@ -164,28 +172,32 @@ const NoteDisplay = ({ note, votes }) => {
   );
 };
 
-const MovieCard = ({ moviesToDisplay, moviesGenres }) => {
+const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
   return (
     <>
       <AnimatePresence>
         {moviesToDisplay.map((movie, index) => {
           return (
+            // <div>
             <motion.div
-              key={movie.id}
+              key={`movie-${movie.id}-${index}`}
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0.3, scale: 0.6 }}
               transition={{ duration: 0.2 }}
               className="movie-card"
             >
-              <StyledMovieWrapper key={movie.id}>
+              <StyledMovieWrapper>
                 <StyledImageContainer
                   style={{
                     backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/original${movie.poster_path})` : `url(./img/affiche.jpg)`,
                   }}
                 >
-                  <div className="rank is-absolute">{index < 5 ? index + 1 : ""}</div>
-                  <div className="icone  is-absolute">{index < 5 ? <HiOutlineBookmark /> : ""}</div>
+                  <div className="rank is-absolute">{!isReverse ? index + 1 : Math.abs(index - moviesToDisplay.length)}</div>
+                  <div className="icone  is-absolute">
+                    {" "}
+                    <HiOutlineBookmark />{" "}
+                  </div>
                 </StyledImageContainer>
                 <StyledInfoContainer>
                   <div className="info-container-text">
@@ -200,7 +212,7 @@ const MovieCard = ({ moviesToDisplay, moviesGenres }) => {
                       {movie.genre_ids.map((id, index) => {
                         const genre = moviesGenres.find((genre) => genre.id === id);
                         return genre ? (
-                          <span key={id} className="genre" style={{ background: "red" }}>
+                          <span key={genre.id} className="genre" style={{ background: "red" }}>
                             {genre.name}
                             {"   "}
                           </span>
@@ -221,6 +233,7 @@ const MovieCard = ({ moviesToDisplay, moviesGenres }) => {
                 </StyledInfoContainer>
               </StyledMovieWrapper>
             </motion.div>
+            // </div>
           );
         })}
       </AnimatePresence>

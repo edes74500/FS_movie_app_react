@@ -117,9 +117,9 @@ const CategoriesIcones = () => {
       <CSSContainerCollapse className="container-collapse">
         <CSSIconsContainer>
           <div className="icons-container">
-            {Categories.map((category) => {
+            {Categories.map((category, index) => {
               return (
-                <div key={category.id} className="icon-container">
+                <div key={index} className="icon-container">
                   <img src={`./img/icones/movie-style/${category.name}.png`} alt="" /> <h4>{category.name}</h4>
                 </div>
               );

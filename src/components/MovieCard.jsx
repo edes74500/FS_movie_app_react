@@ -175,68 +175,65 @@ const NoteDisplay = ({ note, votes }) => {
 const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
   return (
     <>
-      <AnimatePresence>
-        {moviesToDisplay.map((movie, index) => {
-          return (
-            // <div>
-            <motion.div
-              key={`movie-${movie.id}-${index}`}
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0.3, scale: 0.6 }}
-              transition={{ duration: 0.2 }}
-              className="movie-card"
-            >
-              <StyledMovieWrapper>
-                <StyledImageContainer
-                  style={{
-                    backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/original${movie.poster_path})` : `url(./img/affiche.jpg)`,
-                  }}
-                >
-                  <div className="rank is-absolute">{!isReverse ? index + 1 : Math.abs(index - moviesToDisplay.length)}</div>
-                  <div className="icone  is-absolute">
-                    {" "}
-                    <HiOutlineBookmark />{" "}
+      {moviesToDisplay.map((movie, index) => {
+        return (
+          <motion.div
+            key={`${movie.title}-${movie.id}-${index}`}
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0.3, scale: 0.6 }}
+            transition={{ duration: 0.2 }}
+            className="movie-card"
+          >
+            <StyledMovieWrapper>
+              <StyledImageContainer
+                style={{
+                  backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/original${movie.poster_path})` : `url(./img/affiche.jpg)`,
+                }}
+              >
+                <div className="rank is-absolute">{!isReverse ? index + 1 : Math.abs(index - moviesToDisplay.length)}</div>
+                <div className="icone  is-absolute">
+                  {" "}
+                  <HiOutlineBookmark />{" "}
+                </div>
+              </StyledImageContainer>
+              <StyledInfoContainer>
+                <div className="info-container-text">
+                  <div className="title">
+                    <h2>{movie.title}</h2>
+                    <p className="date-container">
+                      {/* {movie.release_date} */}
+                      {new Intl.DateTimeFormat("fr-FR", { year: "numeric", month: "long" }).format(new Date(movie.release_date))}
+                    </p>
                   </div>
-                </StyledImageContainer>
-                <StyledInfoContainer>
-                  <div className="info-container-text">
-                    <div className="title">
-                      <h2>{movie.title}</h2>
-                      <p className="date-container">
-                        {/* {movie.release_date} */}
-                        {new Intl.DateTimeFormat("fr-FR", { year: "numeric", month: "long" }).format(new Date(movie.release_date))}
-                      </p>
-                    </div>
-                    <div className="movie-genres">
-                      {movie.genre_ids.map((id, index) => {
-                        const genre = moviesGenres.find((genre) => genre.id === id);
-                        return genre ? (
-                          <span key={genre.id} className="genre" style={{ background: "red" }}>
-                            {genre.name}
-                            {"   "}
-                          </span>
-                        ) : null;
-                      })}
-                    </div>
-                    <p>{movie.overview}</p>
-                    <button>Decouvrir ce film</button>
+                  <div className="movie-genres">
+                    {movie.genre_ids.map((id, index) => {
+                      const genre = moviesGenres.find((genre) => genre.id === id);
+                      return genre ? (
+                        <span key={genre.id} className="genre" style={{ background: "red" }}>
+                          {genre.name}
+                          {"   "}
+                        </span>
+                      ) : null;
+                    })}
                   </div>
-                  <div className="right-side-container">
-                    <div className="favori-icone">
-                      <FaHeart />
-                    </div>
-                    <div className="note-display">
-                      <NoteDisplay note={movie.vote_average / 2} votes={movie.vote_count} />
-                    </div>
+                  <p>{movie.overview}</p>
+                  <button>Decouvrir ce film</button>
+                </div>
+                <div className="right-side-container">
+                  <div className="favori-icone">
+                    <FaHeart />
                   </div>
-                </StyledInfoContainer>
-              </StyledMovieWrapper>
-            </motion.div>
-            // </div>
-          );
-        })}
-      </AnimatePresence>
+                  <div className="note-display">
+                    <NoteDisplay note={movie.vote_average / 2} votes={movie.vote_count} />
+                  </div>
+                </div>
+              </StyledInfoContainer>
+            </StyledMovieWrapper>
+          </motion.div>
+        );
+      })}
+      {/* </AnimatePresence> */};
     </>
   );
 };

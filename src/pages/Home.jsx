@@ -5,7 +5,8 @@ import styled from "styled-components";
 import MoviesDisplay from "../components/MoviesDisplay";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { tMDBoptions } from "../../secrets";
+
+// import { tMDBoptions } from "../../secrets";
 
 const StyledPageContainer = styled.div`
   max-width: 1200px;
@@ -21,6 +22,15 @@ const Home = () => {
   const [moviesGenres, setMoviesGenres] = useState([]);
   const [moviesSearch, setMoviesSearch] = useState([]);
   const [inputSearchValue, setInputSearchValue] = useState("v");
+
+  const tMDBoptions = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      // Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzMyNTI5YWQ2N2ZlODc0OGVmN2I5NGUwODgyZWJlZCIsInN1YiI6IjY1OTY4YWY1NjBjNTFkN2IyZjk3ODc4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JrL3wCMu69gYTBXgOdhijJ3syoBCDbnYCQt6xopPSlQ`,
+      Authorization: import.meta.env.VITE_API_API_HEADERS_AUTHORIZATION,
+    },
+  };
 
   useEffect(() => {
     if (inputSearchValue !== null && inputSearchValue !== undefined) {

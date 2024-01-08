@@ -6,24 +6,8 @@ import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 
-const CSSContainerCollapse = styled.div`
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: 1s;
-  min-height: 0;
-  /* padding: 10px; */
-  &.is-hidden {
-    /* padding: 0px; */
-    grid-template-rows: 0fr;
-    transform: translateY(100%) scale(0);
-  }
-  > :first-child {
-    min-height: 0;
-  }
-`;
-
 const StyledMoviescategoriesContainerDiv = styled.div`
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   outline: none;
   width: 90%;
@@ -32,12 +16,15 @@ const StyledMoviescategoriesContainerDiv = styled.div`
   border-radius: 5px;
   cursor: pointer;
   .movie-categories__title_container {
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
-    height: 50px;
+    z-index: 20;
+    height: 40px;
     display: flex;
     align-items: center;
-    background-color: rgba(var(--secondary-color), 0.8);
+    background-color: rgba(var(--secondary-color), 1);
+    background-color: black;
+    background-color: #c98d1e;
     .dropdown-icon {
       display: flex;
       position: absolute;
@@ -55,6 +42,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       display: flex;
 
       align-items: center;
+      color: white;
       color: black;
       font-size: 1rem;
       font-family: roboto;
@@ -65,6 +53,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     }
   }
   .movie-categories__icons_container {
+    z-index: 1;
     display: flex;
     /* position: absolute; */
     top: 50px;
@@ -88,7 +77,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     } */
 
     .icon_container {
-      height: 40px;
+      height: 35px;
       position: relative;
       display: flex;
       padding: 10px;
@@ -152,23 +141,98 @@ const StyledMoviescategoriesContainerDiv = styled.div`
 const ListFilter = ({ data, filters }) => {
   const listContainer = useRef();
   const [listIsOpen, setListIsOpen] = React.useState(false);
+  const [selectedGenreID, setSelectedGenreID] = React.useState([]);
 
   const toogleListFilter = () => {
-    Array.from(listContainer.current.children).forEach((div) => div.classList.toggle("is-hidden"));
     setListIsOpen(!listIsOpen);
   };
 
   const handleRemoveFilter = (e) => {
     e.stopPropagation();
-    e.currentTarget.parentElement.classList.remove("is-selected");
+    console.log(e.currentTarget.parentElement.id);
+    const genreIDclicked = e.currentTarget.parentElement.id; // Stock la valeur de l'id en string
+    setSelectedGenreID(selectedGenreID.filter((oldArray) => oldArray !== genreIDclicked));
   };
 
-  const handleOnClick = (e) => {
-    if (listIsOpen) {
-      e.currentTarget.classList.toggle("is-selected");
+  const handleOnClickFilter = (e) => {
+    if (listIsOpen && e.currentTarget) {
+      const genreId = e.currentTarget.id; // Stock la valeur de l'id de l'élément cliqué pour eviter qu'elle ne soit plus disponible au moment ou useState
+      //check si la valeur de l'id de l'élément cliqué est deja dans la liste
+      if (selectedGenreID.includes(genreId)) {
+        //si la valeur de l'id de l'élément cliqué est deja dans la liste, creation d'une nouvelle liste avec toute les valeurs sauf celle de l'id de l'élément cliqué
+        setSelectedGenreID(selectedGenreID.filter((oldArray) => oldArray !== genreId));
+        // e.currentTarget.classList.remove("is-selected");
+      } else if (genreId) {
+        setSelectedGenreID((oldArray) => [...oldArray, genreId]); // si la valeur de l'id de l'élément cliqué est n'est pas dans la liste, ajout de la valeur de l'id
+        console.log(genreId);
+        // e.currentTarget.classList.add("is-selected");
+      }
+      console.log(selectedGenreID);
     } else {
       toogleListFilter();
     }
+  };
+  const framerMotionContainerOpener = {
+    container: {
+      hidden: { opacity: 1, height: 0 },
+      visible: {
+        height: "auto",
+        opacity: 1,
+
+        transition: {
+          duration: 0.7,
+          // delayChildren: 0.3,
+          staggerChildren: 0.1,
+        },
+      },
+      exit: {
+        opacity: 0,
+        height: 0,
+        transition: { ease: "easeIn", duration: 0.2 },
+      },
+    },
+
+    item: {
+      hidden: { x: -60, opacity: 0 },
+      visible: {
+        x: 0,
+        opacity: 1,
+      },
+    },
+  };
+
+  const framerMotionContainerClose = {
+    container: {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        transition: {
+          duration: 0.3,
+          delayChildren: 0.4,
+          staggerChildren: 0.1,
+        },
+      },
+    },
+
+    item: {
+      hidden: {
+        y: -100,
+        x: 0,
+        opacity: 0,
+      },
+      visible: {
+        y: 0,
+        x: 0,
+        opacity: 1,
+      },
+      // exit: {
+      //   opacity: 0,
+      //   y: -60,
+      //   transition: { ease: "easeIn", duration: 5 },
+      // },
+    },
   };
 
   return (
@@ -183,24 +247,86 @@ const ListFilter = ({ data, filters }) => {
           <MdOutlineArrowDropDownCircle />
         </span>
       </div>
+      <AnimatePresence>
+        {listIsOpen && (
+          <motion.div
+            className="movie-categories__icons_container"
+            ref={listContainer}
+            variants={framerMotionContainerOpener.container}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            key={48992}
+          >
+            {data.map((category, index) => {
+              const displayedGenre = filters.find((genre) => genre.toLowerCase() === category.name.toLowerCase());
+              const isSelected = selectedGenreID.includes(category.id.toString());
+              console.log(typeof category.id, typeof selectedGenreID[index]);
 
-      <div className="movie-categories__icons_container" ref={listContainer}>
-        {data.map((category, index) => {
-          const displayedGenre = filters.find((genre) => genre.toLowerCase() === category.name.toLowerCase());
-          console.log(displayedGenre);
-          if (!displayedGenre) {
-            return null;
-          }
-          return (
-            <div key={category.id} className="icon_container is-hidden" id={category.id} onClick={handleOnClick}>
-              <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" /> <h4>{category.name}</h4>
-              <span className="remove-icon" onClick={handleRemoveFilter}>
-                <IoIosCloseCircle />
-              </span>
-            </div>
-          );
-        })}
-      </div>
+              if (!displayedGenre) {
+                return null;
+              }
+              return (
+                <motion.div
+                  key={category.id}
+                  className={`icon_container ${isSelected ? "is-selected" : null}`}
+                  id={category.id}
+                  onClick={handleOnClickFilter}
+                  variants={framerMotionContainerOpener.item}
+                  exit={isSelected ? "" : "exit"}
+                >
+                  {/* <div
+                    key={category.id}
+                    className={`icon_container ${isSelected ? "is-selected" : null}`}
+                    id={category.id}
+                    onClick={handleOnClickFilter}
+                  > */}
+                  <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" /> <h4>{category.name}</h4>
+                  <span className="remove-icon" onClick={handleRemoveFilter}>
+                    <IoIosCloseCircle />
+                  </span>
+                  {/* </div> */}
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {!listIsOpen && (
+          <motion.div
+            className="movie-categories__icons_container "
+            variants={framerMotionContainerClose.container}
+            initial="hidden"
+            animate="visible"
+            key="48992"
+          >
+            {data.map((category, index) => {
+              const displayedGenre = selectedGenreID.find((id) => id == category.id.toString());
+              if (!displayedGenre) {
+                return null;
+              }
+              return (
+                <motion.div
+                  key={category.id + index}
+                  className={`icon_container is-selected`}
+                  id={category.id}
+                  onClick={handleOnClickFilter}
+                  variants={framerMotionContainerClose.item}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" /> <h4>{category.name}</h4>
+                  <span className="remove-icon" onClick={handleRemoveFilter}>
+                    <IoIosCloseCircle />
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </StyledMoviescategoriesContainerDiv>
   );
 };

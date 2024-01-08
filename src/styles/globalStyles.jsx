@@ -25,6 +25,55 @@ export const globalStyles = css`
     color: white;
     font-family: "Lato", sans-serif;
   }
+
+  html {
+    scrollbar-width: thin;
+  }
+
+  /* Style de la poignée (la partie que vous faites glisser) pour Firefox */
+  html::-moz-scrollbar-thumb {
+    background-color: #4caf50; /* Couleur de fond de la poignée */
+    border-radius: 6px; /* Coins arrondis de la poignée */
+  }
+
+  /* Style de la piste (la partie sur laquelle la poignée se déplace) pour Firefox */
+  html::-moz-scrollbar-track {
+    background-color: #f1f1f1; /* Couleur de fond de la piste */
+  }
+  html {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    /* Largeur de la barre de défilement */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Style de la poignée (la partie que vous faites glisser) */
+    ::-webkit-scrollbar-thumb {
+      background-color: $navbar_color-link-active; /* Couleur de fond de la poignée */
+      border-radius: 2px; /* Coins arrondis de la poignée */
+    }
+
+    /* Style de la piste (la partie sur laquelle la poignée se déplace) */
+    ::-webkit-scrollbar-track {
+      background-color: #f1f1f100; /* Couleur de fond de la piste */
+    }
+  }
+  body {
+    scrollbar-gutter: stable;
+  }
+
+  /* Changer la couleur de fond lors de la sélection */
+  ::selection {
+    background-color: #3498db62; /* Couleur de fond lors de la sélection */
+    color: #fff; /* Couleur du texte lors de la sélection */
+  }
+
+  /* Changer la couleur de fond pour Firefox */
+  ::-moz-selection {
+    background-color: #3498db80;
+    color: #fff;
+  }
 `;
 
 export const couleursGenresFilm = [

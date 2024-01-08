@@ -42,7 +42,8 @@ const Home = () => {
         .get(`https://api.themoviedb.org/3/search/movie?query=${inputSearchValue}&include_adult=true&language=fr-FR&page=1`, tMDBoptions)
         .then((res) => {
           const results = res.data.results;
-          setMoviesSearch(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 60));
+          setMoviesSearch(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 0));
+          // setMoviesSearch(results);
           // setSearchedPopularMovies(false);
         });
     }

@@ -290,7 +290,12 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
                   <h2>{movie.title}</h2>
                   <p className="date-container">
                     {/* {movie.release_date} */}
-                    {new Intl.DateTimeFormat("fr-FR", { year: "numeric", month: "long" }).format(new Date(movie.release_date))}
+                    {movie.release_date
+                      ? new Intl.DateTimeFormat("fr-FR", {
+                          year: "numeric",
+                          month: "long",
+                        }).format(new Date(movie.release_date))
+                      : "Release date not available"}
                   </p>
                 </div>
                 <div className="info-container-text">

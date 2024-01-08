@@ -6,4 +6,8 @@ const store = configureStore({
   // Vous pouvez ajouter d'autres configurations ici si nécessaire
 });
 
+const initialState = {
+  selectedGenre: [],
+};
+
 export default store;

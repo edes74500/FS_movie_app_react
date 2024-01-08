@@ -5,17 +5,22 @@ import styled from "styled-components";
 import MoviesDisplay from "../components/MoviesDisplay";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { couleursGenresFilm } from "../styles/globalStyles";
 
 // import { tMDBoptions } from "../../secrets";
 
 const StyledPageContainer = styled.div`
   max-width: 1200px;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 90%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 25% 75%;
   gap: 50px;
+  @media screen and (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -27,7 +32,6 @@ const Home = () => {
     method: "GET",
     headers: {
       accept: "application/json",
-      // Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzMyNTI5YWQ2N2ZlODc0OGVmN2I5NGUwODgyZWJlZCIsInN1YiI6IjY1OTY4YWY1NjBjNTFkN2IyZjk3ODc4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JrL3wCMu69gYTBXgOdhijJ3syoBCDbnYCQt6xopPSlQ`,
       Authorization: import.meta.env.VITE_API_API_HEADERS_AUTHORIZATION,
     },
   };
@@ -64,11 +68,55 @@ const Home = () => {
 
   // FETCH LIST GENRES
   useEffect(() => {
+    // const couleursGenresFilm = [
+    //   "#c5ff33", // Action
+    //   "#FFC300", // Aventure
+    //   "#FF5733", // Animation
+    //   "#FFC300", // Comedie
+    //   "#FF5733", // Crime
+    //   "#ff004c", // Documentaire
+    //   "#33e0ff", // Drame
+    //   "#36ea42", // Familliale
+    //   "#af604f", // Fantastique
+    //   "#554a27", // Histoire
+    //   "#FF5733", // Horreur
+    //   "#FFC300", // Musique
+    //   "#FF5733", // Mystère
+    //   "#fb00ff", // Romance
+    //   "#FF5733", // Science-Fiction
+    //   "#ff00cc", // Téléfilm
+    //   "#FF5733", // Thriller
+    //   "#FFC300", // Guerre
+    //   "#ff33e7", // Western
+    // ];
+
+    // const couleursGenresFilm = [
+    //   "#4d9154", // Action
+    //   "#FFC300", // Aventure
+    //   "#9633ff", // Animation
+    //   "#FFC300", // Comedie
+    //   "#FF5733", // Crime
+    //   "#ff004c", // Documentaire
+    //   "#33e0ff", // Drame
+    //   "#36ea42", // Familliale
+    //   "#af604f", // Fantastique
+    //   "#554a27", // Histoire
+    //   "#b99c29", // Horreur
+    //   "#FFC300", // Musique
+    //   "#FF5733", // Mystère
+    //   "#fb00ff", // Romance
+    //   "#FF5733", // Science-Fiction
+    //   "#ff00cc", // Téléfilm
+    //   "#5233ff", // Thriller
+    //   "#FFC300", // Guerre
+    //   "#ff33e7", // Western
+    // ];
     axios
       .get("https://api.themoviedb.org/3/genre/movie/list?language=fr", tMDBoptions)
       .then((response) => {
-        // console.log(response.data.genres);
-        setMoviesGenres(response.data.genres);
+        const newReponse = response.data.genres.map((genre, index) => ({ ...genre, color: couleursGenresFilm[index] }));
+        setMoviesGenres(newReponse);
+        console.log(newReponse);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -77,8 +125,8 @@ const Home = () => {
     <div>
       <Header setInputSearchValue={setInputSearchValue} />
       <StyledPageContainer>
-        <FilerModule />
-        <MoviesDisplay moviesGenres={moviesGenres} moviesSearch={moviesSearch} popularMovies={popularMovies} />
+        <FilerModule moviesGenres={moviesGenres} />
+        <MoviesDisplay moviesGenres={moviesGenres} moviesSearch={moviesSearch} popularMovies={popularMovies} inputSearchValue={inputSearchValue} />
       </StyledPageContainer>
     </div>
   );

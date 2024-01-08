@@ -6,7 +6,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import { IoSearch } from "react-icons/io5";
+import { FaArrowUp } from "react-icons/fa";
 import React, { useEffect, useRef } from "react";
+import ButtonToTheTop from "./ButtonToTheTop";
 
 const StyledHeaderWrapper = styled.div`
   position: relative;
@@ -71,14 +73,24 @@ const StyledTextContainer = styled.div`
   position: absolute;
   left: 10%;
   bottom: 40px;
-  text-shadow: 1px 1px 1px #000000d6;
+  @media screen and (max-width: 750px) {
+    bottom: 100px;
+  }
+  text-shadow: 1px 1px 1px #e65608d5;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 8px rgba(var(--secondary-color), 0.9);
   z-index: 2;
   h2 {
     font-family: "Feed";
     font-size: 3.5rem;
-  }
-  h3 {
-    font-size: 1.5rem;
+    @media screen and (max-width: 750px) {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      @media screen and (max-width: 750px) {
+        font-size: 1rem;
+      }
+    }
   }
 `;
 
@@ -102,6 +114,9 @@ const StyledSearchDiv = styled.div`
     outline: none;
     width: 400px;
     padding-left: 10px;
+    @media screen and (max-width: 750px) {
+      width: 250px;
+    }
   }
   button {
     border: none;
@@ -113,6 +128,7 @@ const StyledSearchDiv = styled.div`
     }
   }
 `;
+
 // let searchResults = "";
 const SearchInput = ({ setInputSearchValue }) => {
   const timeoutRef = useRef(null);
@@ -139,6 +155,24 @@ const SearchInput = ({ setInputSearchValue }) => {
     </StyledSearchDiv>
   );
 };
+
+// const ToTheTopButton = () => {
+//   const [scroll, setScroll] = React.useState();
+//   useEffect(() => {
+//     const handleOnScroll = () => {
+//       setScroll(window.scrollY);
+//       console.log("hey");
+//     };
+//     window.addEventListener("scroll", handleOnScroll);
+
+//     return window.removeEventListener("scroll", handleOnScroll);
+//   }, []);
+//   return (
+//     <StyledToTheTopDiv className={scroll > 0 ? "" : "is-visible"}>
+//       <FaArrowUp />
+//     </StyledToTheTopDiv>
+//   );
+// };
 
 const Header = ({ setInputSearchValue }) => {
   const carrousselImages = Array(9)
@@ -174,6 +208,7 @@ const Header = ({ setInputSearchValue }) => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <ButtonToTheTop />
       </StyledHeaderWrapper>
     </>
   );

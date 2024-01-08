@@ -10,7 +10,10 @@ const StyledNavbar = styled.nav`
   max-width: 1000px;
   margin: auto;
   /* padding: 20px 0; */
-  width: 100vw;
+  /* width: 100vw; */
+  @media screen and (max-width: 1000px) {
+    width: 80vw;
+  }
   display: flex;
   align-items: center;
   ul {

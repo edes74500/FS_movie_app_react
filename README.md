@@ -12,8 +12,9 @@
 [ ] installer un store pour stocker les listes fixes
 creer des sliders pour les bonus ?
 creer plein de liste pour les bonus avec leur sort pas avec les memes boutons
-mettre le title en grid
 add votrre recher pour :
+[ ] boutton pour remonter en haut quand une page a ete scroll
+[ ] ajouter un click sur les genres pour relancer une recherche avec ce genre
 
 # Done
 
@@ -22,3 +23,6 @@ add votrre recher pour :
 [x]mettre le top et flop en numero avec une props reverse
 
 **07/01/2023**
+
+[x]mettre le title en grid
+[x] media query screen size

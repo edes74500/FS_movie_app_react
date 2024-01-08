@@ -8,8 +8,12 @@ import { HiOutlineBookmark } from "react-icons/hi";
 
 const StyledMovieWrapper = styled.div`
   display: flex;
-  box-shadow: 50px 30px 25px rgba(var(--secondary-color), 0.7);
+  /* box-shadow: 50px 30px 25px rgba(var(--secondary-color), 0.7); */
+  /* background-color: red; */
   background-color: rgb(var(--main-color));
+  position: relative;
+  z-index: 2;
+  /* overflow: hidden; */
 
   /* border-top: 1px solid rgb(var(--secondary-color)); */
   /* border-left: 1px solid rgb(var(--secondary-color)); */
@@ -18,13 +22,14 @@ const StyledMovieWrapper = styled.div`
 const StyledImageContainer = styled.div`
   min-height: 250px;
   position: relative;
-  /* width: auto; */
-  /* min-width: 150px; */
-  /* height: auto; */
+  cursor: pointer;
   aspect-ratio: 2/2.7;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  @media screen and (max-width: 750) {
+    max-width: 150px;
+  }
 
   img {
   }
@@ -75,31 +80,67 @@ const StyledImageContainer = styled.div`
 
 const StyledInfoContainer = styled.div`
   display: grid;
+  width: 100%;
+  grid-template-areas:
+    "title title "
+    "info rating ";
+  grid-template-columns: 75% 25%;
+  min-width: inherit;
+
   grid-template-columns: 75% 25%;
   flex-direction: column;
   justify-content: center;
-  margin: 10px 20px;
-  width: 100%;
-  position: relative;
-  gap: 20px;
-
-  .info-container-text {
+  @media screen and (max-width: 750px) {
+    justify-content: start;
     display: flex;
-    margin-top: 8px;
-    width: 100%;
-    flex-direction: column;
-    gap: 12px;
+    margin: 10px auto;
+    gap: 5px;
+  }
+  margin: 10px 20px;
+  /* width: auto; */
+  position: relative;
+  @media screen and (max-width: 750px) {
+  }
+  /* gap: 20px; */
+  .title {
+    grid-area: title;
+    .date-container {
+      margin-left: 2px;
+      font-size: 0.8rem;
+      font-style: italic;
+      text-transform: capitalize;
+    }
     h2 {
       font-size: 1.5rem;
       font-weight: bold;
+      @media screen and (max-width: 750px) {
+        font-size: 1rem;
+      }
       /* margin: 10px 0; */
     }
+  }
+  .info-container-text {
+    display: flex;
+    grid-area: info;
+    margin-top: 8px;
+    width: 100%;
+    min-width: 100%;
+    flex-direction: column;
+    gap: 12px;
     p {
       font-size: 0.8rem;
       display: -webkit-box;
       -webkit-line-clamp: 4; /* Nombre de lignes à afficher */
       -webkit-box-orient: vertical;
       overflow: hidden;
+      @media screen and (max-width: 750px) {
+        /* display: none; */
+        -webkit-line-clamp: 2; /* Nombre de lignes à afficher */
+      }
+      @media screen and (max-width: 500px) {
+        display: none;
+        -webkit-line-clamp: 2; /* Nombre de lignes à afficher */
+      }
     }
     .genre {
       padding: 3px 10px;
@@ -107,13 +148,15 @@ const StyledInfoContainer = styled.div`
       border-radius: 5px;
       display: inline-block;
       font-size: 0.7rem;
+      user-select: none;
+      /* text-transform: uppercase; */
+      font-weight: 700;
+      box-shadow: 2px 2px 10px #f3f3f340;
+      @media screen and (max-width: 750px) {
+        font-size: 0.6rem;
+      }
     }
-    .date-container {
-      margin-left: 2px;
-      font-size: 0.8rem;
-      font-style: italic;
-      text-transform: capitalize;
-    }
+
     button {
       position: absolute;
       width: 200px;
@@ -125,14 +168,26 @@ const StyledInfoContainer = styled.div`
       border: none;
       border-radius: 5px;
       bottom: 7px;
+      @media screen and (max-width: 750px) {
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
   .right-side-container {
+    grid-area: rating;
+    padding: 10px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    gap: 50px;
     align-items: center;
+    @media screen and (max-width: 750px) {
+      flex-direction: row;
+      justify-content: center;
+    }
     .favori-icone {
       svg {
         font-size: 3rem;
@@ -141,18 +196,44 @@ const StyledInfoContainer = styled.div`
         &:hover {
           color: white;
         }
+        @media screen and (max-width: 750px) {
+          font-size: 2rem;
+        }
       }
     }
     .note-display {
       text-align: center;
       span {
         font-size: 1rem;
+        @media screen and (max-width: 750px) {
+          font-size: 0.7rem;
+        }
       }
       .nbr-votes {
         font-size: 0.5rem;
       }
     }
   }
+`;
+
+const StyledDivDivider = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  bottom: 0;
+  /* overflow: hidden; */
+  transform: translateY(100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(var(--secondary-color), 0.8) 37%,
+    rgba(var(--secondary-color), 0.8) 68%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* overflow: hidden; */
+  /* box-shadow: 50px 30px 25px rgba(var(--secondary-color), 0.7); */
+  /* background-color: red; */
+  /* z-index: 0; */
 `;
 
 const FullStar = styled(TiStarFullOutline)`
@@ -186,6 +267,7 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
             className="movie-card"
           >
             <StyledMovieWrapper>
+              <StyledDivDivider />
               <StyledImageContainer
                 style={{
                   backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/original${movie.poster_path})` : `url(./img/affiche.jpg)`,
@@ -198,19 +280,19 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
                 </div>
               </StyledImageContainer>
               <StyledInfoContainer>
+                <div className="title">
+                  <h2>{movie.title}</h2>
+                  <p className="date-container">
+                    {/* {movie.release_date} */}
+                    {new Intl.DateTimeFormat("fr-FR", { year: "numeric", month: "long" }).format(new Date(movie.release_date))}
+                  </p>
+                </div>
                 <div className="info-container-text">
-                  <div className="title">
-                    <h2>{movie.title}</h2>
-                    <p className="date-container">
-                      {/* {movie.release_date} */}
-                      {new Intl.DateTimeFormat("fr-FR", { year: "numeric", month: "long" }).format(new Date(movie.release_date))}
-                    </p>
-                  </div>
                   <div className="movie-genres">
                     {movie.genre_ids.map((id, index) => {
                       const genre = moviesGenres.find((genre) => genre.id === id);
                       return genre ? (
-                        <span key={genre.id} className="genre" style={{ background: "red" }}>
+                        <span key={genre.id} className="genre" style={{ background: genre.color }}>
                           {genre.name}
                           {"   "}
                         </span>
@@ -221,11 +303,11 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
                   <button>Decouvrir ce film</button>
                 </div>
                 <div className="right-side-container">
-                  <div className="favori-icone">
-                    <FaHeart />
-                  </div>
                   <div className="note-display">
                     <NoteDisplay note={movie.vote_average / 2} votes={movie.vote_count} />
+                  </div>
+                  <div className="favori-icone">
+                    <FaHeart />
                   </div>
                 </div>
               </StyledInfoContainer>
@@ -233,7 +315,7 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
           </motion.div>
         );
       })}
-      {/* </AnimatePresence> */};
+      {/* </AnimatePresence> */}
     </>
   );
 };

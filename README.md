@@ -12,6 +12,7 @@
 [ ] ajouter un click sur les genres pour relancer une recherche avec ce genre
 [ ] ajouter un effet de collapse sur les list
 [ ] ajouter d'autres liste de filter (annee, ???) et un bouton de recherche, avec la fermeture des listes quand une nouvelle est ouverte ou la recherche lancee.
+[ ] ajouter une div absolute en mobile pour les filtres
 
 # Done
 

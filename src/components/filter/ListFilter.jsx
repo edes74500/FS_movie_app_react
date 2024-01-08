@@ -10,12 +10,12 @@ const StyledMoviescategoriesContainerDiv = styled.div`
   /* display: flex; */
   flex-direction: column;
   outline: none;
-  width: 90%;
+  width: 100%;
   position: relative;
-  overflow: hidden;
-  border-radius: 5px;
+  /* overflow: hidden; */
   cursor: pointer;
   .movie-categories__title_container {
+    border-radius: 5px;
     /* overflow: hidden; */
     position: relative;
     z-index: 20;
@@ -36,16 +36,21 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       svg {
         transition: 0.5s ease-in-out;
         transform: ${({ listIsOpen }) => (listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
+        @media screen and (max-width: 900px) {
+          font-size: 1%.2;
+        }
       }
     }
     h3 {
       display: flex;
-
       align-items: center;
       color: white;
       color: black;
       font-size: 1rem;
       font-family: roboto;
+      /* @media screen and (max-width: 900px) {
+        font-size: 0.9rem;
+      } */
       svg {
         margin: 4px;
         font-size: 1rem;
@@ -56,16 +61,18 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     z-index: 1;
     display: flex;
     /* position: absolute; */
-    top: 50px;
+    /* top: 50px; */
     /* z-index: 20; */
     border-radius: 0 0 5px 5px;
-    background-color: #00000092;
+    background-color: ${({ isOnMobile }) => (isOnMobile ? "#4d4b4b" : "#00000092")};
 
     width: 100%;
 
     flex-direction: column;
     justify-content: center;
-    /* transition: all 0.7s ease-in-out; */
+    /* transform: ${({ listIsOpen, isOnMobile }) => (listIsOpen && isOnMobile ? "translateY(-100%)" : "relative")}; */
+    /* position: ${({ listIsOpen, isOnMobile }) => (listIsOpen && isOnMobile ? "absolute" : "relative")}; */
+    transition: all 0.7s ease-in-out;
     /* &:hover {
       & div:not(:hover) {
         opacity: 0.8;
@@ -75,7 +82,10 @@ const StyledMoviescategoriesContainerDiv = styled.div`
         }
       }
     } */
-
+    @media screen and (max-width: 900px) {
+      z-index: 200;
+      /* flex-wrap: wrap; */
+    }
     .icon_container {
       height: 35px;
       position: relative;
@@ -94,9 +104,9 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       &.is-selected {
         display: flex;
         position: relative;
-        background-color: #a26f0a71;
+        background-color: ${({ isOnMobile }) => (isOnMobile ? "#c4a66b " : "#a26f0a71")};
+
         .remove-icon {
-          /* background-color: red; */
           height: 100%;
           width: 20px;
           display: flex;
@@ -138,9 +148,9 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     }
   }
 `;
-const ListFilter = ({ data, filters }) => {
+const ListFilter = ({ data, filters, isOnMobile }) => {
   const listContainer = useRef();
-  const [listIsOpen, setListIsOpen] = React.useState(false);
+  const [listIsOpen, setListIsOpen] = React.useState(isOnMobile ? false : true);
   const [selectedGenreID, setSelectedGenreID] = React.useState([]);
 
   const toogleListFilter = () => {
@@ -174,27 +184,28 @@ const ListFilter = ({ data, filters }) => {
   };
   const framerMotionContainerOpener = {
     container: {
-      hidden: { opacity: 1, height: 0 },
+      hidden: { opacity: 1 },
       visible: {
         height: "auto",
         opacity: 1,
 
         transition: {
           duration: 0.7,
-          // delayChildren: 0.3,
+          delayChildren: 0.3,
           staggerChildren: 0.1,
         },
       },
       exit: {
         opacity: 0,
-        height: 0,
+
         transition: { ease: "easeIn", duration: 0.2 },
       },
     },
 
     item: {
-      hidden: { x: -60, opacity: 0 },
+      hidden: { x: -60, opacity: 0, scale: 0 },
       visible: {
+        scale: 1,
         x: 0,
         opacity: 1,
       },
@@ -236,8 +247,8 @@ const ListFilter = ({ data, filters }) => {
   };
 
   return (
-    <StyledMoviescategoriesContainerDiv listIsOpen={listIsOpen}>
-      <div className="movie-categories__title_container" onClick={toogleListFilter}>
+    <StyledMoviescategoriesContainerDiv listIsOpen={listIsOpen} isOnMobile={isOnMobile}>
+      <div className="movie-categories__title_container" onClick={isOnMobile ? null : null}>
         <h3>
           {" "}
           <TbCategoryPlus />

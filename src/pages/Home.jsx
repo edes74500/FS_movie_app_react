@@ -15,8 +15,9 @@ const StyledPageContainer = styled.div`
   width: 90%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 25% 75%;
-  gap: 50px;
+  grid-template-columns: 20% 70%;
+  gap: 10%;
+  transition: 1s ease-in-out;
   @media screen and (max-width: 900px) {
     display: flex;
     flex-direction: column;
@@ -69,49 +70,6 @@ const Home = () => {
 
   // FETCH LIST GENRES
   useEffect(() => {
-    // const couleursGenresFilm = [
-    //   "#c5ff33", // Action
-    //   "#FFC300", // Aventure
-    //   "#FF5733", // Animation
-    //   "#FFC300", // Comedie
-    //   "#FF5733", // Crime
-    //   "#ff004c", // Documentaire
-    //   "#33e0ff", // Drame
-    //   "#36ea42", // Familliale
-    //   "#af604f", // Fantastique
-    //   "#554a27", // Histoire
-    //   "#FF5733", // Horreur
-    //   "#FFC300", // Musique
-    //   "#FF5733", // Mystère
-    //   "#fb00ff", // Romance
-    //   "#FF5733", // Science-Fiction
-    //   "#ff00cc", // Téléfilm
-    //   "#FF5733", // Thriller
-    //   "#FFC300", // Guerre
-    //   "#ff33e7", // Western
-    // ];
-
-    // const couleursGenresFilm = [
-    //   "#4d9154", // Action
-    //   "#FFC300", // Aventure
-    //   "#9633ff", // Animation
-    //   "#FFC300", // Comedie
-    //   "#FF5733", // Crime
-    //   "#ff004c", // Documentaire
-    //   "#33e0ff", // Drame
-    //   "#36ea42", // Familliale
-    //   "#af604f", // Fantastique
-    //   "#554a27", // Histoire
-    //   "#b99c29", // Horreur
-    //   "#FFC300", // Musique
-    //   "#FF5733", // Mystère
-    //   "#fb00ff", // Romance
-    //   "#FF5733", // Science-Fiction
-    //   "#ff00cc", // Téléfilm
-    //   "#5233ff", // Thriller
-    //   "#FFC300", // Guerre
-    //   "#ff33e7", // Western
-    // ];
     axios
       .get("https://api.themoviedb.org/3/genre/movie/list?language=fr", tMDBoptions)
       .then((response) => {

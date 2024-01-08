@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { TbCategoryPlus } from "react-icons/tb";
 import { shownGenresFilm } from "../styles/globalStyles";
@@ -6,14 +6,30 @@ import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 
 import Select from "react-select";
 import ListFilter from "./filter/ListFilter";
+import YearFilter from "./filter/YearFilter";
+import SectionContainer from "./filter/SectionContainer";
 
 const StyledFilterModule = styled.div`
   display: flex;
+
   margin-top: 50px;
+  flex-direction: column;
+  gap: 50px;
   /* flex-direction: column; */
   height: fit-content;
   /* align-items: center; */
   justify-content: center;
+  transition: 1s ease-in-out;
+  @media screen and (max-width: 900px) {
+    position: fixed;
+  top: 20%;
+  right: 0;
+  z-index: 300;
+  background-color: green;
+  padding: 30px;
+  width: 300px; */
+    /* width: 100%;
+  }
 `;
 
 const StyledMoviescategoriesContainerDiv = styled.div`
@@ -222,10 +238,30 @@ const CategoriesIcones = ({ data, filters }) => {
 };
 
 const FilerModule = ({ moviesGenres }) => {
+  const [isOnMobile, setIsOnMobile] = React.useState(false);
+
+  const handleResize = () => {
+    setIsOnMobile(window.innerWidth <= 900 ? true : false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onMobile = window.innerWidth <= 900 ? true : false;
+    setIsOnMobile(onMobile);
+  }, []);
+
   return (
-    <StyledFilterModule>
+    <StyledFilterModule isOnMobile={isOnMobile}>
       {/* <CategoriesIcones data={moviesGenres} filters={shownGenresFilm} /> */}
-      <ListFilter data={moviesGenres} filters={shownGenresFilm} />
+      <ListFilter data={moviesGenres} filters={shownGenresFilm} isOnMobile={isOnMobile} />
+      {/* <YearFilter isOnMobile={isOnMobile} /> */}
+      <SectionContainer isOnMobile={isOnMobile} />
     </StyledFilterModule>
   );
 };

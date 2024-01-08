@@ -22,14 +22,15 @@ const StyledFilterModule = styled.div`
   transition: 1s ease-in-out;
   @media screen and (max-width: 900px) {
     position: fixed;
-  top: 20%;
-  right: 0;
-  z-index: 300;
-  background-color: green;
-  padding: 30px;
-  width: 300px; */
-    /* width: 100%;
+    top: 10%;
+    left: 0;
+    z-index: 300;
+    background-color: green;
+    padding: 30px;
+    width: 300px;
   }
+  /* width: 100%;
+  /* } */
 `;
 
 const StyledMoviescategoriesContainerDiv = styled.div`
@@ -148,11 +149,6 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       }
     }
   }
-  /* .is-hidden {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1s ease-in-out;
-  } */
 `;
 
 const CSSContainerCollapse = styled.div`

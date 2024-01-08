@@ -75,7 +75,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       padding: 10px;
       align-items: center;
       cursor: pointer;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.1s ease-in-out;
 
       .dropdown-icon {
         display: none;
@@ -86,19 +86,25 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       &.is-selected {
         display: flex;
         position: relative;
+        &:hover {
+          background-color: red;
+        }
         .dropdown-icon {
           display: block;
           position: absolute;
           right: 10px;
         }
       }
+      will-change: transform;
       &:hover {
+        filter: blur(0);
+        transform: scale(1.05) translateZ(0);
+        opacity: 1;
         img {
-          transform: scale(1.2);
+          /* filter: blur(0); */
         }
         h4 {
-          opacity: 1;
-          transform: scale(1.2);
+          /* transform: scale(1.05) translateZ(0); */
         }
       }
 

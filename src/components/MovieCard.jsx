@@ -168,6 +168,12 @@ const StyledInfoContainer = styled.div`
       border: none;
       border-radius: 5px;
       bottom: 7px;
+      transition: all 0.3s ease-in-out;
+      will-change: transform;
+      &:hover {
+        filter: blur(0);
+        transform: scale(1.04) translateZ(0);
+      }
       @media screen and (max-width: 750px) {
         width: 90%;
         left: 50%;

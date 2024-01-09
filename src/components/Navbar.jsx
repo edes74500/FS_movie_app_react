@@ -125,7 +125,7 @@ function Navbar() {
             <Logo />
           </StyledLink>
         </li>
-        <li>
+        {/* <li>
           <StyledLink to="/series" className={(nav) => (nav.isActive ? "active" : "")}>
             Series
           </StyledLink>
@@ -134,7 +134,7 @@ function Navbar() {
           <StyledLink to="/film" className={(nav) => (nav.isActive ? "active" : "")}>
             Film
           </StyledLink>
-        </li>
+        </li> */}
         {/* <li>
           <StyledIcon to="/favorite" className={(nav) => (nav.isActive ? "active" : "")}>
             <FaHeart />

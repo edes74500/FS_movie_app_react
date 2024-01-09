@@ -166,7 +166,7 @@ const SectionContainer = ({ isOnMobile }) => {
 
   return (
     <StyledMoviescategoriesContainerDiv listIsOpen={listIsOpen}>
-      <div className="movie-categories__title_container" onClick={isOnMobile ? { toogleListFilter } : null}>
+      <div className="movie-categories__title_container" onClick={isOnMobile ? () => null : null}>
         <h3>
           {" "}
           <TbCategoryPlus />
@@ -204,7 +204,7 @@ const SectionContainer = ({ isOnMobile }) => {
           </motion.div>
         )}
       </AnimatePresence>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {!listIsOpen && (
           <motion.div
             className="movie-categories__icons_container "
@@ -214,7 +214,7 @@ const SectionContainer = ({ isOnMobile }) => {
             key="48992"
           ></motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </StyledMoviescategoriesContainerDiv>
   );
 };

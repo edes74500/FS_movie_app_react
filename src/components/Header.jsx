@@ -181,7 +181,7 @@ const Header = ({ setInputSearchValue }) => {
 
   return (
     <>
-      <StyledHeaderWrapper>
+      <StyledHeaderWrapper ouvert={false}>
         <StyledTextContainer>
           <h2>CINE ADDICT</h2>
           <h3>Trouve ton prochain film !</h3>

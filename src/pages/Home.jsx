@@ -24,10 +24,10 @@ const StyledPageContainer = styled.div`
   }
 `;
 const Home = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [MovieListPopularMoviesFR, setMovieListPopularMoviesFR] = useState([]);
   const [moviesGenres, setMoviesGenres] = useState([]);
-  const [moviesSearch, setMoviesSearch] = useState([]);
-  const [inputSearchValue, setInputSearchValue] = useState("v");
+  const [MovieListInputSearchResult, setMovieListInputSearchResult] = useState([]);
+  const [inputSearchValue, setInputSearchValue] = useState("");
 
   const tMDBoptions = {
     method: "GET",
@@ -43,9 +43,9 @@ const Home = () => {
         .get(`https://api.themoviedb.org/3/search/movie?query=${inputSearchValue}&include_adult=true&language=fr-FR&page=1`, tMDBoptions)
         .then((res) => {
           const results = res.data.results;
-          setMoviesSearch(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 0));
-          // setMoviesSearch(results);
-          // setSearchedPopularMovies(false);
+          setMovieListInputSearchResult(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 0));
+          // setMovieListInputSearchResult(results);
+          // setSearchedMovieListPopularMoviesFR(false);
         });
     }
   }, [inputSearchValue]);
@@ -55,8 +55,8 @@ const Home = () => {
   //     axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=fr-FR&page=1`, options).then((res) => {
   //       console.log(res.data.results);
   //       const results = res.data.results;
-  //       setMoviesSearch(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 0));
-  //       // setSearchedPopularMovies(false);
+  //       setMovieListInputSearchResult(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 0));
+  //       // setSearchedMovieListPopularMoviesFR(false);
   //     });
   //   }
   // }, [inputSearchValue]);
@@ -64,7 +64,7 @@ const Home = () => {
   useEffect(() => {
     axios.get("https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=1", tMDBoptions).then((response) => {
       console.log(response.data.results);
-      setPopularMovies(response.data.results);
+      setMovieListPopularMoviesFR(response.data.results);
     });
   }, []);
 
@@ -85,7 +85,12 @@ const Home = () => {
       <Header setInputSearchValue={setInputSearchValue} />
       <StyledPageContainer>
         <FilerModule moviesGenres={moviesGenres} />
-        <MoviesDisplay moviesGenres={moviesGenres} moviesSearch={moviesSearch} popularMovies={popularMovies} inputSearchValue={inputSearchValue} />
+        <MoviesDisplay
+          moviesGenres={moviesGenres}
+          MovieListInputSearchResult={MovieListInputSearchResult}
+          MovieListPopularMoviesFR={MovieListPopularMoviesFR}
+          inputSearchValue={inputSearchValue}
+        />
       </StyledPageContainer>
     </div>
   );

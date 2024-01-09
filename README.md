@@ -13,6 +13,11 @@
 [ ]
 [ ] ajouter d'autres liste de filter (annee, ???) et un bouton de recherche, avec la fermeture des listes quand une nouvelle est ouverte ou la recherche lancee.
 [ ] ajouter une div absolute en mobile pour les filtres
+[ ] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
+[ ] favori : ajouter un span avec le nombre de favoris
+[ ] liste de favoris a mettre en resultats de recherche !!
+[ ] creer une nouvelle page pour les films avec navigation dynamique. les donnes sont dans le store. les defillement y doit etre stocker aussi.
+[ ] ajouter les requetes API dans redux
 
 # Done
 
@@ -28,4 +33,7 @@
 [x] arranger les boutons
 [x] top flop
 [x] transition sur le sort
-~~[x] ajouter un effet de collapse sur les list~~
+
+**08/01/2023**
+
+~~[x] ajouter un effet de collapse sur les list~~ fait mais finalement cela ne rend pas terrible. Bon entrainement pour framer motion cela dit!

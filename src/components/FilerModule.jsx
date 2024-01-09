@@ -256,8 +256,8 @@ const FilerModule = ({ moviesGenres }) => {
     <StyledFilterModule isOnMobile={isOnMobile}>
       {/* <CategoriesIcones data={moviesGenres} filters={shownGenresFilm} /> */}
       <ListFilter data={moviesGenres} filters={shownGenresFilm} isOnMobile={isOnMobile} />
-      {/* <YearFilter isOnMobile={isOnMobile} /> */}
-      <SectionContainer isOnMobile={isOnMobile} />
+      <YearFilter isOnMobile={isOnMobile} />
+      {/* <SectionContainer isOnMobile={isOnMobile} /> */}
     </StyledFilterModule>
   );
 };

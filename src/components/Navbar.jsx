@@ -117,7 +117,7 @@ function Navbar() {
   // Logique de votre composant Navbar...\
 
   return (
-    <StyledNavbar>
+    <StyledNavbar data-identifier="NavBar">
       <ul>
         <li>
           <StyledLink to="/" className={(nav) => (nav.isActive ? "active" : "")}>

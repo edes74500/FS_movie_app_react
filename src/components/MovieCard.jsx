@@ -6,17 +6,22 @@ import { TiStarFullOutline } from "react-icons/ti";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineBookmark } from "react-icons/hi";
 
+const StyledMovieCard = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  h3 {
+    font-size: 1.5rem;
+    margin: 0 0 20px 0;
+  }
+`;
+
 const StyledMovieWrapper = styled.div`
   display: flex;
-  /* box-shadow: 50px 30px 25px rgba(var(--secondary-color), 0.7); */
-  /* background-color: red; */
   background-color: rgb(var(--main-color));
   position: relative;
   z-index: 2;
-  /* overflow: hidden; */
-
-  /* border-top: 1px solid rgb(var(--secondary-color)); */
-  /* border-left: 1px solid rgb(var(--secondary-color)); */
 `;
 
 const StyledImageContainer = styled.div`
@@ -222,12 +227,12 @@ const StyledInfoContainer = styled.div`
   }
 `;
 
-const StyledDivDivider = styled.div`
+const StyledDivDivider = styled.hr`
   position: absolute;
   width: 100%;
   height: 10px;
   bottom: 0;
-  /* overflow: hidden; */
+  border: none;
   transform: translateY(100%);
   background: linear-gradient(
     90deg,
@@ -236,10 +241,6 @@ const StyledDivDivider = styled.div`
     rgba(var(--secondary-color), 0.8) 68%,
     rgba(255, 255, 255, 0) 100%
   );
-  /* overflow: hidden; */
-  /* box-shadow: 50px 30px 25px rgba(var(--secondary-color), 0.7); */
-  /* background-color: red; */
-  /* z-index: 0; */
 `;
 
 const FullStar = styled(TiStarFullOutline)`
@@ -259,10 +260,11 @@ const NoteDisplay = ({ note, votes }) => {
   );
 };
 
-const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
+const MovieCard = ({ MovieListDisplayed, moviesGenres, isReverse }) => {
   return (
-    <>
-      {moviesToDisplay.map((movie, index) => {
+    <StyledMovieCard data-identifier="MovieCard">
+      {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? <h3> {MovieListDisplayed[0].listName}</h3> : null}
+      {MovieListDisplayed.map((movie, index) => {
         return (
           <motion.div
             key={`${movie.title}-${movie.id}-${index}`}
@@ -279,7 +281,7 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
                   backgroundImage: movie.poster_path ? `url(https://image.tmdb.org/t/p/original${movie.poster_path})` : `url(./img/affiche.jpg)`,
                 }}
               >
-                <div className="rank is-absolute">{!isReverse ? index + 1 : Math.abs(index - moviesToDisplay.length)}</div>
+                <div className="rank is-absolute">{!isReverse ? index + 1 : Math.abs(index - MovieListDisplayed.length)}</div>
                 <div className="icone  is-absolute">
                   {" "}
                   <HiOutlineBookmark />{" "}
@@ -327,7 +329,7 @@ const MovieCard = ({ moviesToDisplay, moviesGenres, isReverse }) => {
         );
       })}
       {/* </AnimatePresence> */}
-    </>
+    </StyledMovieCard>
   );
 };
 

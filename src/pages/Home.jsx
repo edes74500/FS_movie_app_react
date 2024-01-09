@@ -9,7 +9,7 @@ import { couleursGenresFilm } from "../styles/globalStyles";
 
 // import { tMDBoptions } from "../../secrets";
 
-const StyledPageContainer = styled.div`
+const StyledHomePage = styled.div`
   max-width: 1200px;
   /* overflow-x: hidden; */
   width: 90%;
@@ -61,10 +61,17 @@ const Home = () => {
   //   }
   // }, [inputSearchValue]);
 
+  //FETCH POPULAR MOVIES
   useEffect(() => {
     axios.get("https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=1", tMDBoptions).then((response) => {
       console.log(response.data.results);
-      setMovieListPopularMoviesFR(response.data.results);
+      const moviesListData = response.data.results.map((movie) => {
+        return {
+          ...movie,
+          listName: "Les films les plus populaires en France en ce moment",
+        };
+      });
+      setMovieListPopularMoviesFR(moviesListData);
     });
   }, []);
 
@@ -81,9 +88,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Header setInputSearchValue={setInputSearchValue} />
-      <StyledPageContainer>
+      <StyledHomePage data-identifier="Home">
         <FilerModule moviesGenres={moviesGenres} />
         <MoviesDisplay
           moviesGenres={moviesGenres}
@@ -91,8 +98,8 @@ const Home = () => {
           MovieListPopularMoviesFR={MovieListPopularMoviesFR}
           inputSearchValue={inputSearchValue}
         />
-      </StyledPageContainer>
-    </div>
+      </StyledHomePage>
+    </>
   );
 };
 

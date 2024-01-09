@@ -10,7 +10,7 @@ import { FaArrowUp } from "react-icons/fa";
 import React, { useEffect, useRef } from "react";
 import ButtonToTheTop from "./ButtonToTheTop";
 
-const StyledHeaderWrapper = styled.div`
+const StyledHeader = styled.div`
   position: relative;
   .custom-swiper-button-prev,
   .swiper-button-next {
@@ -181,7 +181,7 @@ const Header = ({ setInputSearchValue }) => {
 
   return (
     <>
-      <StyledHeaderWrapper ouvert={false}>
+      <StyledHeader data-identifier="Header">
         <StyledTextContainer>
           <h2>CINE ADDICT</h2>
           <h3>Trouve ton prochain film !</h3>
@@ -209,7 +209,7 @@ const Header = ({ setInputSearchValue }) => {
           ))}
         </Swiper>
         <ButtonToTheTop />
-      </StyledHeaderWrapper>
+      </StyledHeader>
     </>
   );
 };

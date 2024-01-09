@@ -84,7 +84,7 @@ const MovieSortButtons = ({ moviesSort, setMoviesSort }) => {
   };
 
   return (
-    <StyledButtonSortContainer>
+    <StyledButtonSortContainer data-identifier="MovieSortButtons">
       <div className="button-container">
         <span>Trier par : </span>
         <input

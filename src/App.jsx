@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 ${globalStyles}
 `;
 
-const PageContainer = styled.div`
+const StyledPageContainer = styled.div`
   /* max-width: 1000px; */
   /* display: flex; */
   /* margin: 0 auto; */
@@ -25,14 +25,14 @@ function App() {
   return (
     <Router>
       <AnimatePresence>
-        <GlobalStyle />
+        <GlobalStyle data-identifier="StyledGlobalStyle" />
         <Navbar />
-        <PageContainer>
+        <StyledPageContainer data-identifier="PageContainer">
           <Routes>
             <Route path="/favorite" element={<Favorite />} />
             <Route path="/" element={<Home />} />
           </Routes>
-        </PageContainer>
+        </StyledPageContainer>
       </AnimatePresence>
     </Router>
   );

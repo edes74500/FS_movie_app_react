@@ -10,6 +10,7 @@ import SearchResultDisplayHeader from "./HeaderMessages/SearchResultDisplayHeade
 const StyledMoviesDisplay = styled.div`
   gap: 10px;
   position: relative;
+  transition: all 2s ease-in-out;
   /* position: relative; */
   flex-direction: column;
   .movie-list-name {
@@ -36,10 +37,10 @@ const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopu
       <StyledMoviesDisplay data-identifier="MoviesDisplay">
         {/* //Affichage de la valeur de la recherche si elle existe */}
         {inputSearchValue && <SearchResultDisplayHeader inputSearchValue={inputSearchValue} />}
-
-        {/* //Affichage de l'erreur de recherche si la recherche n'a rien donne' */}
-        {MovieListInputSearchResult.length < 1 && inputSearchValue.length !== 0 && <ErrorDisplayHeader />}
-
+        <AnimatePresence>
+          {/* //Affichage de l'erreur de recherche si la recherche n'a rien donne' */}
+          {MovieListInputSearchResult.length < 1 && inputSearchValue.length !== 0 && <ErrorDisplayHeader />}
+        </AnimatePresence>
         {/* //Affichage du titre de la liste si elle existe sur les listes prefetch*/}
         {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? <ListTitleHeaderDisplay MovieListDisplayed={MovieListDisplayed} /> : null}
 

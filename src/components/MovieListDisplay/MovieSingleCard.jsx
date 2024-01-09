@@ -9,6 +9,7 @@ import { HiOutlineBookmark } from "react-icons/hi";
 const StyledMovieCard = styled.div`
   width: 100%;
   display: flex;
+  transition: all 2s ease-in-out;
   flex-direction: column;
   gap: 15px;
 `;

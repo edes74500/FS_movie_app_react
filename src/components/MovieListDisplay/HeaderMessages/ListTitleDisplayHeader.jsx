@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledListTitleDisplayHeader = styled.div`
+  transition: all 2s ease-in-out;
   h3 {
     font-size: 1.5rem;
     margin: 0 0 0px 0;

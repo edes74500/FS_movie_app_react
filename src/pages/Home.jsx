@@ -12,10 +12,11 @@ const StyledHomePage = styled.div`
   max-width: 1200px;
   /* overflow-x: hidden; */
   width: 95%;
-  margin: 0 auto;
+  margin: 0px auto;
   display: grid;
   grid-template-columns: 22% 70%;
   gap: 8%;
+  position: relative;
   /* background-color: red; */
   transition: 1s ease-in-out;
   transition: 1s ease-in-out;

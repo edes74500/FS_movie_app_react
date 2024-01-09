@@ -1,83 +1,18 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MovieCard from "./MovieSingleCard";
-import { TbH4 } from "react-icons/tb";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaThumbsDown } from "react-icons/fa6";
-import { FaThumbsUp } from "react-icons/fa6";
+import { AnimatePresence } from "framer-motion";
 import MovieSortButtons from "./MovieSortButtons";
-
-const StyledSearchDisplayHeader = styled.div`
-  width: 100%;
-  h3 {
-    margin-bottom: 20px;
-    transition: all 2s ease-in-out;
-    @media screen and (max-width: 750px) {
-      margin-bottom: 50px;
-      text-align: center;
-    }
-    .search-value {
-      font-size: 2rem;
-      text-transform: capitalize;
-    }
-  }
-`;
-
-// COMPOSANT SEARCH DYSPLAY HEADER
-const SearchDisplayHeader = ({ inputSearchValue, MovieListDisplayed }) => {
-  return (
-    <StyledSearchDisplayHeader className="search-display-header-style">
-      {inputSearchValue && (
-        <h3 style={{ opacity: inputSearchValue ? "1" : "0" }}>
-          Votre recherche pour <span className="search-value">{inputSearchValue}</span>
-        </h3>
-      )}
-      {/* {!inputSearchValue && <h3>{MovieListDisplayed[0].listName}</h3>} */}
-    </StyledSearchDisplayHeader>
-  );
-};
-
-/// COMNPOSANT ERROR MESSAGE
-const StyledErrorDisplayHeader = styled.div`
-  width: 100%;
-  .error-message {
-    padding: 50px 0;
-    text-align: center;
-    h2 {
-      font-size: 2rem;
-    }
-    span {
-      font-size: 4rem;
-      text-align: center;
-    }
-  }
-  h3 {
-    margin-top: 50px;
-  }
-`;
-
-const ErrorDisplayHeader = () => {
-  return (
-    <StyledErrorDisplayHeader className="error-display-header-style">
-      <div className="error-message">
-        <h2>Desole aucun film ne correspond a votre recherche </h2>
-        <span>😥</span>
-      </div>
-      <h3>En attendant...</h3>
-    </StyledErrorDisplayHeader>
-  );
-};
+import ErrorDisplayHeader from "./HeaderMessages/ErrorDisplayHeader";
+import ListTitleHeaderDisplay from "./HeaderMessages/ListTitleDisplayHeader";
+import SearchResultDisplayHeader from "./HeaderMessages/SearchResultDisplayHeader";
 
 const StyledMoviesDisplay = styled.div`
   gap: 10px;
-  display: flex;
+  position: relative;
+  /* position: relative; */
   flex-direction: column;
   .movie-list-name {
-    h3 {
-      font-size: 1.5rem;
-      margin: 0 0 20px 0;
-    }
   }
 `;
 
@@ -99,14 +34,19 @@ const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopu
   return (
     <>
       <StyledMoviesDisplay data-identifier="MoviesDisplay">
-        {<SearchDisplayHeader inputSearchValue={inputSearchValue} MovieListDisplayed={MovieListDisplayed} />}
+        {/* //Affichage de la valeur de la recherche si elle existe */}
+        {inputSearchValue && <SearchResultDisplayHeader inputSearchValue={inputSearchValue} />}
+
+        {/* //Affichage de l'erreur de recherche si la recherche n'a rien donne' */}
         {MovieListInputSearchResult.length < 1 && inputSearchValue.length !== 0 && <ErrorDisplayHeader />}
-        {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? (
-          <div className="movie-list-name">
-            <h3> {MovieListDisplayed[0].listName}</h3>{" "}
-          </div>
-        ) : null}
+
+        {/* //Affichage du titre de la liste si elle existe sur les listes prefetch*/}
+        {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? <ListTitleHeaderDisplay MovieListDisplayed={MovieListDisplayed} /> : null}
+
+        {/* //Affichage des boutons de sort */}
         <MovieSortButtons inputSearchValue={inputSearchValue} moviesSort={moviesSort} setMoviesSort={setMoviesSort} />
+
+        {/* //debut du map de la liste de film */}
         <AnimatePresence>
           <MovieCard
             MovieListDisplayed={MovieListDisplayed.slice().sort((a, b) => {

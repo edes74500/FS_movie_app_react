@@ -10,7 +10,7 @@ const StyledButtonSortContainer = styled.div`
   z-index: 3;
   .button-container {
     position: absolute;
-    transform: translateY(150%);
+    /* transform: translateY(100%); */
     right: 0;
     display: flex;
     align-items: center;

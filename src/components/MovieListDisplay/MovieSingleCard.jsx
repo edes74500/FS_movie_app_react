@@ -11,10 +11,6 @@ const StyledMovieCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  h3 {
-    font-size: 1.5rem;
-    margin: 0 0 20px 0;
-  }
 `;
 
 const StyledMovieWrapper = styled.div`
@@ -263,7 +259,7 @@ const NoteDisplay = ({ note, votes }) => {
 const MovieCard = ({ MovieListDisplayed, moviesGenres, isReverse }) => {
   return (
     <StyledMovieCard data-identifier="MovieCard">
-      {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? <h3> {MovieListDisplayed[0].listName}</h3> : null}
+      {/* {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? <h3> {MovieListDisplayed[0].listName} a</h3> : null} */}
       {MovieListDisplayed.map((movie, index) => {
         return (
           <motion.div

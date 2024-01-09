@@ -8,13 +8,12 @@
 - [ ] installer un store pour stocker les listes fixes
 - [ ]creer des sliders pour les bonus ?
 - [ ]creer plein de liste pour les bonus avec leur sort pas avec les memes boutons
-- [ ] boutton pour remonter en haut quand une page a ete scroll
+
 - [ ] ajouter un click sur les genres pour relancer une recherche avec ce genre
 - [ ] ajouter d'autres liste de filter (annee, ???) et un bouton de recherche, avec la fermeture des listes quand une nouvelle est ouverte ou la recherche lancee.
-- [ ] ajouter une div absolute en mobile pour les filtres
-- [ ] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
+
 - [ ] favori : ajouter un span avec le nombre de favoris
-- [ ] liste de favoris a mettre en resultats de recherche !!
+
 - [ ] creer une nouvelle page pour les films avec navigation dynamique. les donnes sont dans le store. les defillement y doit etre stocker aussi.
 - [ ] ajouter les requetes API dans redux
 - [ ] creer un isLoading
@@ -24,19 +23,19 @@
 import customBreakpoints from "../styles/customBreakpoints";
 
 /* Styles communs à toutes les tailles d'écran */
-  small: '480px',
-  medium: '768px',
-  large: '1024px',
+  desktop: "992px",
+  tablet: "768px",
+  mobile: "576px",
 
-  ${media.lessThan('medium')`
+  ${customBreakpoints.lessThan('desktop')`
     /* Styles pour les écrans plus petits que la taille 'medium' */
   `}
 
-  ${media.between('medium', 'large')`
+  ${media.between('tablet', 'desktop')`
     /* Styles pour les écrans entre 'medium' et 'large' */
   `}
 
-  ${media.greaterThan('large')`
+  ${media.greaterThan('desktop')`
     /* Styles pour les écrans plus grands que la taille 'large' */
   `}
 `;
@@ -62,6 +61,17 @@ import customBreakpoints from "../styles/customBreakpoints";
 **08/01/2023**
 
 - [x] ~~-ajouter un effet de collapse sur les list~~ fait mais finalement cela ne rend pas terrible. Bon entrainement pour framer motion cela dit!
-
 - [x] Debut de renommage des classes de styled
 - [x] separations de certains composant et restructuration de composants imbriques
+
+**09/01/2023**
+
+- [x] boutton pour remonter en haut quand une page a ete scroll
+- [x] debut de restructuration du site
+- [ ] ~~ liste de favoris a mettre en resultats de recherche !?~~
+
+**10/01/2023**
+
+- [ ] ajouter une div absolute en mobile pour les filtres
+- [ ] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
+- [ ] decouvrir redux

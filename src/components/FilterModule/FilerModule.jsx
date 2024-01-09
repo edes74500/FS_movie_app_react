@@ -11,7 +11,7 @@ const StyledFilterModule = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  gap: 50px;
+  gap: 10px;
   height: fit-content;
   justify-content: center;
   transition: 1s ease-in-out;

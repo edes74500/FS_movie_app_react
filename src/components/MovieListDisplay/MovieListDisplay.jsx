@@ -73,6 +73,12 @@ const StyledMoviesDisplay = styled.div`
   gap: 10px;
   display: flex;
   flex-direction: column;
+  .movie-list-name {
+    h3 {
+      font-size: 1.5rem;
+      margin: 0 0 20px 0;
+    }
+  }
 `;
 
 const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopularMoviesFR, inputSearchValue }) => {
@@ -93,11 +99,13 @@ const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopu
   return (
     <>
       <StyledMoviesDisplay data-identifier="MoviesDisplay">
-        {
-          // inputSearchValue.length > 0 &&
-          <SearchDisplayHeader inputSearchValue={inputSearchValue} MovieListDisplayed={MovieListDisplayed} />
-        }
+        {<SearchDisplayHeader inputSearchValue={inputSearchValue} MovieListDisplayed={MovieListDisplayed} />}
         {MovieListInputSearchResult.length < 1 && inputSearchValue.length !== 0 && <ErrorDisplayHeader />}
+        {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? (
+          <div className="movie-list-name">
+            <h3> {MovieListDisplayed[0].listName}</h3>{" "}
+          </div>
+        ) : null}
         <MovieSortButtons inputSearchValue={inputSearchValue} moviesSort={moviesSort} setMoviesSort={setMoviesSort} />
         <AnimatePresence>
           <MovieCard

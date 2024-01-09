@@ -121,8 +121,8 @@ const StyledMoviescategoriesContainerDiv = styled.div`
   }
 `;
 const SectionContainer = ({ isOnMobile }) => {
-  const [debutAnnee, setDebutAnnee] = useState(1990);
-  const [finAnnee, setFinAnnee] = useState(2023);
+  const [debutAnnee, setDebutAnnee] = useState(1900);
+  const [finAnnee, setFinAnnee] = useState(2024);
 
   const handleChange = (values) => {
     setDebutAnnee(values[0]);
@@ -196,7 +196,7 @@ const SectionContainer = ({ isOnMobile }) => {
               startPoint={1990}
               defaultValue={1990}
               min={1900}
-              max={2023}
+              max={2024}
               step={10}
               defaultValue={[debutAnnee, finAnnee]}
               onChange={handleChange}

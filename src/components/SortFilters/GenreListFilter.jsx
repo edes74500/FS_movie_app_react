@@ -6,14 +6,14 @@ import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 
-const StyledMoviescategoriesContainerDiv = styled.div`
+const StyledGenreListFilter = styled.div`
   /* display: flex; */
   flex-direction: column;
   outline: none;
   width: 100%;
   position: relative;
   /* overflow: hidden; */
-  cursor: pointer;
+  /* cursor: pointer; */
   .movie-categories__title_container {
     border-radius: 5px;
     /* overflow: hidden; */
@@ -148,7 +148,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     }
   }
 `;
-const ListFilter = ({ data, filters, isOnMobile }) => {
+const GenreListFilter = ({ data, filters, isOnMobile }) => {
   const listContainer = useRef();
   const [listIsOpen, setListIsOpen] = React.useState(isOnMobile ? false : true);
   const [selectedGenreID, setSelectedGenreID] = React.useState([]);
@@ -238,16 +238,11 @@ const ListFilter = ({ data, filters, isOnMobile }) => {
         x: 0,
         opacity: 1,
       },
-      // exit: {
-      //   opacity: 0,
-      //   y: -60,
-      //   transition: { ease: "easeIn", duration: 5 },
-      // },
     },
   };
 
   return (
-    <StyledMoviescategoriesContainerDiv listIsOpen={listIsOpen} isOnMobile={isOnMobile}>
+    <StyledGenreListFilter data-indentifier="GenreListFilter" listIsOpen={listIsOpen} isOnMobile={isOnMobile}>
       <div className="movie-categories__title_container" onClick={isOnMobile ? null : null}>
         <h3>
           {" "}
@@ -338,8 +333,8 @@ const ListFilter = ({ data, filters, isOnMobile }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </StyledMoviescategoriesContainerDiv>
+    </StyledGenreListFilter>
   );
 };
 
-export default ListFilter;
+export default GenreListFilter;

@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { shownGenresFilm } from "../styles/globalStyles";
-import ListFilter from "./filter/ListFilter";
-import YearFilter from "./filter/YearFilter";
+import GenreListFilter from "./SortFilters/GenreListFilter";
+import YearFilter from "./SortFilters/YearFilter";
+import media from "styled-media-query";
 
 const StyledFilterModule = styled.div`
+  /* Styles communs à toutes les tailles d'écran */
+
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -12,15 +15,16 @@ const StyledFilterModule = styled.div`
   height: fit-content;
   justify-content: center;
   transition: 1s ease-in-out;
-  @media screen and (max-width: 900px) {
-    position: fixed;
+  ${media.lessThan("large")`
+      position: fixed;
     top: 10%;
-    left: 0;
+    right: 0;
     z-index: 300;
     background-color: green;
     padding: 30px;
     width: 300px;
-  }
+    /* Styles pour les écrans plus petits que la taille 'medium' */
+  `}
 `;
 
 const CSSContainerCollapse = styled.div`
@@ -61,7 +65,7 @@ const FilerModule = ({ moviesGenres }) => {
   return (
     <StyledFilterModule isOnMobile={isOnMobile} data-identifier="FilterModule">
       {/* <CategoriesIcones data={moviesGenres} filters={shownGenresFilm} /> */}
-      <ListFilter data={moviesGenres} filters={shownGenresFilm} isOnMobile={isOnMobile} />
+      <GenreListFilter data={moviesGenres} filters={shownGenresFilm} isOnMobile={isOnMobile} />
       <YearFilter isOnMobile={isOnMobile} />
       {/* <SectionContainer isOnMobile={isOnMobile} /> */}
     </StyledFilterModule>

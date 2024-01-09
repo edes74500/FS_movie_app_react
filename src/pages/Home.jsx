@@ -6,6 +6,7 @@ import MoviesDisplay from "../components/MoviesDisplay";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { couleursGenresFilm } from "../styles/globalStyles";
+import media from "styled-media-query";
 
 // import { tMDBoptions } from "../../secrets";
 
@@ -18,10 +19,15 @@ const StyledHomePage = styled.div`
   grid-template-columns: 20% 70%;
   gap: 10%;
   transition: 1s ease-in-out;
-  @media screen and (max-width: 900px) {
+  transition: 1s ease-in-out;
+  ${media.lessThan("large")`
+ display: flex;
+    flex-direction: column;
+    /* Styles pour les écrans plus petits que la taille 'medium' */
+  `}/* @media screen and (max-width: 900px) {
     display: flex;
     flex-direction: column;
-  }
+  } */
 `;
 const Home = () => {
   const [MovieListPopularMoviesFR, setMovieListPopularMoviesFR] = useState([]);

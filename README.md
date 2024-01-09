@@ -18,6 +18,24 @@
 [ ] liste de favoris a mettre en resultats de recherche !!
 [ ] creer une nouvelle page pour les films avec navigation dynamique. les donnes sont dans le store. les defillement y doit etre stocker aussi.
 [ ] ajouter les requetes API dans redux
+[ ] creer un isLoading
+[ ] Reprendre Styled ! regfaire mediqQuery avec
+
+```/* Styles communs à toutes les tailles d'écran */
+
+  ${media.lessThan('medium')`
+    /* Styles pour les écrans plus petits que la taille 'medium' */
+  `}
+
+  ${media.between('medium', 'large')`
+    /* Styles pour les écrans entre 'medium' et 'large' */
+  `}
+
+  ${media.greaterThan('large')`
+    /* Styles pour les écrans plus grands que la taille 'large' */
+  `}
+`;
+```
 
 # Done
 
@@ -37,3 +55,5 @@
 **08/01/2023**
 
 ~~[x] ajouter un effet de collapse sur les list~~ fait mais finalement cela ne rend pas terrible. Bon entrainement pour framer motion cela dit!
+[x] Debut de renommage des classes de styled
+[x] separations de certains composant et restructuration de composants imbriques

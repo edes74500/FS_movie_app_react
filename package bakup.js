@@ -14,6 +14,8 @@
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.5",
     "framer-motion": "^10.17.9",
+    "nouislider": "^15.7.1",
+    "nouislider-react": "^3.4.1",
     "rc-slider": "^10.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

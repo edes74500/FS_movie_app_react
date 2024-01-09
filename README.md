@@ -10,7 +10,6 @@
 - [ ]creer plein de liste pour les bonus avec leur sort pas avec les memes boutons
 - [ ] boutton pour remonter en haut quand une page a ete scroll
 - [ ] ajouter un click sur les genres pour relancer une recherche avec ce genre
-- [ ]
 - [ ] ajouter d'autres liste de filter (annee, ???) et un bouton de recherche, avec la fermeture des listes quand une nouvelle est ouverte ou la recherche lancee.
 - [ ] ajouter une div absolute en mobile pour les filtres
 - [ ] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
@@ -21,7 +20,13 @@
 - [ ] creer un isLoading
 - [ ] Reprendre Styled ! regfaire mediqQuery avec
 
-```/* Styles communs à toutes les tailles d'écran */
+```
+import customBreakpoints from "../styles/customBreakpoints";
+
+/* Styles communs à toutes les tailles d'écran */
+  small: '480px',
+  medium: '768px',
+  large: '1024px',
 
   ${media.lessThan('medium')`
     /* Styles pour les écrans plus petits que la taille 'medium' */
@@ -36,6 +41,8 @@
   `}
 `;
 ```
+
+- [ ] ajouter un before et after pour les listes de filtres
 
 # Done
 

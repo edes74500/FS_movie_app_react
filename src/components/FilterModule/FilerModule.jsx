@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { shownGenresFilm } from "../styles/globalStyles";
+import { shownGenresFilm } from "../../styles/globalStyles";
 import GenreListFilter from "./SortFilters/GenreListFilter";
 import YearFilter from "./SortFilters/YearFilter";
-import media from "styled-media-query";
+import customBreakpoints from "../../styles/customBreakpoints";
+
+/* Styles communs à toutes les tailles d'écran */
 
 const StyledFilterModule = styled.div`
-  /* Styles communs à toutes les tailles d'écran */
-
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -15,8 +15,9 @@ const StyledFilterModule = styled.div`
   height: fit-content;
   justify-content: center;
   transition: 1s ease-in-out;
-  ${media.lessThan("large")`
-      position: fixed;
+  ${customBreakpoints.lessThan("desktop")`
+  display: none;
+    position: fixed;
     top: 10%;
     right: 0;
     z-index: 300;

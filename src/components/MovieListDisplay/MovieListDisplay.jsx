@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import MovieCard from "./MovieCard";
+import MovieCard from "./MovieSingleCard";
 import { TbH4 } from "react-icons/tb";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaThumbsDown } from "react-icons/fa6";

@@ -1,33 +1,31 @@
 // import React from "react";
-import FilerModule from "../components/FilerModule";
-import Header from "../components/Header";
 import styled from "styled-components";
-import MoviesDisplay from "../components/MoviesDisplay";
 import axios from "axios";
+import FilerModule from "../components/FilterModule/FilerModule";
+import Header from "../components/Header/Header";
+import MoviesDisplay from "../components/MovieListDisplay/MovieListDisplay";
 import { useEffect, useState } from "react";
 import { couleursGenresFilm } from "../styles/globalStyles";
-import media from "styled-media-query";
-
-// import { tMDBoptions } from "../../secrets";
+import customBreakpoints from "../styles/customBreakpoints";
 
 const StyledHomePage = styled.div`
   max-width: 1200px;
   /* overflow-x: hidden; */
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 20% 70%;
-  gap: 10%;
+  grid-template-columns: 22% 70%;
+  gap: 8%;
+  /* background-color: red; */
   transition: 1s ease-in-out;
   transition: 1s ease-in-out;
-  ${media.lessThan("large")`
- display: flex;
-    flex-direction: column;
-    /* Styles pour les écrans plus petits que la taille 'medium' */
-  `}/* @media screen and (max-width: 900px) {
+
+  ${customBreakpoints.lessThan("desktop")`
+  width: 90%;
     display: flex;
     flex-direction: column;
-  } */
+
+  `}
 `;
 const Home = () => {
   const [MovieListPopularMoviesFR, setMovieListPopularMoviesFR] = useState([]);

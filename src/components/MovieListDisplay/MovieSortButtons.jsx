@@ -1,25 +1,17 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import MovieCard from "./MovieCard";
-import { TbH4 } from "react-icons/tb";
-import { motion, AnimatePresence } from "framer-motion";
 import { FaThumbsDown } from "react-icons/fa6";
 import { FaThumbsUp } from "react-icons/fa6";
 // import MovieSortBouttons from "./MovieSortBouttons";
 
 const StyledButtonSortContainer = styled.div`
+  //Singlebar With no height
   display: flex;
   position: relative;
   z-index: 3;
   .button-container {
     position: absolute;
-    transform: translateY(-50%);
-    @media screen and (max-width: 750px) {
-      position: relative;
-    }
+    transform: translateY(150%);
     right: 0;
-    top: 50%;
     display: flex;
     align-items: center;
     color: rgb(var(--secondary-color));

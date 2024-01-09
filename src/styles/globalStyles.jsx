@@ -10,8 +10,6 @@ export const globalStyles = css`
     --main-color: 2, 16, 27;
     --secondary-color: 255, 172, 7; // Exemple de couleur secondaire
     --font-size: 16px; // Exemple de taille de police globale
-    --tablet-size: 1024px;
-    --phone-size: 768px;
   }
 
   * {

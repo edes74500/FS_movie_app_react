@@ -8,30 +8,12 @@ import { globalStyles } from "./styles/globalStyles";
 import "typeface-lato";
 import "typeface-roboto";
 import "@fontsource-variable/cinzel";
-import Navbar from "./components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
+import Navbar from "./components/Header/Navbar";
 import "styled-components";
-import media from "styled-media-query";
-// import { ThemeProvider } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 ${globalStyles}
-`;
-
-const MyComponent = styled.div`
-  /* Styles communs à toutes les tailles d'écran */
-
-  ${media.lessThan("medium")`
-    /* Styles pour les écrans plus petits que la taille 'medium' */
-  `}
-
-  ${media.between("medium", "large")`
-    /* Styles pour les écrans entre 'medium' et 'large' */
-  `}
-
-  ${media.greaterThan("large")`
-    /* Styles pour les écrans plus grands que la taille 'large' */
-  `}
 `;
 
 const StyledPageContainer = styled.div`

@@ -3,27 +3,25 @@ import styled from "styled-components";
 
 const StyledListTitleDisplayHeader = styled.div`
   transition: all 2s ease-in-out;
-  h3 {
-    font-size: 1.5rem;
-    margin: 0 0 0px 0;
-  }
+  margin-bottom: 30px;
   border-radius: 5px;
   padding: 5px 0;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
     rgba(var(--secondary-color), 0.8) 37%,
     rgba(var(--secondary-color), 0.8) 68%,
     rgba(255, 255, 255, 0) 100%
-  );
-
+  ); */
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
 
-    rgba(var(--secondary-color), 0.8) 100%
+    var(--secondary-color) 100%
   );
-  margin-bottom: 20px;
+  h3 {
+    font-size: 1.5rem;
+  }
 `;
 const ListTitleDisplayHeader = ({ MovieListDisplayed }) => {
   return (

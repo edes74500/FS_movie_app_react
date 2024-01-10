@@ -22,7 +22,7 @@ const StyledGenreListFilter = styled.div`
     height: 40px;
     display: flex;
     align-items: center;
-    background-color: rgba(var(--secondary-color), 1);
+    background-color: var(--secondary-color);
     background-color: black;
     background-color: #c98d1e;
     .dropdown-icon {

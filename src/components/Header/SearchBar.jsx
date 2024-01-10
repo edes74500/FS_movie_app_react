@@ -30,7 +30,7 @@ const StyledSearchDiv = styled.div`
     border: none;
     width: 50px;
     cursor: pointer;
-    background: rgb(var(--secondary-color));
+    background: var(--secondary-color);
     svg {
       font-size: 20px;
     }

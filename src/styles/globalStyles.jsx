@@ -8,7 +8,8 @@ export const globalStyles = css`
 
   :root {
     --main-color: 2, 16, 27;
-    --secondary-color: 255, 172, 7; // Exemple de couleur secondaire
+    --primary-color: rgb(2, 16, 27); // Exem
+    --secondary-color: rgb(255, 172, 7); // Exemple de couleur secondaire
     --font-size: 16px; // Exemple de taille de police globale
   }
 

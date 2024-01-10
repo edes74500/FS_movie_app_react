@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import MovieCard from "./MovieSingleCard";
+
 import { AnimatePresence } from "framer-motion";
 import MovieSortButtons from "./MovieSortButtons";
 import ErrorDisplayHeader from "./HeaderMessages/ErrorDisplayHeader";
 import ListTitleHeaderDisplay from "./HeaderMessages/ListTitleDisplayHeader";
 import SearchResultDisplayHeader from "./HeaderMessages/SearchResultDisplayHeader";
+import MovieCard from "./SingleCard/MovieCard";
 
 const StyledMoviesDisplay = styled.div`
   gap: 10px;

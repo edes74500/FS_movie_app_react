@@ -11,7 +11,7 @@ const StyledToTheTopDiv = styled.div`
   display: flex;
   opacity: 0;
   /* border: 6px solid white; */
-  background-color: rgb(var(--secondary-color));
+  background-color: var(--secondary-color);
   z-index: 10;
   justify-content: center;
   align-items: center;

@@ -10,7 +10,8 @@ const StyledButtonSortContainer = styled.div`
   z-index: 3;
   .button-container {
     position: absolute;
-    /* transform: translateY(100%); */
+    transform: translateY(-70%);
+
     right: 0;
     display: flex;
     align-items: center;
@@ -30,7 +31,7 @@ const StyledButtonSortContainer = styled.div`
       margin: 5px;
       cursor: pointer;
       &.is-selected {
-        border: 2px rgb(var(--secondary-color)) solid;
+        border: 2px var(--secondary-color) solid;
         color: white;
         border-radius: 5px;
       }
@@ -43,7 +44,7 @@ const StyledButtonSortContainer = styled.div`
       padding: 5px;
       color: #ffffff9c;
       &.is-selected {
-        color: rgb(var(--secondary-color));
+        color: var(--secondary-color);
       }
       svg {
         pointer-events: none;

@@ -66,7 +66,7 @@ const StyledImageContainer = styled.div`
   .is-absolute {
     position: absolute;
     z-index: 4;
-    color: rgba(var(--secondary-color), 0.9);
+    color: var(--secondary-color);
     &.icone {
       font-size: 3rem;
       left: -20px;
@@ -166,7 +166,7 @@ const StyledInfoContainer = styled.div`
       font-weight: bold;
       padding: 5px;
       cursor: pointer;
-      background: rgb(var(--secondary-color));
+      background: var(--secondary-color);
       border: none;
       border-radius: 5px;
       bottom: 7px;
@@ -231,13 +231,7 @@ const StyledDivDivider = styled.hr`
   bottom: 0;
   border: none;
   transform: translateY(100%);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(var(--secondary-color), 0.8) 37%,
-    rgba(var(--secondary-color), 0.8) 68%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--secondary-color) 37%, var(--secondary-color) 68%, rgba(255, 255, 255, 0) 100%);
 `;
 
 const FullStar = styled(TiStarFullOutline)`

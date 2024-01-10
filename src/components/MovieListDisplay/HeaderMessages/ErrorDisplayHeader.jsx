@@ -14,13 +14,13 @@ const StyledErrorDisplayHeader = styled.div`
     span {
       font-size: 4rem;
       text-align: center;
-      animation: fadein 1s 0.5s forwards;
+      animation: fadein 1s 0.3s forwards;
       opacity: 0;
     }
   }
   h3 {
     margin-top: 50px;
-    animation: fadein 1s 1s forwards;
+    animation: fadein 1s 0.4s forwards;
     opacity: 0;
   }
   @keyframes fadein {

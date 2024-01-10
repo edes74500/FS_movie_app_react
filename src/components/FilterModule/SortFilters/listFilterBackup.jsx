@@ -21,7 +21,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     height: 50px;
     display: flex;
     align-items: center;
-    background-color: rgba(var(--secondary-color), 0.8);
+    background-color: var(--secondary-color);
     .dropdown-icon {
       display: flex;
       position: absolute;

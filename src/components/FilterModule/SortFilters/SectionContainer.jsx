@@ -25,7 +25,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     height: 40px;
     display: flex;
     align-items: center;
-    background-color: rgba(var(--secondary-color), 1);
+    background-color: var(--secondary-color);
     background-color: black;
     background-color: #c98d1e;
     .dropdown-icon {
@@ -88,12 +88,12 @@ const StyledMoviescategoriesContainerDiv = styled.div`
     margin: 15px auto;
     .rc-slider-rail {
       height: 10px;
-      border: 1px solid rgb(var(--secondary-color), 0.8);
+      border: 1px solid ary-color), 0.8);
       background-color: rgb(var(--primary-color), 0.8);
     }
     .rc-slider-track {
       height: 10px;
-      background-color: rgb(var(--secondary-color), 0.8);
+      background-color: ary-color), 0.8);
     }
     .rc-slider-handle {
       margin: 0px;
@@ -104,7 +104,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       border: 1px solid rgb(var(--primary-color), 0.8);
     }
     .rc-slider-handle-dragging {
-      box-shadow: 0px 1px 8px 6px rgba(var(--secondary-color), 0.8);
+      box-shadow: 0px 1px 8px 6px var(--secondary-color);
       transform: scale(4);
     }
   }

@@ -72,6 +72,10 @@ import customBreakpoints from "../styles/customBreakpoints";
 
 **10/01/2023**
 
-- [ ] ajouter une div absolute en mobile pour les filtres
+- [x] ajouter une div absolute en mobile pour les filtres
+
+**11/01/2023**
+
+- [ ] reprendre les composants movie card pour reseparer certains comme le movie genre.
 - [ ] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
 - [ ] decouvrir redux

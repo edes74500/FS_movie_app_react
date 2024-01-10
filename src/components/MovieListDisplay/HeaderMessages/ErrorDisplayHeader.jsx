@@ -14,11 +14,26 @@ const StyledErrorDisplayHeader = styled.div`
     span {
       font-size: 4rem;
       text-align: center;
+      animation: fadein 1s 0.5s forwards;
+      opacity: 0;
     }
   }
   h3 {
     margin-top: 50px;
+    animation: fadein 1s 1s forwards;
+    opacity: 0;
   }
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  overflow: hidden;
 `;
 
 const ErrorDisplayHeader = () => {

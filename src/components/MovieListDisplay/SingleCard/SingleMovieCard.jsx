@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import breakpoints from "../../../styles/breakpoints";
@@ -75,7 +75,11 @@ const StyledSingleMovieCard = styled.div`
           flex-direction: row;
           justify-content: center;
           padding: 0px;
+          gap: 10px;
           padding-top: 10px;
+          /* gap: 10px; */
+          /* width: auto; */
+          margin: auto;
         }
       }
     }
@@ -89,10 +93,28 @@ const StyledDivDivider = styled.hr`
   bottom: 0;
   border: none;
   transform: translateY(100%);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--secondary-color) 37%, var(--secondary-color) 68%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    var(--secondary-color-05) 37%,
+    var(--secondary-color-05) 68%,
+    rgba(255, 255, 255, 0) 100%
+  );
 `;
 
 const SingleMovieCard = ({ MovieListDisplayed, moviesGenresAPIList, isReverse }) => {
+  const [isOnMobile, setIsOnMobile] = useState(window.innerWidth < breakpoints.mobile);
+
+  const handleIsOnMobile = () => {
+    console.log(window.innerWidth < breakpoints.mobile);
+    setIsOnMobile(window.innerWidth < breakpoints.mobile);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleIsOnMobile);
+    return () => window.removeEventListener("resize", handleIsOnMobile);
+  }, []);
+
   return (
     <StyledSingleMovieCard data-identifier="MovieCard">
       {MovieListDisplayed.map((movie, index) => {
@@ -115,9 +137,10 @@ const SingleMovieCard = ({ MovieListDisplayed, moviesGenresAPIList, isReverse })
                 <div className="left-side-container">
                   <GenreDisplay movie={movie} moviesGenresAPIList={moviesGenresAPIList} />
                   <Content movie={movie} />
-                  <DiscoverMovieButton />
+                  {!isOnMobile && <DiscoverMovieButton />}
                 </div>
                 <div className="right-side-container">
+                  {isOnMobile && <DiscoverMovieButton />}
                   <NoteDisplay movie={movie} />
                   <AddFavorite movie={movie} />
                 </div>

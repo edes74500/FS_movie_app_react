@@ -5,7 +5,6 @@ import { Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-// import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
 import breakpoints from "../../styles/breakpoints";
 import SearchBar from "./SearchBar";
 

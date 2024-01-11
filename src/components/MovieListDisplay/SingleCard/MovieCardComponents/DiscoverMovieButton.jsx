@@ -6,10 +6,10 @@ const StyledDiscoverMovieButton = styled.button`
   position: absolute;
   width: 200px;
   font-size: 0.7;
-  font-weight: 400;
+  font-weight: 600;
   padding: 5px;
   cursor: pointer;
-  background: var(--secondary-color);
+  background: var(--secondary-color-08);
   border: 2px solid transparent;
   border-radius: 5px;
   bottom: 7px;
@@ -21,7 +21,10 @@ const StyledDiscoverMovieButton = styled.button`
     border: 2px solid #4caf50; /* Bordure ajoutée au survol */
   }
   @media screen and (max-width: ${breakpoints.mobile}px) {
-    display: none;
+    /* display: none; */
+    width: 150px;
+    position: relative;
+    bottom: 0;
   }
 `;
 const DiscoverMovieButton = () => {

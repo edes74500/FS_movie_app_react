@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaThumbsDown } from "react-icons/fa6";
 import { FaThumbsUp } from "react-icons/fa6";
+import breakpoints from "../../styles/breakpoints";
 // import MovieSortBouttons from "./MovieSortBouttons";
 
 const StyledButtonSortContainer = styled.div`
@@ -8,14 +9,19 @@ const StyledButtonSortContainer = styled.div`
   display: flex;
   position: relative;
   z-index: 3;
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    height: 30px;
+  }
   .button-container {
     position: absolute;
     transform: translateY(-70%);
-
     right: 0;
     display: flex;
     align-items: center;
     color: rgb(var(--secondary-color));
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      /* position: relative; */
+    }
     span {
       white-space: pre;
       font-size: 0.7rem;

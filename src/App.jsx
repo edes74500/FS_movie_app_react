@@ -20,7 +20,6 @@ ${globalStyles}
 function App() {
   return (
     <Router>
-      {/* <AnimatePresence> */}
       <Navbar />
       <GlobalStyle data-identifier="StyledGlobalStyle" />
 
@@ -29,7 +28,6 @@ function App() {
         <Route path="/" element={<Home />} />
       </Routes>
       <ButtonToTheTop />
-      {/* </AnimatePresence> */}
     </Router>
   );
 }

@@ -9,10 +9,16 @@ const StyledTitleDate = styled.div`
     font-size: 0.8rem;
     font-style: italic;
     text-transform: capitalize;
+    color: lightgray;
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
   }
   h2 {
     font-size: 1.5rem;
     font-weight: bold;
+    cursor: pointer;
     @media screen and (max-width: ${breakpoints.tablet}px) {
       font-size: 1rem;
     }

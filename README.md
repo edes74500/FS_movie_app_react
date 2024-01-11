@@ -39,7 +39,7 @@
 **07/01/2023**
 
 - [x] differentes couleurs sur les genres
-- [x]mettre le title en grid
+- [x] mettre le title en grid
 - [x] media query screen size
 - [x] arranger les boutons
 - [x] top flop
@@ -55,7 +55,7 @@
 
 - [x] boutton pour remonter en haut quand une page a ete scroll
 - [x] debut de restructuration du site
-- [ ] ~~ liste de favoris a mettre en resultats de recherche !?~~
+- [ ] ~~liste de favoris a mettre en resultats de recherche~~ !?
 
 **10/01/2023**
 

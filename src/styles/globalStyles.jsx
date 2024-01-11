@@ -9,7 +9,10 @@ export const globalStyles = css`
   :root {
     --main-color: 2, 16, 27;
     --primary-color: rgb(2, 16, 27); // Exem
-    --secondary-color: rgb(255, 172, 7); // Exemple de couleur secondaire
+    --secondary-color: rgba(255, 172, 7, 1); // Exemple de couleur secondaire
+    --secondary-color-07: rgba(255, 172, 7, 0.7); // Exemple de couleur secondaire
+    --secondary-color-08: rgba(255, 172, 7, 0.8); // Exemple de couleur secondaire
+    --secondary-color-05: rgba(255, 172, 7, 0.5); // Exemple de couleur secondaire
     --blue-color: rgb(30, 144, 255); // Exemple de couleur secondaire
     --text-color-blue: rgb(143, 169, 191);
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import breakpoints from "../../../styles/breakpoints";
 
 const StyledListTitleDisplayHeader = styled.div`
   transition: all 2s ease-in-out;
@@ -13,12 +14,11 @@ const StyledListTitleDisplayHeader = styled.div`
     rgba(var(--secondary-color), 0.8) 68%,
     rgba(255, 255, 255, 0) 100%
   ); */
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--secondary-color-08) 100%);
+  @media screen and (max-width: ${breakpoints.mobile}px) {
+    /* margin-bottom: 60px; */
+  }
 
-    var(--secondary-color) 100%
-  );
   h3 {
     font-size: 1.5rem;
   }

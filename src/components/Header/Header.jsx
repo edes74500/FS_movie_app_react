@@ -5,7 +5,8 @@ import { Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
+// import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
+import breakpoints from "../../styles/breakpoints";
 import SearchBar from "./SearchBar";
 
 const StyledHeader = styled.div`
@@ -38,24 +39,24 @@ const StyledHeader = styled.div`
       /* transform: translate(-140%, -45%); */
       left: 20px;
       bottom: 50px;
-      ${customBreakpoints.lessThan("desktop")`
-    bottom: 100px;
-  `}
+
       text-shadow: 1px 1px 1px #e65608d5;
       text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 8px rgba(var(--secondary-color), 0.9);
       z-index: 2;
+      @media screen and (max-width: ${breakpoints.desktop}px) {
+        bottom: 100px;
+      }
       h2 {
         font-family: "Feed";
         font-size: 3.5rem;
-        ${customBreakpoints.lessThan("tablet")`
-       font-size: 2.5rem;
-  `}
-
+        @media screen and (max-width: ${breakpoints.desktop}px) {
+          font-size: 2.5rem;
+        }
         h3 {
           font-size: 1.5rem;
-          ${customBreakpoints.lessThan("tablet")`
-     font-size: 1rem;
-  `}
+          @media screen and (max-width: ${breakpoints.desktop}px) {
+            font-size: 1rem;
+          }
         }
       }
     }
@@ -108,6 +109,7 @@ const Header = ({ setInputSearchValue }) => {
           loop={true}
           speed={1000}
           effect={"fade"}
+          allowTouchMove={true}
           fadeEffect={{
             crossFade: true,
           }}

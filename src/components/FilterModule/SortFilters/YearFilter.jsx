@@ -6,7 +6,6 @@ import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion";
 import "rc-slider/assets/index.css"; // Importez le fichier CSS de rc-slider
 import Slider from "rc-slider";
-
 // import { shownGenresFilm } from "../styles/globalStyles";
 
 const StyledMoviescategoriesContainerDiv = styled.div`
@@ -190,11 +189,11 @@ const SectionContainer = ({ isOnMobile }) => {
             <div className="years-container">
               <span className="year-start">{debutAnnee}</span> <span className="year-end">{finAnnee}</span>
             </div>
+
             <Slider
               range
               allowCross={false}
               startPoint={1990}
-              defaultValue={1990}
               min={1900}
               max={2024}
               step={10}

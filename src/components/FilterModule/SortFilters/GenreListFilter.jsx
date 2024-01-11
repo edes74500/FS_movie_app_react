@@ -5,6 +5,7 @@ import { TbCategoryPlus } from "react-icons/tb";
 import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 import { IoIosCloseCircle } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
+import breakpoints from "../../../styles/breakpoints";
 
 const StyledGenreListFilter = styled.div`
   /* display: flex; */
@@ -34,8 +35,8 @@ const StyledGenreListFilter = styled.div`
       svg {
         transition: 0.5s ease-in-out;
         transform: ${({ $listIsOpen }) => ($listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
-        @media screen and (max-width: 900px) {
-          font-size: 1%.2;
+        @media screen and (max-width: ${breakpoints.desktop}px) {
+          font-size: 1.3rem;
         }
       }
     }
@@ -46,9 +47,7 @@ const StyledGenreListFilter = styled.div`
       color: black;
       font-size: 1rem;
       font-family: roboto;
-      /* @media screen and (max-width: 900px) {
-        font-size: 0.9rem;
-      } */
+
       svg {
         margin: 4px;
         font-size: 1rem;
@@ -64,7 +63,8 @@ const StyledGenreListFilter = styled.div`
     flex-direction: column;
     justify-content: center;
     transition: all 0.7s ease-in-out;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: ${breakpoints.mobile}px) {
+      /* display: none; */
     }
     .icon_container {
       height: 40px;

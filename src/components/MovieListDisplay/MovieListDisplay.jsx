@@ -6,7 +6,7 @@ import MovieSortButtons from "./MovieSortButtons";
 import ErrorDisplayHeader from "./HeaderMessages/ErrorDisplayHeader";
 import ListTitleHeaderDisplay from "./HeaderMessages/ListTitleDisplayHeader";
 import SearchResultDisplayHeader from "./HeaderMessages/SearchResultDisplayHeader";
-import MovieCard from "./SingleCard/MovieCard";
+import SingleMovieCard from "./SingleCard/SingleMovieCard";
 
 const StyledMoviesDisplay = styled.div`
   gap: 10px;
@@ -18,7 +18,7 @@ const StyledMoviesDisplay = styled.div`
   }
 `;
 
-const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopularMoviesFR, inputSearchValue }) => {
+const MoviesDisplay = ({ moviesGenresAPIList, MovieListInputSearchResult, MovieListPopularMoviesFR, inputSearchValue }) => {
   // const [MovieListInputSearchResult, setMovieListInputSearchResult] = React.useState([]);
   const [MovieListDisplayed, setMovieListDisplayed] = useState([]);
   const [moviesSort, setMoviesSort] = React.useState({ id: "vote", ascendant: false });
@@ -50,7 +50,7 @@ const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopu
 
         {/* //debut du map de la liste de film */}
         <AnimatePresence>
-          <MovieCard
+          <SingleMovieCard
             MovieListDisplayed={MovieListDisplayed.slice().sort((a, b) => {
               // (moviesSort);
               if (moviesSort.id == "vote") {
@@ -60,7 +60,7 @@ const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopu
               }
               return 0;
             })}
-            moviesGenres={moviesGenres}
+            moviesGenresAPIList={moviesGenresAPIList}
             isReverse={moviesSort.ascendant}
           />
         </AnimatePresence>

@@ -76,6 +76,7 @@ export const globalStyles = css`
   }
 `;
 
+// couleurs pour les films, push lors de la request API
 export const couleursGenresFilm = [
   "#4d9154", // Action
   "#479483", // Aventure
@@ -99,10 +100,10 @@ export const couleursGenresFilm = [
 ];
 
 export const shownGenresFilm = [
-  // `Action`,
-  // `Aventure`,
-  // `Animation`,
-  // `Comedie`,
+  `Action`,
+  `Aventure`,
+  `Animation`,
+  `Comedie`,
   // `Crime`,
   // `Documentaire`,
   `Drame`,
@@ -110,11 +111,11 @@ export const shownGenresFilm = [
   `Fantastique`,
   `Histoire`,
   `Horreur`,
-  `Musique`,
-  `Mystère`,
+  // `Musique`,
+  // `Mystère`,
   `Romance`,
   `Science-Fiction`,
-  `Téléfilm`,
+  // `Téléfilm`,
   `Thriller`,
   `Guerre`,
   `Western`,

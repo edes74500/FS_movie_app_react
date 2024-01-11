@@ -1,4 +1,5 @@
 import React from "react";
+import breakpoints from "../../../styles/breakpoints";
 import styled from "styled-components";
 
 const StyledSearchResultDisplayHeader = styled.div`
@@ -8,7 +9,7 @@ const StyledSearchResultDisplayHeader = styled.div`
   h3 {
     margin-bottom: 20px;
     transition: all 2s ease-in-out;
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: ${breakpoints.tablet}px) {
       margin-bottom: 50px;
       text-align: center;
     }

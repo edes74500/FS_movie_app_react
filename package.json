@@ -23,10 +23,9 @@
     "react-router-dom": "^6.21.1",
     "react-select": "^5.8.0",
     "react-swipeable": "^7.0.1",
+    "swiper": "^11.0.5",
     "redux": "^5.0.1",
     "styled-components": "^6.1.8",
-    "styled-media-query": "^2.1.2",
-    "swiper": "^11.0.5",
     "typeface-lato": "^1.1.13",
     "typeface-roboto": "^1.1.13"
   },

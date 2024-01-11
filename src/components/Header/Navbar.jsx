@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 import styled from "styled-components";
-import ButtonToTheTop from "../Shared/ButtonToTheTop";
+import breakpoints from "../../styles/breakpoints";
 
 // Composant stylisé pour la barre de navigation
 const StyledNavbar = styled.nav`
@@ -13,7 +13,7 @@ const StyledNavbar = styled.nav`
   /* position: relative; */
   /* padding: 20px 0; */
   /* width: 100vw; */
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: ${breakpoints.desktop}px) {
     width: 80vw;
   }
   display: flex;

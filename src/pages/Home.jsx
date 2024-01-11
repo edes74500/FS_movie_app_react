@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 import MoviesDisplay from "../components/MovieListDisplay/MovieListDisplay";
 import { useEffect, useState } from "react";
 import { couleursGenresFilm } from "../styles/globalStyles";
-import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
+import breakpoints from "../styles/breakpoints";
 
 const StyledHomePage = styled.div`
   max-width: 1200px;
@@ -20,17 +20,15 @@ const StyledHomePage = styled.div`
   /* background-color: red; */
   transition: 1s ease-in-out;
   transition: 1s ease-in-out;
-
-  ${customBreakpoints.lessThan("desktop")`
-  width: 90%;
+  @media screen and (max-width: ${breakpoints.desktop}px) {
+    width: 90%;
     display: flex;
     flex-direction: column;
-
-  `}
+  }
 `;
 const Home = () => {
   const [MovieListPopularMoviesFR, setMovieListPopularMoviesFR] = useState([]);
-  const [moviesGenres, setMoviesGenres] = useState([]);
+  const [moviesGenresAPIList, setmoviesGenresAPIList] = useState([]);
   const [MovieListInputSearchResult, setMovieListInputSearchResult] = useState([]);
   const [inputSearchValue, setInputSearchValue] = useState("");
 
@@ -85,8 +83,9 @@ const Home = () => {
     axios
       .get("https://api.themoviedb.org/3/genre/movie/list?language=fr", tMDBoptions)
       .then((response) => {
+        //push des couleurs en fonction des genres - contient maintenant ID Name et color EG. 7: {id: 10751, name: 'Familial', color: '#36ea42'}
         const newReponse = response.data.genres.map((genre, index) => ({ ...genre, color: couleursGenresFilm[index] }));
-        setMoviesGenres(newReponse);
+        setmoviesGenresAPIList(newReponse);
         newReponse;
       })
       .catch((err) => console.error(err));
@@ -96,9 +95,9 @@ const Home = () => {
     <>
       <Header setInputSearchValue={setInputSearchValue} />
       <StyledHomePage data-identifier="Home">
-        <FilerModule moviesGenres={moviesGenres} />
+        <FilerModule moviesGenresAPIList={moviesGenresAPIList} />
         <MoviesDisplay
-          moviesGenres={moviesGenres}
+          moviesGenresAPIList={moviesGenresAPIList}
           MovieListInputSearchResult={MovieListInputSearchResult}
           MovieListPopularMoviesFR={MovieListPopularMoviesFR}
           inputSearchValue={inputSearchValue}

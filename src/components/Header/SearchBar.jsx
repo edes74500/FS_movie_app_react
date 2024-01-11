@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoSearch } from "react-icons/io5";
+import breakpoints from "../../styles/breakpoints";
 
 const StyledSearchDiv = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const StyledSearchDiv = styled.div`
     outline: none;
     width: 400px;
     padding-left: 10px;
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: ${breakpoints.tablet}px) {
       width: 250px;
     }
   }

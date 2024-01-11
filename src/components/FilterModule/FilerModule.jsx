@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { shownGenresFilm } from "../../styles/globalStyles";
 import GenreListFilter from "./SortFilters/GenreListFilter";
 import YearFilter from "./SortFilters/YearFilter";
-import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
+import breakpoints from "../../styles/breakpoints";
 import { TbFilterSearch } from "react-icons/tb";
 import { IoCloseSharp } from "react-icons/io5";
 import { useSwipeable } from "react-swipeable";
-// import customBreakpoints from "../../styles/customBreakpoints";
 
 /* Styles communs à toutes les tailles d'écran */
 
@@ -22,7 +21,8 @@ const StyledFilterModule = styled.div`
     height: fit-content;
     justify-content: center;
   }
-  ${customBreakpoints.lessThan("desktop")`
+
+  @media screen and (max-width: ${breakpoints.desktop}px) {
     position: fixed;
     top: 0;
     transform: ${({ $onMobileFilterOpen }) => ($onMobileFilterOpen ? "translateX(0%)" : "translateX(100%)")};
@@ -32,47 +32,22 @@ const StyledFilterModule = styled.div`
     right: 0px;
     width: 300px;
     border-right: var(--secondary-color) 1px solid;
-  box-shadow: ${({ $onMobileFilterOpen }) => ($onMobileFilterOpen ? "0px 0px 20px 0px var(--blue-color)" : "none")};
-    .mobile-scroll-filter-wrapper{
+    box-shadow: ${({ $onMobileFilterOpen }) => ($onMobileFilterOpen ? "0px 0px 20px 0px var(--blue-color)" : "none")};
+    .mobile-scroll-filter-wrapper {
       height: auto;
       min-height: 100vh; /* Hauteur fixe */
       max-height: 70vh; /* Hauteur fixe */
-      overflow-y: auto; 
+      overflow-y: auto;
       margin: 10px;
-        .filter-wrapper {
-          margin-top: 0px;
-          padding : 25px;
-
+      .filter-wrapper {
+        margin-top: 0px;
+        padding: 25px;
+      }
     }
   }
-  `}
 `;
 
-const CSSContainerCollapse = styled.div`
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: 1s;
-  min-height: 0;
-  /* padding: 10px; */
-  &.is-hidden {
-    /* padding: 0px; */
-    grid-template-rows: 0fr;
-    transform: translateY(100%) scale(0);
-  }
-  > :first-child {
-    min-height: 0;
-  }
-`;
-
-const StyledMobileCloseFilterHandle = styled(IoCloseSharp)`
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  font-size: 2rem;
-  border-radius: 50%;
-  background-color: var(--secondary-color); */
+const StyledCloseButton = styled(IoCloseSharp)`
   transition: 1s;
   background-color: var(--blue-color);
   border-radius: 50%;
@@ -87,7 +62,7 @@ const StyledMobileCloseFilterHandle = styled(IoCloseSharp)`
   opacity: 1;
 `;
 
-const StyledMobileFilterHandle = styled(TbFilterSearch)`
+const StyledFilterButton = styled(TbFilterSearch)`
   transition: 1s;
   background-color: var(--blue-color);
   border-radius: 50%;
@@ -124,18 +99,24 @@ const StyledMobileFilterHandle = styled(TbFilterSearch)`
   }
 `;
 
-const FilerModule = ({ moviesGenres }) => {
+const FilerModule = ({ moviesGenresAPIList }) => {
+  const filterModule = useRef();
+
   const [isOnMobile, setIsOnMobile] = React.useState(false);
   const [onMobileFilterOpen, setOnMobileFilterOpen] = React.useState(false);
 
   const handleResize = () => {
     const desktopBreakpoint = breakpoints.desktop;
-    setIsOnMobile(window.innerWidth <= desktopBreakpoint) ? true : false;
+    setIsOnMobile(window.innerWidth <= desktopBreakpoint);
   };
 
-  const MobileFilterHanle = () => {
+  const onMobileTriggerFilterPannel = () => {
     setOnMobileFilterOpen(!onMobileFilterOpen);
     onMobileFilterOpen;
+  };
+
+  const MobileFilterHanleClose = () => {
+    setOnMobileFilterOpen(false);
   };
 
   useEffect(() => {
@@ -146,39 +127,47 @@ const FilerModule = ({ moviesGenres }) => {
   }, []);
 
   useEffect(() => {
-    const onMobile = window.innerWidth <= breakpoints.desktop ? true : false;
+    const onMobile = window.innerWidth <= breakpoints.desktop;
     setIsOnMobile(onMobile);
   }, []);
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => MobileFilterHanle(),
-
-    onSwipedRight: () => MobileFilterHanle(),
-    // Empêcher le défilement vertical pendant le balayage horizontal
+    onSwipedRight: () => onMobileTriggerFilterPannel(),
     preventDefaultTouchmoveEvent: true,
-
-    // Configurer la distance de détection du balayage (en pixels)
-    trackMouse: true, // Si vous voulez aussi suivre les swipes à la souris (pour le développement)
+    swipeDuration: 150,
+    trackMouse: true,
   });
+
+  const handleClickOutside = (e) => {
+    // e.stopPropagation();
+    console.log(e);
+    if (filterModule.current && !filterModule.current.contains(e.target)) {
+      // if (  filterButton.current && !filterButton.current.contains(e.target)) {
+      setOnMobileFilterOpen(false);
+      // }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
-      <StyledFilterModule $isOnMobile={isOnMobile} $onMobileFilterOpen={onMobileFilterOpen} data-identifier="FilterModule">
-        {/* on mobile icone pour ouvrir */}
+      <StyledFilterModule ref={filterModule} $isOnMobile={isOnMobile} $onMobileFilterOpen={onMobileFilterOpen} data-identifier="FilterModule">
         {isOnMobile ? (
           onMobileFilterOpen ? (
-            <StyledMobileCloseFilterHandle onClick={MobileFilterHanle} />
+            <StyledCloseButton onClick={onMobileTriggerFilterPannel} />
           ) : (
-            <StyledMobileFilterHandle onClick={MobileFilterHanle} />
+            <StyledFilterButton onClick={onMobileTriggerFilterPannel} />
           )
         ) : null}
-        {/* </StyledMobileFilterHandle> */}
-        {/* // {onMobileFilterOpen ? <IoCloseSharp /> : <TbFilterSearch />} */}
-        {/* ) : null} */}
         <div {...handlers} className="mobile-scroll-filter-wrapper">
           <div className="filter-wrapper">
-            {/* <CategoriesIcones data={moviesGenres} filters={shownGenresFilm} /> */}
-            <GenreListFilter data={moviesGenres} filters={shownGenresFilm} isOnMobile={isOnMobile} />
+            <GenreListFilter data={moviesGenresAPIList} filters={shownGenresFilm} isOnMobile={isOnMobile} />
             <YearFilter isOnMobile={isOnMobile} />
           </div>
         </div>

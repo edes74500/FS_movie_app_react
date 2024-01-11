@@ -38,7 +38,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       transform: translateY(-50%);
       svg {
         transition: 0.5s ease-in-out;
-        transform: ${({ listIsOpen }) => (listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
+        transform: ${({ $listIsOpen }) => ($listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
       }
     }
     h3 {
@@ -165,7 +165,7 @@ const SectionContainer = ({ isOnMobile }) => {
   };
 
   return (
-    <StyledMoviescategoriesContainerDiv listIsOpen={listIsOpen}>
+    <StyledMoviescategoriesContainerDiv $listIsOpen={listIsOpen}>
       <div className="movie-categories__title_container" onClick={isOnMobile ? () => null : null}>
         <h3>
           {" "}

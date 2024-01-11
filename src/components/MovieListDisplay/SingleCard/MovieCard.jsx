@@ -66,7 +66,9 @@ const StyledImageContainer = styled.div`
   .is-absolute {
     position: absolute;
     z-index: 4;
+    /* color: var(--blue-color); */
     color: var(--secondary-color);
+
     &.icone {
       font-size: 3rem;
       left: -20px;
@@ -163,17 +165,19 @@ const StyledInfoContainer = styled.div`
       position: absolute;
       width: 200px;
       font-size: 0.7;
-      font-weight: bold;
+      font-weight: 400;
       padding: 5px;
       cursor: pointer;
       background: var(--secondary-color);
+      /* background: var(--blue-color); */
+      /* color: white; */
       border: none;
       border-radius: 5px;
       bottom: 7px;
       transition: all 0.3s ease-in-out;
       will-change: transform;
       &:hover {
-        filter: blur(0);
+        /* filter: blur(0); */
         transform: scale(1.04) translateZ(0);
       }
       @media screen and (max-width: 750px) {

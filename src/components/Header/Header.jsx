@@ -5,13 +5,12 @@ import { Autoplay, Navigation, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import React, { useEffect, useRef } from "react";
-import ButtonToTheTop from "../Shared/ButtonToTheTop";
-import customBreakpoints from "../../styles/customBreakpoints";
+import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
 import SearchBar from "./SearchBar";
 
 const StyledHeader = styled.div`
   position: relative;
+  /* max-width: 1200px; */
   /* min-height: 400px; */
   margin-bottom: 50px;
   &::before {
@@ -131,7 +130,6 @@ const Header = ({ setInputSearchValue }) => {
           {/* <SearchInput setInputSearchValue={setInputSearchValue} /> */}
           <SearchBar setInputSearchValue={setInputSearchValue} />
         </div>
-        <ButtonToTheTop />
       </StyledHeader>
     </>
   );

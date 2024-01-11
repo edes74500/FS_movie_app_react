@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledListTitleDisplayHeader = styled.div`
   transition: all 2s ease-in-out;
   margin-bottom: 30px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   padding: 5px 0;
   /* background: linear-gradient(
     90deg,

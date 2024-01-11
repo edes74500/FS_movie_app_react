@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 import MoviesDisplay from "../components/MovieListDisplay/MovieListDisplay";
 import { useEffect, useState } from "react";
 import { couleursGenresFilm } from "../styles/globalStyles";
-import customBreakpoints from "../styles/customBreakpoints";
+import { customBreakpoints, breakpoints } from "/src/styles/customBreakpoints";
 
 const StyledHomePage = styled.div`
   max-width: 1200px;
@@ -58,7 +58,7 @@ const Home = () => {
   // useEffect(() => {
   //   if (inputSearchValue !== null && inputSearchValue !== undefined) {
   //     axios.get(`https://api.themoviedb.org/3/movie/top_rated?language=fr-FR&page=1`, options).then((res) => {
-  //       console.log(res.data.results);
+  //       (res.data.results);
   //       const results = res.data.results;
   //       setMovieListInputSearchResult(results.filter((moviesToDisplay) => moviesToDisplay.popularity > 0));
   //       // setSearchedMovieListPopularMoviesFR(false);
@@ -69,7 +69,7 @@ const Home = () => {
   //FETCH POPULAR MOVIES
   useEffect(() => {
     axios.get("https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=1", tMDBoptions).then((response) => {
-      console.log(response.data.results);
+      response.data.results;
       const moviesListData = response.data.results.map((movie) => {
         return {
           ...movie,
@@ -87,7 +87,7 @@ const Home = () => {
       .then((response) => {
         const newReponse = response.data.genres.map((genre, index) => ({ ...genre, color: couleursGenresFilm[index] }));
         setMoviesGenres(newReponse);
-        console.log(newReponse);
+        newReponse;
       })
       .catch((err) => console.error(err));
   }, []);

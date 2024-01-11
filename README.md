@@ -18,6 +18,7 @@
 - [ ] ajouter les requetes API dans redux
 - [ ] creer un isLoading
 - [ ] Reprendre Styled ! regfaire mediqQuery avec
+- [ ] mettre des cancel pour tout les filtres avec un background bleu quand ils sont actifs
 
 ```
 import customBreakpoints from "../styles/customBreakpoints";

@@ -10,7 +10,8 @@ export const globalStyles = css`
     --main-color: 2, 16, 27;
     --primary-color: rgb(2, 16, 27); // Exem
     --secondary-color: rgb(255, 172, 7); // Exemple de couleur secondaire
-    --font-size: 16px; // Exemple de taille de police globale
+    --blue-color: rgb(30, 144, 255); // Exemple de couleur secondaire
+    --text-color-blue: rgb(143, 169, 191);
   }
 
   * {
@@ -85,7 +86,7 @@ export const couleursGenresFilm = [
   "#33e0ff", // Drame
   "#36ea42", // Familliale
   "#af604f", // Fantastique
-  "#554a27", // Histoire
+  "#462977", // Histoire
   "#b99c29", // Horreur
   "#FFC300", // Musique
   "#FF5733", // Mystère

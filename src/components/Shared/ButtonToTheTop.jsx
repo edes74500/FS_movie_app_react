@@ -4,14 +4,14 @@ import { FaArrowUp } from "react-icons/fa";
 
 const StyledToTheTopDiv = styled.div`
   position: fixed;
-  bottom: 50px;
-  right: 50px;
-  width: 70px;
-  height: 70px;
+  bottom: 10px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
   display: flex;
   opacity: 0;
   /* border: 6px solid white; */
-  background-color: var(--secondary-color);
+  background-color: var(--blue-color);
   z-index: 10;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ const StyledToTheTopDiv = styled.div`
   transition: all 0.3s linear;
   pointer-events: none;
   svg {
-    font-size: 3rem;
+    font-size: 2rem;
     color: white;
     pointer-events: none;
     /* margin: auto; */

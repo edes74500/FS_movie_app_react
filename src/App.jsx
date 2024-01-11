@@ -11,30 +11,25 @@ import "@fontsource-variable/cinzel";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Header/Navbar";
 import "styled-components";
+import ButtonToTheTop from "./components/Shared/ButtonToTheTop";
 
 const GlobalStyle = createGlobalStyle`
 ${globalStyles}
 `;
 
-const StyledPageContainer = styled.div`
-  /* max-width: 1000px; */
-  /* display: flex; */
-  /* margin: 0 auto; */
-  /* background-color: green; */
-`;
 function App() {
   return (
     <Router>
-      <AnimatePresence>
-        <GlobalStyle data-identifier="StyledGlobalStyle" />
-        <Navbar />
-        <StyledPageContainer data-identifier="PageContainer">
-          <Routes>
-            <Route path="/favorite" element={<Favorite />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </StyledPageContainer>
-      </AnimatePresence>
+      {/* <AnimatePresence> */}
+      <Navbar />
+      <GlobalStyle data-identifier="StyledGlobalStyle" />
+
+      <Routes>
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <ButtonToTheTop />
+      {/* </AnimatePresence> */}
     </Router>
   );
 }

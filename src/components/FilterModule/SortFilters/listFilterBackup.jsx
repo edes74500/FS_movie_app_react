@@ -32,7 +32,7 @@ const StyledMoviescategoriesContainerDiv = styled.div`
       transform: translateY(-50%);
       svg {
         transition: 0.5s ease-in-out;
-        transform: ${({ listIsOpen }) => (listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
+        transform: ${({ $listIsOpen }) => ($listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
       }
     }
     h3 {
@@ -158,17 +158,17 @@ const ListFilter = ({ data, filters }) => {
         e.currentTarget.classList.remove("is-selected");
       } else if (genreId) {
         setSelectedGenreID((oldArray) => [...oldArray, genreId]); // si la valeur de l'id de l'élément cliqué est n'est pas dans la liste, ajout de la valeur de l'id
-        console.log(genreId);
+        genreId;
         e.currentTarget.classList.add("is-selected");
       }
-      console.log(selectedGenreID);
+      selectedGenreID;
     } else {
       toogleListFilter();
     }
   };
 
   return (
-    <StyledMoviescategoriesContainerDiv listIsOpen={listIsOpen}>
+    <StyledMoviescategoriesContainerDiv $listIsOpen={listIsOpen}>
       <div className="movie-categories__title_container" onClick={toogleListFilter}>
         <h3>
           {" "}
@@ -184,7 +184,7 @@ const ListFilter = ({ data, filters }) => {
         <div className="movie-categories__icons_container" ref={listContainer}>
           {data.map((category, index) => {
             const displayedGenre = filters.find((genre) => genre.toLowerCase() === category.name.toLowerCase());
-            // console.log(displayedGenre);
+            // (displayedGenre);
             if (!displayedGenre) {
               return null;
             }
@@ -203,7 +203,7 @@ const ListFilter = ({ data, filters }) => {
         <div className="movie-categories__icons_container">
           {data.map((category, index) => {
             const displayedGenre = selectedGenreID.find((id) => id == category.id);
-            // console.log(displayedGenre);
+            // (displayedGenre);
             if (!displayedGenre) {
               return null;
             }

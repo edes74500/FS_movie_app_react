@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 import styled from "styled-components";
+import ButtonToTheTop from "../Shared/ButtonToTheTop";
 
 // Composant stylisé pour la barre de navigation
 const StyledNavbar = styled.nav`
@@ -9,6 +10,7 @@ const StyledNavbar = styled.nav`
   color: white;
   max-width: 1000px;
   margin: auto;
+  /* position: relative; */
   /* padding: 20px 0; */
   /* width: 100vw; */
   @media screen and (max-width: 1000px) {

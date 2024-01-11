@@ -64,7 +64,7 @@ const MovieSortButtons = ({ moviesSort, setMoviesSort }) => {
   };
 
   const handleOnClickSortTopFLop = (e) => {
-    console.log(e.target.id);
+    e.target.id;
     if (e.currentTarget) {
       setMoviesSort((oldArray) => {
         const id = oldArray.id;
@@ -72,7 +72,7 @@ const MovieSortButtons = ({ moviesSort, setMoviesSort }) => {
         return { id: id, ascendant: ascendant };
       });
     } else {
-      console.log("Current target is null");
+      ("Current target is null");
     }
   };
 

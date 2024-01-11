@@ -23,8 +23,6 @@ const StyledGenreListFilter = styled.div`
     display: flex;
     align-items: center;
     background-color: var(--secondary-color);
-    background-color: black;
-    background-color: #c98d1e;
     .dropdown-icon {
       display: flex;
       position: absolute;
@@ -35,7 +33,7 @@ const StyledGenreListFilter = styled.div`
       transform: translateY(-50%);
       svg {
         transition: 0.5s ease-in-out;
-        transform: ${({ listIsOpen }) => (listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
+        transform: ${({ $listIsOpen }) => ($listIsOpen ? "rotate(0)" : "rotate(-180deg)")};
         @media screen and (max-width: 900px) {
           font-size: 1%.2;
         }
@@ -60,41 +58,21 @@ const StyledGenreListFilter = styled.div`
   .movie-categories__icons_container {
     z-index: 1;
     display: flex;
-    /* position: absolute; */
-    /* top: 50px; */
-    /* z-index: 20; */
     border-radius: 0 0 5px 5px;
-    background-color: ${({ isOnMobile }) => (isOnMobile ? "#4d4b4b" : "#00000092")};
-
+    background-color: ${({ $isOnMobile }) => ($isOnMobile ? "#00000092" : "#00000092")};
     width: 100%;
-
     flex-direction: column;
     justify-content: center;
-    /* transform: ${({ listIsOpen, isOnMobile }) => (listIsOpen && isOnMobile ? "translateY(-100%)" : "relative")}; */
-    /* position: ${({ listIsOpen, isOnMobile }) => (listIsOpen && isOnMobile ? "absolute" : "relative")}; */
     transition: all 0.7s ease-in-out;
-    /* &:hover {
-      & div:not(:hover) {
-        opacity: 0.8;
-        h4,
-        img {
-          opacity: 1;
-        }
-      }
-    } */
     @media screen and (max-width: 900px) {
-      z-index: 200;
-      /* flex-wrap: wrap; */
     }
     .icon_container {
-      height: 35px;
+      height: 40px;
       position: relative;
       display: flex;
-      padding: 10px;
+      padding-left: 10px;
       align-items: center;
       cursor: pointer;
-      /* transition: all 0.3s ease-in-out; */
-
       .remove-icon {
         display: none;
       }
@@ -104,8 +82,7 @@ const StyledGenreListFilter = styled.div`
       &.is-selected {
         display: flex;
         position: relative;
-        background-color: ${({ isOnMobile }) => (isOnMobile ? "#c4a66b " : "#a26f0a71")};
-
+        background-color: ${({ $isOnMobile }) => ($isOnMobile ? "var(--blue-color)" : "rgb(30, 144, 255)")};
         .remove-icon {
           height: 100%;
           width: 20px;
@@ -113,13 +90,19 @@ const StyledGenreListFilter = styled.div`
           align-items: center;
           justify-content: center;
           position: absolute;
-
           right: 10px;
         }
       }
       &:hover {
         opacity: 1;
-        /* background-color: #a26f0a2a; */
+        &::before {
+          content: "";
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          background-color: #2566cf65;
+          left: 0;
+        }
 
         filter: blur(0) luminosity(300);
         img {
@@ -129,18 +112,15 @@ const StyledGenreListFilter = styled.div`
           transform: scale(1.05) translateZ(0);
         }
       }
-
       h4 {
-        /* transition: all 0.3s ease-in-out; */
         color: white;
-        font-size: 0.8rem;
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: 400;
         /* &:hover {
           opacity: 1;
         } */
       }
       img {
-        /* transition: all 0.3s ease-in-out; */
         padding-right: 15px;
         height: 20px;
         cursor: pointer;
@@ -159,7 +139,7 @@ const GenreListFilter = ({ data, filters, isOnMobile }) => {
 
   const handleRemoveFilter = (e) => {
     e.stopPropagation();
-    console.log(e.currentTarget.parentElement.id);
+    e.currentTarget.parentElement.id;
     const genreIDclicked = e.currentTarget.parentElement.id; // Stock la valeur de l'id en string
     setSelectedGenreID(selectedGenreID.filter((oldArray) => oldArray !== genreIDclicked));
   };
@@ -174,10 +154,10 @@ const GenreListFilter = ({ data, filters, isOnMobile }) => {
         // e.currentTarget.classList.remove("is-selected");
       } else if (genreId) {
         setSelectedGenreID((oldArray) => [...oldArray, genreId]); // si la valeur de l'id de l'élément cliqué est n'est pas dans la liste, ajout de la valeur de l'id
-        console.log(genreId);
+        genreId;
         // e.currentTarget.classList.add("is-selected");
       }
-      console.log(selectedGenreID);
+      selectedGenreID;
     } else {
       toogleListFilter();
     }
@@ -242,7 +222,7 @@ const GenreListFilter = ({ data, filters, isOnMobile }) => {
   };
 
   return (
-    <StyledGenreListFilter data-indentifier="GenreListFilter" listIsOpen={listIsOpen} isOnMobile={isOnMobile}>
+    <StyledGenreListFilter data-indentifier="GenreListFilter" $listIsOpen={listIsOpen} $isOnMobile={isOnMobile}>
       <div className="movie-categories__title_container" onClick={isOnMobile ? null : null}>
         <h3>
           {" "}
@@ -267,7 +247,7 @@ const GenreListFilter = ({ data, filters, isOnMobile }) => {
             {data.map((category, index) => {
               const displayedGenre = filters.find((genre) => genre.toLowerCase() === category.name.toLowerCase());
               const isSelected = selectedGenreID.includes(category.id.toString());
-              console.log(typeof category.id, typeof selectedGenreID[index]);
+              typeof category.id, typeof selectedGenreID[index];
 
               if (!displayedGenre) {
                 return null;

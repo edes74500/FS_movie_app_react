@@ -52,7 +52,7 @@ const MoviesDisplay = ({ moviesGenres, MovieListInputSearchResult, MovieListPopu
         <AnimatePresence>
           <MovieCard
             MovieListDisplayed={MovieListDisplayed.slice().sort((a, b) => {
-              // console.log(moviesSort);
+              // (moviesSort);
               if (moviesSort.id == "vote") {
                 return moviesSort.ascendant ? a.vote_average - b.vote_average : b.vote_average - a.vote_average;
               } else if (moviesSort.id == "popularity") {

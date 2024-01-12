@@ -15,12 +15,14 @@ const StyledListTitleDisplayHeader = styled.div`
     rgba(255, 255, 255, 0) 100%
   ); */
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--secondary-color-08) 100%);
-  @media screen and (max-width: ${breakpoints.mobile}px) {
-    /* margin-bottom: 60px; */
-  }
 
   h3 {
     font-size: 1.5rem;
+    @media screen and (max-width: ${breakpoints.tablet}px) {
+      font-size: 1rem;
+      padding: 10px 0;
+      /* margin-bottom: 100px; */
+    }
   }
 `;
 const ListTitleDisplayHeader = ({ MovieListDisplayed }) => {

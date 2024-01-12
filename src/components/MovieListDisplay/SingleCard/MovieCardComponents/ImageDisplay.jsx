@@ -4,13 +4,16 @@ import breakpoints from "../../../../styles/breakpoints";
 import { HiOutlineBookmark } from "react-icons/hi";
 
 const StyledImageDisplay = styled.div`
-  min-height: inherit;
-  aspect-ratio: inherit;
+  /* min-height: inherit; */
+  height: 100%;
+  aspect-ratio: 2/2.7;
+  max-width: 100%;
   position: relative;
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  /* overflow: hidden; */
   @media screen and (max-width: ${breakpoints.mobile}px) {
     min-height: inherit;
   }

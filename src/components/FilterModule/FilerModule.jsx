@@ -14,10 +14,10 @@ const StyledFilterModule = styled.div`
   position: relative;
   transition: 1s ease-in-out;
   .filter-wrapper {
+    gap: 50px;
     display: flex;
     flex-direction: column;
     margin-top: 50px;
-    gap: 10px;
     height: fit-content;
     justify-content: center;
   }
@@ -140,7 +140,7 @@ const FilerModule = ({ moviesGenresAPIList }) => {
 
   const handleClickOutside = (e) => {
     // e.stopPropagation();
-    console.log(e);
+    // console.log(e);
     if (filterModule.current && !filterModule.current.contains(e.target)) {
       // if (  filterButton.current && !filterButton.current.contains(e.target)) {
       setOnMobileFilterOpen(false);
@@ -167,8 +167,8 @@ const FilerModule = ({ moviesGenresAPIList }) => {
         ) : null}
         <div {...handlers} className="mobile-scroll-filter-wrapper">
           <div className="filter-wrapper">
-            <GenreListFilter data={moviesGenresAPIList} filters={shownGenresFilm} isOnMobile={isOnMobile} />
-            <YearFilter isOnMobile={isOnMobile} />
+            <GenreListFilter data={moviesGenresAPIList} filters={shownGenresFilm} />
+            <YearFilter />
           </div>
         </div>
       </StyledFilterModule>

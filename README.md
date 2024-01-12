@@ -1,6 +1,5 @@
 # TO DO
 
-- [ ] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
 - [ ] favori : ajouter un span avec le nombre de favoris
 
 ### card display
@@ -13,8 +12,6 @@
 ### filter module
 
 - [ ] ajouter d'autres liste de filter (annee, note) et un bouton de recherche, avec la fermeture des listes quand une nouvelle est ouverte ou la recherche lancee.
-- [ ] mettre des cancel pour tout les filtres avec un background bleu quand ils sont actifs
-- [ ] ajouter un before et after pour les listes de filtres
 
 ### api request
 
@@ -25,6 +22,10 @@
 - [ ] ajouter infinit scroll ?
 - [ ] creer plein de liste pour les bonus
 - [ ] creer des sliders pour les listes bonus "decouvrer une de nos listes" ?
+
+### store
+
+- redux ou zustand
 
 ```
 
@@ -65,3 +66,6 @@
 
 - [x] MediqQuery normaliser depuis breakpoints.js
 - [x] reprendre les composants movie card pour reseparer certains comme le movie genre.
+- [x] reprendre les composants filter, creer un title generique, et un font generique avec props enfant
+- [x] mettre des cancel pour tout les filtres avec un background bleu quand ils sont actifs
+- [x] ajouter un before et after pour les listes de filtres

@@ -16,11 +16,14 @@ const StyledSingleMovieCard = styled.div`
   transition: all 2s ease-in-out;
   flex-direction: column;
   gap: 15px;
+  height: 500px;
   .card-wrapper {
     position: relative; // set position to relative for divider
     display: flex;
     background-color: rgb(var(--main-color));
     .image-container {
+      /* height: 220px; */
+      /* overflow: hidden; */
       min-height: 220px;
       aspect-ratio: 2/2.7;
       @media screen and (max-width: ${breakpoints.mobile}px) {

@@ -45,11 +45,22 @@ const StyledHeader = styled.div`
       @media screen and (max-width: ${breakpoints.desktop}px) {
         bottom: 100px;
       }
+      @media screen and (max-width: ${breakpoints.tablet}px) {
+        /* transform: translate(-50%, -200%);
+        display: none;
+        left: 50%;
+        text-align: center;
+        bottom: 10%; */
+      }
       h2 {
         font-family: "Feed";
+        text-shadow: 1px 1px 1px #e65608d5;
+        text-shadow: 11px 11px 8px #000, 11px 11px 8px #000, 11px 11px 8px #000, 11px 11px 8px #000, 11px 11px 8px rgba(var(--secondary-color), 0.9);
+        z-index: 2;
         font-size: 3.5rem;
         @media screen and (max-width: ${breakpoints.desktop}px) {
           font-size: 2.5rem;
+          color: white;
         }
         h3 {
           font-size: 1.5rem;
@@ -66,9 +77,13 @@ const StyledSwiperSlideDiv = styled.div`
   min-height: 400px;
   background-position: center center;
   background-size: cover;
+  /* background-position: center 60%; */
   /* z-index: 15; */
   animation: scale 30s linear alternate-reverse infinite;
   cursor: grab;
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+    /* min-height: 200px; */
+  }
   &::after {
     content: "";
     width: 100%;

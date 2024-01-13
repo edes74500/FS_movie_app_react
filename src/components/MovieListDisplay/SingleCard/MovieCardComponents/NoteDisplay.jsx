@@ -31,7 +31,7 @@ const EmptyStar = styled(TiStarFullOutline)`
 const NoteDisplay = ({ movie }) => {
   return (
     <StyledNoteDisplay>
-      <ReactRating initialRating={movie.vote_average} emptySymbol={<EmptyStar />} fullSymbol={<FullStar />} readonly stop={5} />{" "}
+      <ReactRating initialRating={movie.vote_average / 2} emptySymbol={<EmptyStar />} fullSymbol={<FullStar />} readonly stop={5} />{" "}
       {parseFloat((movie.vote_average / 2).toFixed(1))} <br />
       <span className="nbr-votes">({movie.vote_count.toLocaleString("fr-FR")} votes)</span>
     </StyledNoteDisplay>

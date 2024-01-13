@@ -110,10 +110,11 @@ const GenreListFilter = ({ data, filters }) => {
       } else {
         return genre;
       }
+      if (genreListIsOpened) {
+        setdataGenres((dataGenres) => dataGenres.sort((b, a) => a.selected - b.selected));
+      }
     });
-    if (!genreListIsOpened) {
-      updatedDataGenres.sort((b, a) => a.selected - b.selected);
-    }
+
     console.log(updatedDataGenres);
     setdataGenres(updatedDataGenres);
   };

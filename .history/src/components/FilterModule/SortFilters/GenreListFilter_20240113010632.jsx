@@ -111,7 +111,7 @@ const GenreListFilter = ({ data, filters }) => {
         return genre;
       }
     });
-    if (!genreListIsOpened) {
+    if (genreListIsOpened) {
       updatedDataGenres.sort((b, a) => a.selected - b.selected);
     }
     console.log(updatedDataGenres);

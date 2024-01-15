@@ -7,6 +7,7 @@ import ErrorDisplayHeader from "./HeaderMessages/ErrorDisplayHeader";
 import ListTitleHeaderDisplay from "./HeaderMessages/ListTitleDisplayHeader";
 import SearchResultDisplayHeader from "./HeaderMessages/SearchResultDisplayHeader";
 import SingleMovieCard from "./SingleCard/SingleMovieCard";
+import { useSelector } from "react-redux";
 
 const StyledMoviesDisplay = styled.div`
   gap: 10px;
@@ -19,8 +20,11 @@ const StyledMoviesDisplay = styled.div`
   }
 `;
 
-const MoviesDisplay = ({ moviesGenresAPIList, MovieListInputSearchResult, MovieListPopularMoviesFR, inputSearchValue }) => {
-  // const [MovieListInputSearchResult, setMovieListInputSearchResult] = React.useState([]);
+// const MoviesDisplay = ({ moviesGenresAPIList, MovieListInputSearchResult, MovieListPopularMoviesFR, inputSearchValue }) => {
+
+const MoviesDisplay = ({ moviesGenresAPIList, MovieListPopularMoviesFR }) => {
+  const MovieListInputSearchResult = useSelector((state) => state.searchInput.searchFetchResult);
+  const inputSearchValue = useSelector((state) => state.searchInput.searchValue);
   const [MovieListDisplayed, setMovieListDisplayed] = useState([]);
   const [moviesSort, setMoviesSort] = React.useState({ id: "vote", ascendant: false });
 
@@ -31,7 +35,9 @@ const MoviesDisplay = ({ moviesGenresAPIList, MovieListInputSearchResult, MovieL
 
   // Set the ARRAY to be displayed
   useEffect(() => {
-    MovieListInputSearchResult.length > 0 ? setMovieListDisplayed(MovieListInputSearchResult) : setMovieListDisplayed(MovieListPopularMoviesFR);
+    MovieListInputSearchResult.length > 0
+      ? setMovieListDisplayed(MovieListInputSearchResult)
+      : setMovieListDisplayed(MovieListPopularMoviesFR);
   }, [MovieListInputSearchResult, MovieListPopularMoviesFR]);
 
   return (
@@ -44,7 +50,9 @@ const MoviesDisplay = ({ moviesGenresAPIList, MovieListInputSearchResult, MovieL
           {MovieListInputSearchResult.length < 1 && inputSearchValue.length !== 0 && <ErrorDisplayHeader />}
         </AnimatePresence>
         {/* //Affichage du titre de la liste si elle existe sur les listes prefetch*/}
-        {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? <ListTitleHeaderDisplay MovieListDisplayed={MovieListDisplayed} /> : null}
+        {MovieListDisplayed.length > 0 && MovieListDisplayed[0].listName ? (
+          <ListTitleHeaderDisplay MovieListDisplayed={MovieListDisplayed} />
+        ) : null}
 
         {/* //Affichage des boutons de sort */}
         <MovieSortButtons inputSearchValue={inputSearchValue} moviesSort={moviesSort} setMoviesSort={setMoviesSort} />

@@ -62,6 +62,7 @@ const StyledSingleMovieCard = styled.div`
       }
 
       @media screen and (max-width: ${breakpoints.tablet}px) {
+        grid-template-rows: auto 1fr;
       }
       /* gap: 20px; */
 

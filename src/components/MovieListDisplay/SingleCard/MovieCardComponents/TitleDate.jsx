@@ -10,7 +10,11 @@ const StyledTitleDate = styled.div`
     font-style: italic;
     text-transform: capitalize;
     color: lightgray;
-    @media screen and (max-width: ${breakpoints.tablet}px) {
+    @media screen and (max-width: ${breakpoints.tablette}px) {
+      font-size: 0.7rem;
+      /* margin-top: 3px; */
+    }
+    @media screen and (max-width: ${breakpoints.mobile}px) {
       font-size: 0.7rem;
       margin-top: 3px;
     }
@@ -19,9 +23,11 @@ const StyledTitleDate = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
-    @media screen and (max-width: ${breakpoints.tablet}px) {
+
+    @media screen and (max-width: ${breakpoints.mobile}px) {
       font-size: 1rem;
     }
+
     /* margin: 10px 0; */
   }
 `;

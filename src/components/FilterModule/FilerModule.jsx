@@ -36,7 +36,8 @@ const StyledFilterModule = styled.div`
     right: 0px;
     width: 300px;
     border-right: var(--secondary-color) 1px solid;
-    box-shadow: ${({ $onMobileFilterOpen }) => ($onMobileFilterOpen ? "0px 0px 20px 0px var(--filter-selected-color)" : "none")};
+    box-shadow: ${({ $onMobileFilterOpen }) =>
+      $onMobileFilterOpen ? "0px 0px 20px 0px var(--filter-selected-color)" : "none"};
     .mobile-scroll-filter-wrapper {
       height: auto;
       min-height: 100vh; /* Hauteur fixe */
@@ -105,7 +106,6 @@ const StyledFilterButton = styled(TbFilterSearch)`
 
 const FilerModule = ({ moviesGenresAPIList }) => {
   const filterModule = useRef();
-
   const [isOnMobile, setIsOnMobile] = React.useState(false);
   const [onMobileFilterOpen, setOnMobileFilterOpen] = React.useState(false);
 
@@ -119,9 +119,9 @@ const FilerModule = ({ moviesGenresAPIList }) => {
     onMobileFilterOpen;
   };
 
-  const MobileFilterHanleClose = () => {
-    setOnMobileFilterOpen(false);
-  };
+  // const MobileFilterHanleClose = () => {
+  //   setOnMobileFilterOpen(false);
+  // };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -161,7 +161,12 @@ const FilerModule = ({ moviesGenresAPIList }) => {
 
   return (
     <>
-      <StyledFilterModule ref={filterModule} $isOnMobile={isOnMobile} $onMobileFilterOpen={onMobileFilterOpen} data-identifier="FilterModule">
+      <StyledFilterModule
+        ref={filterModule}
+        $isOnMobile={isOnMobile}
+        $onMobileFilterOpen={onMobileFilterOpen}
+        data-identifier="FilterModule"
+      >
         {isOnMobile ? (
           onMobileFilterOpen ? (
             <StyledCloseButton onClick={onMobileTriggerFilterPannel} />

@@ -5,69 +5,64 @@ import breakpoints from "../../styles/breakpoints";
 // import MovieSortBouttons from "./MovieSortBouttons";
 
 const StyledButtonSortContainer = styled.div`
-  //Singlebar With no height
+  justify-content: right;
+  width: 100%;
   display: flex;
-  position: relative;
-  z-index: 3;
-  @media screen and (max-width: ${breakpoints.largeScreen}px) {
+  align-items: center;
+  margin: 5px 0; /* color: rgb(var(--secondary-color)); */ /* bottom: 10px; */ /* right: 0; */ //Singlebar With no height
+  /* display: flex; */ /* position: relative; */ /* z-index: 3; */
+  /* @media screen and (max-width: ${breakpoints.largeScreen}px) {
     height: 5px;
+  } */ /* .button-container { */ /* position: absolute; */
+  /* @media screen and (max-width: ${breakpoints.largeScreen}px) {
+    transform: translateY(-100%);
+    top: 0;
+    bottom: unset;
+    /* position: relative; */ /* } */
+  span {
+    white-space: pre;
+    font-size: 0.7rem;
   }
-  .button-container {
-    bottom: 10px;
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-    color: rgb(var(--secondary-color));
-    @media screen and (max-width: ${breakpoints.largeScreen}px) {
-      transform: translateY(-100%);
-      top: 0;
-      bottom: unset;
-      /* position: relative; */
-    }
-    span {
-      white-space: pre;
-      font-size: 0.7rem;
-    }
 
-    .filter-buttons {
-      text-transform: capitalize;
-      background: none;
-      border: 2px transparent solid;
-      color: #ffffff9c;
-      font-family: Lato;
-      padding: 5px;
-      margin: 5px;
-      cursor: pointer;
-      &.is-selected {
-        border: 2px var(--secondary-color) solid;
-        color: white;
-        border-radius: 5px;
-      }
-    }
-    .top-flop-buttons {
-      display: block;
-      cursor: pointer;
-      /* z-index: 2; */
-      font-size: 1.4rem;
-      padding: 5px;
-      color: #ffffff9c;
-      &.is-selected {
-        color: var(--secondary-color);
-      }
-      svg {
-        pointer-events: none;
-      }
+  .filter-buttons {
+    text-transform: capitalize;
+    background: none;
+    border: 2px transparent solid;
+    color: #ffffff9c;
+    /* font-family: Lato; */
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    &.is-selected {
+      border: 2px var(--secondary-color) solid;
+      color: white;
+      border-radius: 5px;
     }
   }
+  .top-flop-buttons {
+    display: block;
+    font-size: 1.4rem;
+    padding: 5px;
+    cursor: pointer;
+    color: #ffffff9c;
+    /* z-index: 2; */
+    &.is-selected {
+      color: var(--secondary-color);
+    }
+    svg {
+      pointer-events: none;
+    }
+  }
+  /* } */
 `;
 const MovieSortButtons = ({ moviesSort, setMoviesSort }) => {
   //   const [moviesSort, setMoviesSort] = React.useState({ id: "vote", ascendant: false });
 
   const handleOnClickButton = (e) => {
+    console.log(e.target.id);
     setMoviesSort((oldArray) => {
       const id = e.target.id;
-      const ascendant = oldArray.id == id ? oldArray.ascendant : false;
+      const ascendant = oldArray.id == id ? !oldArray.ascendant : false;
       return { id: id, ascendant: ascendant };
     });
   };
@@ -87,38 +82,38 @@ const MovieSortButtons = ({ moviesSort, setMoviesSort }) => {
 
   return (
     <StyledButtonSortContainer data-identifier="MovieSortButtons">
-      <div className="button-container">
-        <span>Trier par : </span>
-        <input
-          type="button"
-          value="Note"
-          id="vote"
-          className={`filter-buttons ${moviesSort.id === "vote" ? "is-selected" : ""}`}
-          onClick={handleOnClickButton}
-        />
-        <input
-          type="button"
-          value="popularite"
-          id="popularity"
-          className={`filter-buttons ${moviesSort.id === "popularity" ? "is-selected" : ""}`}
-          onClick={handleOnClickButton}
-        />
-        <span
-          id="ascendant-top"
-          className={`top-flop-buttons ${moviesSort.ascendant ? "" : "is-selected"}`}
-          onClick={handleOnClickSortTopFLop}
-        >
-          <FaThumbsUp />
-          {/* test */}
-        </span>
-        <span
-          id="ascendant-flop"
-          className={`top-flop-buttons ${moviesSort.ascendant ? "is-selected" : ""}`}
-          onClick={handleOnClickSortTopFLop}
-        >
-          <FaThumbsDown />
-        </span>
-      </div>
+      {/* <div className="button-container"> */}
+      <span>Trier par : </span>
+      <input
+        type="button"
+        value="Note"
+        id="vote"
+        className={`filter-buttons ${moviesSort.id === "vote" ? "is-selected" : ""}`}
+        onClick={handleOnClickButton}
+      />
+      <input
+        type="button"
+        value="popularite"
+        id="popularity"
+        className={`filter-buttons ${moviesSort.id === "popularity" ? "is-selected" : ""}`}
+        onClick={handleOnClickButton}
+      />
+      <span
+        id="ascendant-top"
+        className={`top-flop-buttons ${moviesSort.ascendant ? "" : "is-selected"}`}
+        onClick={handleOnClickSortTopFLop}
+      >
+        <FaThumbsUp />
+        {/* test */}
+      </span>
+      <span
+        id="ascendant-flop"
+        className={`top-flop-buttons ${moviesSort.ascendant ? "is-selected" : ""}`}
+        onClick={handleOnClickSortTopFLop}
+      >
+        <FaThumbsDown />
+      </span>
+      {/* </div> */}
     </StyledButtonSortContainer>
   );
 };

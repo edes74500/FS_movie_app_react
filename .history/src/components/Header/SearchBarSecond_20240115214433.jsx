@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { IoSearch } from "react-icons/io5";
 import breakpoints from "../../styles/breakpoints";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSearchResults } from "../../actions/searchValue.action";
+// import { fetchSearchResults } from "../../actions/fetchSearchResults.action";
 import { searchValue } from "../../actions/searchValue.action";
 
 const StyledSearchDiv = styled.div`

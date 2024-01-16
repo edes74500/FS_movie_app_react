@@ -1,11 +1,8 @@
 # TO DO
 
-- [ ] favori : ajouter un span avec le nombre de favoris
-
 ### card display
 
 - [ ] creer des cartes individually avec liste similaires
-- [ ] logique coup de coeur
 - [ ] ajouter lien image et bouton decouvrir
 - [ ] ajouter un click sur les genres pour relancer une recherche avec ce genre
 
@@ -17,25 +14,17 @@
 
 - [ ] creer une nouvelle page pour les films avec navigation dynamique. les donnes sont dans le store. les defillement y doit etre stocker aussi.
 - [ ] tri par category
-
-- [ ] creer un isLoading
 - [ ] ajouter infinit scroll ?
 - [ ] creer plein de liste pour les bonus
 - [ ] creer des sliders pour les listes bonus "decouvrer une de nos listes" ?
 
 ### store
 
-- redux ou zustand
-
-```
-
-```
-
 # Done
 
 **06/01/2023**
 
-- [x]mettre le top et flop en numero avec une props reverse
+- [x] mettre le top et flop en numero avec une props reverse
 
 **07/01/2023**
 
@@ -82,7 +71,7 @@
 
 **16/01/2023**
 
-- creation des variables pour les favoris dans le store
+- [x] creation des variables pour les favoris dans le store
 - [x] refonte des actions sur redux, creation d'un objet avec tout les filters
 - [x] deplacer les requetes API dans redux
 
@@ -91,3 +80,6 @@
 - [ ] faire la logique des favoris en localstorage
 - [ ] faire la logique du display pour afficher la derniere recherche sur le store
 - [ ] faire une variable en plus lors de l'ajout de favoris avec un use effect dans l'icone de la barre de recherche. soit mettre un set timeout dans la fonction pour la faire passer de true a false, soit mettre le timeout dans le use effect.
+- [ ] favori : ajouter un span avec le nombre de favoris
+- [ ] logique coup de coeur
+- [ ] creer un isLoading

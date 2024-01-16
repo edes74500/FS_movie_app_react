@@ -4,14 +4,9 @@ import { IoIosCloseCircle } from "react-icons/io";
 import SortContainer from "./SortContainer";
 import { variables } from "../../../styles/globalStyles";
 import { useSelector, useDispatch } from "react-redux";
-// import { resetGenreList, sortGenreList, updateGenreList } from "../../../actions/genreList.action";
+import { resetGenreList, sortGenreList, updateGenreList } from "../../../actions/genreList.action";
 // import { useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  resetFilterListGenres,
-  sortFilterListGenres,
-  updateFilterListGenres,
-} from "../../../actions/filterList.action";
 
 const StyledGenreListFilter = styled.div`
   height: ${variables.filterItemHeight}px;
@@ -81,13 +76,11 @@ const StyledContentWrapper = styled.div`
   height: calc(5 * ${variables.filterItemHeight}px);
 
   height: ${({ $dataGenres, $genreListIsOpened }) =>
-    $dataGenres
-      ? $dataGenres.filter((genre) => genre.selected == true).length >= 5 && !$genreListIsOpened
-        ? $dataGenres.filter((genre) => genre.selected == true).length * variables.filterItemHeight
-        : $genreListIsOpened
-        ? $dataGenres.filter((genre) => genre.displayed == true).length * variables.filterItemHeight
-        : 5 * variables.filterItemHeight
-      : 50}px;
+    $dataGenres.filter((genre) => genre.selected == true).length >= 5 && !$genreListIsOpened
+      ? $dataGenres.filter((genre) => genre.selected == true).length * variables.filterItemHeight
+      : $genreListIsOpened
+      ? $dataGenres.filter((genre) => genre.displayed == true).length * variables.filterItemHeight
+      : 5 * variables.filterItemHeight}px;
   transition: 1s;
   overflow: hidden;
 
@@ -103,7 +96,7 @@ const GenreListFilter = () => {
 
   //REDUX
   const dispatch = useDispatch();
-  const dataGenres = useSelector((state) => state.filtersList.genres);
+  const dataGenres = useSelector((state) => state.genreList);
 
   //VARIABLES POUR ANNONCER SI DES FILTRES SONT SELECTIONNES
   useEffect(() => {
@@ -112,18 +105,17 @@ const GenreListFilter = () => {
 
   // CHECK SI LE FILTRE EST  SELECTED
   const handleToogleFiler = (e) => {
-    dispatch(updateFilterListGenres(e));
+    dispatch(updateGenreList(e));
 
     //SORT SI DES FILTRES SONT SELECTIONNES ET QUE LA LISTE EST FERMEE AVEC MOINS DE 5 FILTRES
     if (!genreListIsOpened && dataGenres.filter((genre) => genre.selected).length >= 5) {
-      dispatch(sortFilterListGenres());
+      dispatch(sortGenreList());
     }
   };
 
   //SUPPRIME TOUT LES FILTRES SELECTIONNES
   const onClickReset = () => {
-    dispatch(resetFilterListGenres());
-    toogleExpand("close");
+    dispatch(resetGenreList());
   };
 
   // OUVRE OU FERME LE VOLETS DE LA LISTE
@@ -132,7 +124,7 @@ const GenreListFilter = () => {
       expandbleRef.current.classList.toggle("is-open");
       setGenreListIsOpened(!genreListIsOpened);
       if (genreListIsOpened) {
-        dispatch(sortFilterListGenres());
+        dispatch(sortGenreList());
       }
       console.log(genreListIsOpened);
     } else if (close === "close") {
@@ -144,7 +136,7 @@ const GenreListFilter = () => {
     <>
       <SortContainer
         filterName="Genre"
-        userHasSelectedFilter={userHasSelectedGenres}
+        userHasSelectedGenres={userHasSelectedGenres}
         onClickReset={onClickReset}
         toogleExpand={toogleExpand}
         moreOptions={true}
@@ -155,26 +147,25 @@ const GenreListFilter = () => {
           $dataGenres={dataGenres}
           $genreListIsOpened={genreListIsOpened}
         >
-          {dataGenres &&
-            dataGenres.map((category, index) => {
-              if (category.displayed) {
-                return (
-                  <StyledGenreListFilter
-                    key={category.id}
-                    id={category.id}
-                    data-indentifier="GenreListFilter"
-                    onClick={handleToogleFiler}
-                    className={category.selected ? "is-selected" : null}
-                  >
-                    <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" />{" "}
-                    <h4>{category.name}</h4>
-                    <span className="remove-icon">
-                      <IoIosCloseCircle />
-                    </span>
-                  </StyledGenreListFilter>
-                );
-              }
-            })}
+          {dataGenres.map((category, index) => {
+            if (category.displayed) {
+              return (
+                <StyledGenreListFilter
+                  key={category.id}
+                  id={category.id}
+                  data-indentifier="GenreListFilter"
+                  onClick={handleToogleFiler}
+                  className={category.selected ? "is-selected" : null}
+                >
+                  <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" />{" "}
+                  <h4>{category.name}</h4>
+                  <span className="remove-icon">
+                    <IoIosCloseCircle />
+                  </span>
+                </StyledGenreListFilter>
+              );
+            }
+          })}
         </StyledContentWrapper>
       </SortContainer>
     </>

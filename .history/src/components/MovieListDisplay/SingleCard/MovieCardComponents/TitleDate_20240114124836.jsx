@@ -15,12 +15,11 @@ const StyledTitleDate = styled.div`
       /* margin-top: 3px; */
     }
     @media screen and (max-width: ${breakpoints.mobile}px) {
-      margin-top: 3px;
       font-size: 0.7rem;
+      margin-top: 3px;
     }
   }
   h2 {
-    /* margin-top: 5px; */
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;

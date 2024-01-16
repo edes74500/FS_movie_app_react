@@ -51,7 +51,7 @@ const StyledSingleMovieCard = styled.div`
       grid-template-columns: 75% 25%;
       padding: 0px 20px;
       position: relative;
-      margin: 10px 10px 10px 0;
+      margin: 10px 0;
       @media screen and (max-width: ${breakpoints.mobile}px) {
         gap: 5px;
         justify-content: start;

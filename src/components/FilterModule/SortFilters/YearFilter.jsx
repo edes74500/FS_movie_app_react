@@ -6,6 +6,8 @@ import SortContainer from "./SortContainer";
 import { IoIosCloseCircle } from "react-icons/io";
 import { MdOutlineArrowDropDownCircle } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { resetFilterListYears, updateFilterListYears } from "../../../actions/filterList.action";
 // import { shownGenresFilm } from "../styles/globalStyles";
 
 const StyledYearFiler = styled.div`
@@ -99,9 +101,17 @@ const YearFiler = () => {
   const [annees, setAnnees] = useState([1900, 2024]);
   const [userHasSelectedYears, setUserHasSelectedYears] = useState(false);
 
+  //REDUX
+  const dispatch = useDispatch();
+  const dataYears = useSelector((state) => state.filtersList.years);
+
   const handleChange = (values) => {
     setUserHasSelectedYears(true);
-    setAnnees(values);
+
+    const start = values[0];
+    const end = values[1];
+    console.log(values);
+    dispatch(updateFilterListYears(start, end));
   };
 
   const handleClick = () => {
@@ -111,16 +121,22 @@ const YearFiler = () => {
     // setUserHasSelectedYears(true);
   };
 
-  const handleRemoveFilter = () => {
+  const onClickReset = () => {
     setUserHasSelectedYears(false);
-    setAnnees([1900, 2024]);
+    dispatch(resetFilterListYears());
   };
 
   return (
-    <SortContainer filterName="Annee" icon={userHasSelectedYears ? MdOutlineCancel : ""} onClick={handleRemoveFilter}>
+    <SortContainer
+      filterName="Annee"
+      icon={userHasSelectedYears ? MdOutlineCancel : ""}
+      onClick={onClickReset}
+      onClickReset={onClickReset}
+      userHasSelectedFilter={userHasSelectedYears}
+    >
       <StyledYearFiler>
         <div className="years-container">
-          <span className="year-start">{annees[0]}</span> <span className="year-end">{annees[1]}</span>
+          <span className="year-start">{dataYears.start}</span> <span className="year-end">{dataYears.end}</span>
           <div className={`slider-wrapper ${userHasSelectedYears ? "is-selected" : ""}`} onMouseDown={handleClick}>
             <Slider
               range
@@ -129,8 +145,8 @@ const YearFiler = () => {
               min={1900}
               max={2024}
               // step={10}
-              value={annees}
-              defaultValue={annees}
+              value={[dataYears.start, dataYears.end]}
+              defaultValue={[dataYears.start, dataYears.end]}
               onChange={handleChange}
             />
           </div>

@@ -135,7 +135,7 @@ const StyledGenreListFilter = styled.div`
 const SortContainer = ({
   filterName,
   children,
-  userHasSelectedGenres,
+  userHasSelectedFilter,
   onClickReset,
   toogleExpand,
   moreOptions,
@@ -157,8 +157,7 @@ const SortContainer = ({
         className="filter-title-container"
         onClick={() => {
           toogleListFilter();
-          toogleExpand();
-          test();
+          moreOptions && toogleExpand();
         }}
       >
         <h3>
@@ -183,7 +182,7 @@ const SortContainer = ({
         )} */}
       </div>
       <AnimatePresence>
-        {onClickReset && userHasSelectedGenres && (
+        {onClickReset && userHasSelectedFilter && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "30px", transition: { duration: 0.3 } }}
@@ -200,7 +199,7 @@ const SortContainer = ({
         )}
       </AnimatePresence>
       <div className="filter-content-container">{children}</div>
-      {moreOptions && (
+      {moreOptions && userHasSelectedFilter && (
         <div
           className="more-content"
           onClick={() => {

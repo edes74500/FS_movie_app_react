@@ -20,7 +20,7 @@ const StyledTitleDate = styled.div`
     }
   }
   h2 {
-    /* margin-top: 5px; */
+    margin-top: 5px;
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;

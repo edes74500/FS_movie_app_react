@@ -3,6 +3,7 @@ import { couleursGenresFilm } from "../styles/globalStyles";
 import { shownGenresFilm } from "../styles/globalStyles";
 export const SET_STATIC_DATA_POPULAR_MOVIE_LIST = "SET_STATIC_DATA_POPULAR_MOVIE_LIST";
 export const SET_STATIC_DATA_TOP_RATED_MOVIE_LIST = "SET_STATIC_DATA_TOP_RATED_MOVIE_LIST";
+export const SET_STATIC_DATA_TOP_RATED_2000_MOVIE_LIST = "SET_STATIC_DATA_TOP_RATED_2000_MOVIE_LIST";
 export const SET_FILTER_LIST_GENRES = "SET_FILTER_LIST_GENRES";
 
 const tMDBoptions = {
@@ -78,6 +79,32 @@ export const fetchTopRatedMovieList = () => {
         console.error(err);
         dispatch({
           type: SET_STATIC_DATA_TOP_RATED_MOVIE_LIST,
+          payload: [],
+        });
+      });
+  };
+};
+
+export const fetchTopRated2000MovieList = () => {
+  return (dispatch) => {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=1&primary_release_date.gte=2000-01-01&sort_by=vote_average.desc&vote_average.gte=8&vote_count.gte=10000",
+        tMDBoptions
+      )
+      .then((response) => {
+        const moviesListData = response.data.results.map((movie) => {
+          return {
+            ...movie,
+            listName: "Les meilleurs films des annes 2000",
+          };
+        });
+        dispatch({ type: SET_STATIC_DATA_TOP_RATED_2000_MOVIE_LIST, payload: moviesListData });
+      })
+      .catch((err) => {
+        console.error(err);
+        dispatch({
+          type: SET_STATIC_DATA_TOP_RATED_2000_MOVIE_LIST,
           payload: [],
         });
       });

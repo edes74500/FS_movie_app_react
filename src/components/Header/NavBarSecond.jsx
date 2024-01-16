@@ -8,6 +8,10 @@ import breakpoints from "../../styles/breakpoints";
 const StyledNavbar = styled.nav`
   background: var(--nav-bar-color);
   color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
   /* max-width: 1300px; */
   /* margin: auto; */
 

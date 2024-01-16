@@ -155,26 +155,28 @@ const GenreListFilter = () => {
           $dataGenres={dataGenres}
           $genreListIsOpened={genreListIsOpened}
         >
-          {dataGenres &&
-            dataGenres.map((category, index) => {
-              if (category.displayed) {
-                return (
-                  <StyledGenreListFilter
-                    key={category.id}
-                    id={category.id}
-                    data-indentifier="GenreListFilter"
-                    onClick={handleToogleFiler}
-                    className={category.selected ? "is-selected" : null}
-                  >
-                    <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" />{" "}
-                    <h4>{category.name}</h4>
-                    <span className="remove-icon">
-                      <IoIosCloseCircle />
-                    </span>
-                  </StyledGenreListFilter>
-                );
-              }
-            })}
+          <AnimatePresence>
+            {dataGenres &&
+              dataGenres.map((category, index) => {
+                if (category.displayed) {
+                  return (
+                    <StyledGenreListFilter
+                      key={category.id}
+                      id={category.id}
+                      data-indentifier="GenreListFilter"
+                      onClick={handleToogleFiler}
+                      className={category.selected ? "is-selected" : null}
+                    >
+                      <img src={`./img/icones/movie-style/${category.name.toLowerCase()}.png`} alt="" />{" "}
+                      <h4>{category.name}</h4>
+                      <span className="remove-icon">
+                        <IoIosCloseCircle />
+                      </span>
+                    </StyledGenreListFilter>
+                  );
+                }
+              })}
+          </AnimatePresence>
         </StyledContentWrapper>
       </SortContainer>
     </>

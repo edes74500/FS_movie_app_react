@@ -17,7 +17,7 @@
 
 - [ ] creer une nouvelle page pour les films avec navigation dynamique. les donnes sont dans le store. les defillement y doit etre stocker aussi.
 - [ ] tri par category
-- [ ] deplacer les requetes API dans redux
+
 - [ ] creer un isLoading
 - [ ] ajouter infinit scroll ?
 - [ ] creer plein de liste pour les bonus
@@ -79,3 +79,15 @@
 
 - creation d'un store sur Redux
 - reprise du genre et de la barre de recherche dans les actions pour qu'ils soient global
+
+**16/01/2023**
+
+- creation des variables pour les favoris dans le store
+- [x] refonte des actions sur redux, creation d'un objet avec tout les filters
+- [x] deplacer les requetes API dans redux
+
+**17/01/2023**
+
+- [ ] faire la logique des favoris en localstorage
+- [ ] faire la logique du display pour afficher la derniere recherche sur le store
+- [ ] faire une variable en plus lors de l'ajout de favoris avec un use effect dans l'icone de la barre de recherche. soit mettre un set timeout dans la fonction pour la faire passer de true a false, soit mettre le timeout dans le use effect.

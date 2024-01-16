@@ -14,14 +14,14 @@ const StyledFilterModule = styled.div`
   position: relative;
   position: -webkit-sticky; /* Pour Safari */
   position: sticky;
-  top: -40px;
+  top: 50px;
   height: 100vh;
   transition: 1s ease-in-out;
   .filter-wrapper {
-    gap: 50px;
+    gap: 20px;
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 10px;
     height: fit-content;
     justify-content: center;
   }

@@ -15,7 +15,8 @@ interface HeroSection {
 
 const StyledHeroSection2 = styled.div`
   position: relative;
-  margin: 20px auto;
+  margin: auto;
+  margin-top: 80px;
   width: 80vw;
   display: flex;
   flex-direction: column;
@@ -84,7 +85,7 @@ const StyledHeroSection2 = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.4;
-    transform: rotate(-20deg) translate(-50%, 30%);
+    transform: rotate(-20deg) translate(-40%, 20%);
     @media screen and (max-width: ${breakpoints.desktop}px) {
       transform: rotate(-20deg) translate(-40%, 20%);
       font-size: 1rem;
@@ -103,6 +104,7 @@ const StyledHeroSection2 = styled.div`
 
 const StyledSwiperSlideDiv = styled.div`
   min-height: 200px;
+
   background-position: center center;
   background-size: cover;
   animation: scale 30s linear alternate-reverse infinite;

@@ -14,13 +14,14 @@ const StyledGenreListFilter = styled.div`
   position: relative;
   /* overflow: hidden; */
   /* cursor: pointer; */
+  box-shadow: 4px 5px 30px -28px var(--secondary-color);
   .filter-title-container {
     border-radius: 5px 5px 0 0;
     border-bottom: 2px solid var(--secondary-color);
     position: relative;
     cursor: pointer;
     z-index: 20;
-    height: 50px;
+    height: 40px;
     display: flex;
     align-items: center;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, var(--secondary-color-07) 0%, var(--primary-color) 100%);
@@ -199,7 +200,7 @@ const SortContainer = ({
         )}
       </AnimatePresence>
       <div className="filter-content-container">{children}</div>
-      {moreOptions && userHasSelectedFilter && (
+      {moreOptions && (
         <div
           className="more-content"
           onClick={() => {

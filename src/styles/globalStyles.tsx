@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 
 const variables: { [key: string]: number } = {
-  filterItemHeight: 40,
+  filterItemHeight: 35,
 };
 
 const globalStyles = css`

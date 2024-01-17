@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 const StyledMoviesDisplay = styled.div`
   gap: 10px;
+  padding-bottom: 200px;
   position: relative;
   height: auto;
   transition: all 2s ease-in-out;

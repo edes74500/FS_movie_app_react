@@ -5,6 +5,7 @@
 - [ ] creer des cartes individually avec liste similaires
 - [ ] ajouter lien image et bouton decouvrir
 - [ ] ajouter un click sur les genres pour relancer une recherche avec ce genre
+- [ ] changer le display des cards pour enlever l'absolute en boutton
 
 ### filter module
 

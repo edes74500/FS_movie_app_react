@@ -34,6 +34,7 @@ interface MovieListInputSearchResult {
 
 const StyledHomePage = styled.div`
   max-width: 1300px;
+
   /* overflow-x: hidden; */
   width: 95%;
   height: auto;
@@ -48,6 +49,11 @@ const StyledHomePage = styled.div`
     display: flex;
     flex-direction: column;
   }
+`;
+
+const StyledTest = styled.div`
+  min-height: 1000px;
+  background-color: red;
 `;
 
 const Home: React.FC = () => {

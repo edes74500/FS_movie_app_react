@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchGenrelist, fetchTopRated2000MovieList } from "../actions/apiFetch.action";
-import { fetchPopularMovieList } from "../actions/apiFetch.action";
-import { fetchTopRatedMovieList } from "../actions/apiFetch.action";
+import { fetchGenrelist, fetchTopRated2000MovieList } from "../../actions/apiFetch.action";
+import { fetchPopularMovieList } from "../../actions/apiFetch.action";
+import { fetchTopRatedMovieList } from "../../actions/apiFetch.action";
 const LoadStaticData = () => {
   const dispatch = useDispatch(); // Utilisez useDispatch ici
 

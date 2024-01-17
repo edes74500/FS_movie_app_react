@@ -18,7 +18,7 @@ ${globalStyles}
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
-import LoadStaticData from "./components/LoadStaticData";
+import LoadStaticData from "./components/Shared/LoadStaticData";
 
 const store = configureStore({
   reducer: rootReducer,
@@ -31,7 +31,6 @@ const App = () => {
       <LoadStaticData />
       <Router>
         <GlobalStyle data-identifier="StyledGlobalStyle" />
-        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorite" element={<Favorite />} />

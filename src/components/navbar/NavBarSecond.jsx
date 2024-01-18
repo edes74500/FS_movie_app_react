@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 import styled from "styled-components";
 import breakpoints from "../../styles/breakpoints";
-import FavoriteIcone from "./favoriteIcone";
+import FavoriteIcone from "./FavoriteIcone";
 
 // Composant stylisé pour la barre de navigation
 const StyledNavbar = styled.nav`

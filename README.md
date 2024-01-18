@@ -76,11 +76,11 @@
 - [x] refonte des actions sur redux, creation d'un objet avec tout les filters
 - [x] deplacer les requetes API dans redux
 
-**17/01/2023**
+**18/01/2023**
 
-- [ ] faire la logique des favoris en localstorage
+- [x] faire la logique des favoris en localstorage
+- [x] faire une variable en plus lors de l'ajout de favoris avec un use effect dans l'icone de la barre de recherche. soit mettre un set timeout dans la fonction pour la faire passer de true a false, soit mettre le timeout dans le use effect.
+- [x] favori : ajouter un span avec le nombre de favoris
+- [x] logique coup de coeur
 - [ ] faire la logique du display pour afficher la derniere recherche sur le store
-- [ ] faire une variable en plus lors de l'ajout de favoris avec un use effect dans l'icone de la barre de recherche. soit mettre un set timeout dans la fonction pour la faire passer de true a false, soit mettre le timeout dans le use effect.
-- [ ] favori : ajouter un span avec le nombre de favoris
-- [ ] logique coup de coeur
 - [ ] creer un isLoading

@@ -5,7 +5,7 @@ import {
   SET_STATIC_DATA_TOP_RATED_2000_MOVIE_LIST,
 } from "../actions/apiFetch.action";
 import { SET_STATIC_DATA_TOP_RATED_MOVIE_LIST } from "../actions/apiFetch.action";
-import { ADD_FAV_MOVIES_LIST, REMOVE_FAV_MOVIES_LIST } from "../actions/favList.action";
+import { ADD_FAV_MOVIES_LIST, REMOVE_FAV_MOVIES_LIST, DISPLAY_FAV_MESSAGE } from "../actions/favList.action";
 import {
   RESET_FILTER_LIST_YEARS,
   UPDATE_FILTER_LIST_GENRES,
@@ -83,14 +83,29 @@ export const staticMoviesList = (state = staticMoviesListInitialState, action) =
   }
 };
 
-const favMoviesListInitialState = [];
+const favMoviesListInitialState = {
+  list: localStorage.getItem("favMoviesList") ? JSON.parse(localStorage.getItem("favMoviesList")) : [],
+  displayedMessage: null,
+};
 
 export const favMoviesList = (state = favMoviesListInitialState, action) => {
   switch (action.type) {
+    case DISPLAY_FAV_MESSAGE:
+      return { ...state, displayedMessage: action.payload };
+
+    // toLocaleStorage(action.payload);
+    // return action.payload;
     case ADD_FAV_MOVIES_LIST:
-      return [...state, action.payload];
+      // toLocaleStorage(action.payload);
+      return { ...state, list: [...state.list, action.payload] };
     case REMOVE_FAV_MOVIES_LIST:
-      return state.filter((movie) => movie.id !== action.payload);
+      // toLocaleStorage(action.payload);
+      return {
+        ...state,
+        list: state.list.filter((movie) => movie.id !== action.payload),
+      };
+
+    // state.list.filter((movie) => movie.id !== action.payload);
     default:
       return state;
   }

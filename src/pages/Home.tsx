@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import { couleursGenresFilm } from "../styles/globalStyles";
 import breakpoints from "../styles/breakpoints";
 // import HeaderSecond from "../components/Header/HeroSection2";
-import Navbar from "../components/Header/Navbar";
-import NavBarSecond from "../components/Header/NavBarSecond";
+import Navbar from "../components/navbar/Navbar";
+import NavBarSecond from "../components/navbar/NavBarSecond";
 import HeroSection2 from "../components/Header/HeroSection2";
 
 interface Movie {

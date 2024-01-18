@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 import styled from "styled-components";
 import breakpoints from "../../styles/breakpoints";
+import FavoriteIcone from "./favoriteIcone";
 
 // Composant stylisé pour la barre de navigation
 const StyledNavbar = styled.nav`
@@ -78,37 +79,37 @@ const StyledLink = styled(NavLink)`
         } */
   }
 `;
-const StyledIcon = styled(NavLink)`
-  /* transition: 1s; */
-  /* transform: scale(1); */
-  right: 0;
-  svg {
-    transition: 1s;
-    text-decoration: none;
-    font-weight: bold;
-    top: 50%;
-    font-size: 35px;
-    color: lightgray;
-    transform: scale(1);
-  }
-  &.active svg {
-    color: red;
-    /* transition: 1s; */
-    /* transform: scale(5); */
-    animation: pulse 2s ease-in infinite;
-  }
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-`;
+// const StyledIcon = styled(NavLink)`
+//   /* transition: 1s; */
+//   /* transform: scale(1); */
+//   right: 0;
+//   svg {
+//     transition: 1s;
+//     text-decoration: none;
+//     font-weight: bold;
+//     top: 50%;
+//     font-size: 35px;
+//     color: lightgray;
+//     transform: scale(1);
+//   }
+//   &.active svg {
+//     color: red;
+//     /* transition: 1s; */
+//     /* transform: scale(5); */
+//     animation: pulse 2s ease-in infinite;
+//   }
+//   @keyframes pulse {
+//     0% {
+//       transform: scale(1);
+//     }
+//     50% {
+//       transform: scale(1.2);
+//     }
+//     100% {
+//       transform: scale(1);
+//     }
+//   }
+// `;
 
 const StyledLogoContainer = styled.div`
   img {
@@ -164,9 +165,9 @@ function NavBarSecond() {
         <StyledLeftDiv>
           <ul>
             <li>
-              <StyledIcon to="/favorite" className={(nav) => (nav.isActive ? "active" : "")}>
-                <FaHeart />
-              </StyledIcon>
+              <NavLink to="/favorite" className={(nav) => (nav.isActive ? "active" : "")}>
+                <FavoriteIcone />
+              </NavLink>
             </li>
             {/* autres liens */}
           </ul>

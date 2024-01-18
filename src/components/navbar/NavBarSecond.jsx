@@ -139,28 +139,8 @@ function NavBarSecond() {
       <div className="navbar-wrapper">
         <ul>
           <li>
-            <StyledLink to="/" className={(nav) => (nav.isActive ? "active" : "")}>
-              {/* Accueil */}
-              {/* <Logo /> */}
-            </StyledLink>
+            <StyledLink to="/" className={(nav) => (nav.isActive ? "active" : "")}></StyledLink>
           </li>
-
-          {/* <li>
-          <StyledLink to="/series" className={(nav) => (nav.isActive ? "active" : "")}>
-          Series
-          </StyledLink>
-          </li>{" "}
-          <li>
-          <StyledLink to="/film" className={(nav) => (nav.isActive ? "active" : "")}>
-          Film
-          </StyledLink>
-        </li> */}
-          {/* <li>
-          <StyledIcon to="/favorite" className={(nav) => (nav.isActive ? "active" : "")}>
-          <FaHeart />
-          </StyledIcon>
-        </li> */}
-          {/* autres liens */}
         </ul>
         <StyledLeftDiv>
           <ul>
@@ -178,24 +158,3 @@ function NavBarSecond() {
 }
 
 export default NavBarSecond;
-
-// {
-/* <li>
-          <NavbarIcon to="/favorite">
-            <FaHeart />
-          </NavbarIcon>
-        </li> */
-// }
-
-// function NavbarIcon({ children, to, ...props }) {
-//   // Déterminez si le chemin est actif
-//   let resolved = useResolvedPath(to);
-//   let match = useMatch({ path: resolved.pathname, end: true });
-
-//   return (
-//     <StyledIcon to={to} className={`${match ? "active" : ""} ${scroll ? "scroll" : ""}`} {...props}>
-//       {""}
-//       {children}
-//     </StyledIcon>
-//   );
-// }
